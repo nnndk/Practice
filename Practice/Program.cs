@@ -1,6 +1,5 @@
 ﻿using Practice.Data;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authorization;
 using Practice.Models;
 using Practice.Helper;
 using System.Security.Claims;
@@ -45,36 +44,6 @@ app.UseAuthorization(); // authorization middleware
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
-app.Map("/Profile", [Authorize]() => "");
-
-app.MapGet("/login", async (HttpContext context) =>
-{
-    context.Response.ContentType = "text/html; charset=utf-8";
-    // html-форма для ввода логина/пароля
-    string loginForm = @"<!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset='utf-8' />
-        <title>METANIT.COM</title>
-    </head>
-    <body>
-        <h2>Login Form</h2>
-        <form method='post'>
-            <p>
-                <label>Login</label><br />
-                <input name='login' />
-            </p>
-            <p>
-                <label>Password</label><br />
-                <input type='password' name='password' />
-            </p>
-            <input type='submit' value='Login' />
-        </form>
-    </body>
-    </html>";
-    await context.Response.WriteAsync(loginForm);
-});
 
 app.MapPost("/login", async (string? returnUrl, HttpContext context) =>
 {
