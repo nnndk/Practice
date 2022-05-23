@@ -10,34 +10,20 @@
 </head>
 <body>
     <header>
-        <!--<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-primary border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Practice</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container-fluid">
-                <!--<a class="navbar-brand" href="#">Система учёта фактических трудозатрат</a>-->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarColor01">
                     <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" asp-controller="Home" asp-action="Index">
+                                Главная
+                                <span class="visually-hidden">(current)</span>
+                            </a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Должности и роли</a>
                             <div class="dropdown-menu">
@@ -53,7 +39,6 @@
                 <div class="d-flex">
                     <a class="nav-link active text-light" asp-controller="Profile" asp-action="Index">
                         Профиль
-                        <!--<span class="visually-hidden">(current)</span>-->
                     </a>
                 </div>
             </div>
@@ -67,7 +52,6 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            <!--&copy; 2022 - Practice - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>-->
             Курсовой проект 2 курс
         </div>
     </footer>
