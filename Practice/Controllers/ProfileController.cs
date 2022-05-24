@@ -6,9 +6,9 @@ using Practice.Models;
 
 namespace Practice.Controllers
 {
+    [Authorize]
     public class ProfileController : Controller
     {
-        [Authorize]
         public IActionResult Index()
         {
             using (var db = new CourseProject2DBContext())

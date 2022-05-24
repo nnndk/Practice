@@ -15,12 +15,40 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\danil\Documents\All\CourseProject2\Practice\Practice
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/Accountant/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudGFudFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/Admin/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/CEO/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ0VPXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/ContractDepEmp/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhY3REZXBFbXBcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/DbAdmin/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGJBZG1pblxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/DepDirector/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwRGlyZWN0b3JcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/Developer/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGV2ZWxvcGVyXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/Home/Main.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxNYWluLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/Login/Index.cshtml]
@@ -29,6 +57,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/Profile/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmlsZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/ProjectManager/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdE1hbmFnZXJcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/Shared/Error.cshtml]

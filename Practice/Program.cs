@@ -68,6 +68,10 @@ app.MapPost("/login", async (string? returnUrl, HttpContext context) =>
         return Results.Unauthorized(); // code 401
 
     var claims = new List<Claim> { new Claim(ClaimTypes.Name, employee.Логин) };
+
+    foreach(var role in Queries.GetEmployeeRoles(login))
+        claims.Add(new Claim(ClaimTypes.Role, role.Key));
+
     // создаем объект ClaimsIdentity
     ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, "Cookies");
     // установка аутентификационных куки
