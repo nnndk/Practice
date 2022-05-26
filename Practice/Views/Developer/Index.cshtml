@@ -1,7 +1,110 @@
-﻿
+﻿@using Practice.Helper
+@model DeveloperPage
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Developer</h1>
+<div class="row">
+    <h1 class="mt-3 mb-3">Разработчик</h1>
+</div>
 
+<div class="row">
+    <div class="col-1">
+        <a class="nav-link dropdown-toggle active text-dark h4" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Проекты</a>
+        <div class="dropdown-menu">
+            @foreach (var item in Model.projects)
+            {
+                <a class="dropdown-item" asp-controller="Developer" asp-action="Index" asp-route-id=@item.Key>@item.Value</a>
+            }
+        </div>
+    </div>
+
+    <div class="col-10">
+        @if (Model.selectedProject != null)
+        {
+            <h4 class="mt-2">@Model.selectedProject["НазваниеПроекта"]</h4>
+        }
+
+        <div>
+            <table class="table align-middle">
+                <thead>
+                    @if (Model.selectedProject != null)
+                    {
+                        <tr>
+                            @foreach (var item in Model.selectedProject.Keys)
+                            {
+                                <th scope="col">@item</th>
+                            }
+                        </tr>
+                    }
+                </thead>
+                <tbody>
+                    @if (Model.selectedProject != null)
+                    {
+                        <tr>
+                            @foreach (var item in Model.selectedProject.Values)
+                            {
+                                <th scope="col">@item</th>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        @if (Model.selectedProject != null)
+        {
+            <h4 class="mt-5">Трудозатраты</h4>
+        }
+        <div>
+            <table class="table table-striped align-middle table-responsive fixed-table">
+                <thead>
+                    @if (Model.tasks != null)
+                    {
+                        <tr>
+                            @foreach (var item in Model.tasks[0])
+                            {
+                                <th scope="col">@item.Key</th>
+                            }
+                            <th scope="col"></th>
+                        </tr>
+                    }
+                </thead>
+                <tbody>
+                    @if (Model.tasks != null)
+                    {
+                        @foreach (var item in Model.tasks)
+                        {
+                            <tr>
+
+                                @foreach (var col in item)
+                                {
+                                    <td><p>@col.Value</p></td>
+                                }
+
+                                @if (item["Код"] != null)
+                                {
+                                    <td class="text-end" nowrap>
+                                        <a asp-controller="Developer" asp-action="UpdateTask" asp-route-id=@int.Parse(item["Код"]) class="btn btn-dark"><i class="bi bi-pencil-fill"></i></a>
+                                        <a asp-controller="Developer" asp-action="DeleteTask" asp-route-id=@int.Parse(item["Код"]) class="btn btn-dark"><i class="bi bi-trash3-fill"></i></a>
+                                    </td>
+                                }
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        @if (Model.selectedProject != null)
+        {
+            <div class="text-end">
+                <a asp-controller="Developer" asp-action="AddTask" asp-route-id=@int.Parse(Model.selectedProject["Код"]) class="btn btn-dark">
+                    Добавить трудозатрату
+                </a>
+            </div>
+        }
+    </div>
+
+    <div class="col-1"></div>
+</div>

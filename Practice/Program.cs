@@ -65,7 +65,8 @@ app.MapPost("/login", async (string? returnUrl, HttpContext context) =>
     }
 
     if (employee is null || !Auth.VerifyHashedPassword(employee.Пароль, password))
-        return Results.Unauthorized(); // code 401
+        //return Results.Unauthorized(); // code 401
+        return Results.LocalRedirect("~/Login/Index/1");
 
     var claims = new List<Claim> { new Claim(ClaimTypes.Name, employee.Логин) };
 

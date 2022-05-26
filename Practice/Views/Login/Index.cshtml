@@ -19,6 +19,10 @@
                             <label>Пароль</label><br />
                             <input type='password' name='password' />
                         </p>
+                        @if (ViewBag.Message != null)
+                        {
+                            <p class="fs-6 text-secondary">@ViewBag.Message</p>
+                        }
                         <div class="text-end login-font">
                             <button class="btn btn-dark justify-content-center" type='submit'>Вход</button>
                         </div>

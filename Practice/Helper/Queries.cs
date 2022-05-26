@@ -18,6 +18,7 @@ namespace Practice.Helper
 
         public static Dictionary<string, string> GetEmployeeRoles(string login)
         {
+            // Получает все роли сотрудника (нужно для авторизации и отображения необходимых вкладок)
             using (var db = new CourseProject2DBContext())
             {
                 // должности

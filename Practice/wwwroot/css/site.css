@@ -20,3 +20,11 @@ body {
 .login-font {
     font-size: 20px !important;
 }
+
+/*.fixed-table {
+    table-layout: fixed !important;
+}*/
+
+table {
+    max-width: 100%
+}

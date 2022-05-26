@@ -30,17 +30,9 @@ namespace Practice.Controllers
         public IActionResult Index()
         {
             if (HttpContext.User.Identity.Name != null)
-                return RedirectToAction("Main", "Home");
+                return View(Queries.GetEmployeeRoles(User.Identity.Name));
 
-            return View();
-        }
-
-        [Authorize]
-        public IActionResult Main()
-        {
-            Dictionary<string, string> empPositions = Queries.GetEmployeeRoles(User.Identity.Name);
-
-            return View(empPositions);
+            return View(new Dictionary<string, string>());
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

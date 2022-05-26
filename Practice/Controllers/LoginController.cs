@@ -7,8 +7,11 @@ namespace Practice.Controllers
 {
     public class LoginController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index(int id = -1)
         {
+            if (id == 1)
+                ViewBag.Message = "Неправильный логин или пароль!";
+
             return View();
         }
 

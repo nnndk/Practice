@@ -1,8 +1,33 @@
-﻿@{
+﻿@model Dictionary<string, string>
+@{
+    ViewData["Title"] = "Main";
+}
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-3 mt-3 mb-4">Курсовой проект</h1>
     <p class="h4 mb-5">Система учёта фактических трудозатрат сотрудников ООО "ОКТА ГРУПП"</p>
+</div>
+
+<div class="container mt-3">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col">
+            <table class="table table-hover">
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td><a class="nav-link text-dark" asp-controller=@item.Value asp-action="Index">@item.Key</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col"></div>
+    </div>
 </div>

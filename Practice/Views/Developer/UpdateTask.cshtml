@@ -1,0 +1,47 @@
+﻿@model ФактическиеТрудозатраты
+
+@{
+    ViewData["Title"] = "UpdateTask";
+}
+
+<form method="post" asp-action="UpdateTask">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="border p-3 mt-4 col-6">
+            <div class="row pb-2">
+                <h2 class="text_primary">Редактировать трудозатрату</h2>
+                <hr />
+            </div>
+            <div asp-validation-summary="All"></div>
+            <div class="mb-3">
+                <label asp-for="Задача">Задача</label>
+                <input asp-for="Задача" class="form-control" />
+                <span asp-validation-for="Задача" class="text_danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="ДатаТрудозатраты">Дата трудозатраты</label>
+                <input asp-for="ДатаТрудозатраты" class="form-control" />
+                <span asp-validation-for="ДатаТрудозатраты" class="text_danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="КоличествоЧасов">Количество часов</label>
+                <input asp-for="КоличествоЧасов" class="form-control" />
+                <span asp-validation-for="КоличествоЧасов" class="text_danger"></span>
+            </div>
+
+            <input asp-for="КодПроекта" class="form-control d-none" value=@ViewBag.ProjectId />
+            <input asp-for="Код" class="form-control d-none" value=@ViewBag.TaskId />
+            
+            <div class="text-end">
+                <a asp-controller="Developer" asp-action="Index" asp-route-id=@ViewBag.ProjectId class="btn btn-secondary mx-3" style="width:150px">
+                    Назад
+                </a>
+                <button type="submit" class="btn btn-dark" style="width:150px">
+                    Обновить
+                </button>
+            </div>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</form>
+
