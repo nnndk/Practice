@@ -10,48 +10,15 @@
             <div class="row">
                 <div class="col mt-4 login-font">
                     <h1 class="text-center mb-5">Профиль</h1>
-                    <table class="table">
+                    <table class="table table-striped" ">
                         <tbody>
+                            @foreach (var item in Model)
+                            {
                             <tr>
-                                <td>Фамилия</td>
-                                <td>@Model["Фамилия"]</td>
+                                <td>@item.Key</td>
+                                <td>@item.Value</td>
                             </tr>
-                            <tr class="table-secondary">
-                                <td>Имя</td>
-                                <td>@Model["Имя"]</td>
-                            </tr>
-                            <tr>
-                                <td>Отчество</td>
-                                <td>@Model["Отчество"]</td>
-                            </tr>
-                            <tr class="table-secondary">
-                                <td>Пол</td>
-                                <td>@Model["Пол"]</td>
-                            </tr>
-                            <tr>
-                                <td>Дата рождения</td>
-                                <td>@Model["ДатаРождения"]</td>
-                            </tr>
-                            <tr class="table-secondary">
-                                <td>Телефон 1</td>
-                                <td>@Model["Телефон1"]</td>
-                            </tr>
-                            <tr>
-                                <td>Телефон 2</td>
-                                <td>@Model["Телефон2"]</td>
-                            </tr>
-                            <tr class="table-secondary">
-                                <td>Дата начала работы в SAP</td>
-                                <td>@Model["ДатаНачалаРаботыВSap"]</td>
-                            </tr>
-                            <tr>
-                                <td>Вид трудоустройства</td>
-                                <td>@Model["ВидТрудоустройства"]</td>
-                            </tr>
-                            <tr class="table-secondary">
-                                <td>Логин</td>
-                                <td>@Model["Логин"]</td>
-                            </tr>
+                            }
                         </tbody>
                     </table>
                 </div>

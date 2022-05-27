@@ -1,0 +1,62 @@
+﻿@model Dictionary<string, string>
+@{
+    ViewData["Title"] = "UpdateDeveloper";
+}
+
+<div class="row">
+    <h1 class="mt-3 mb-3">Менеджер проекта</h1>
+</div>
+
+<div class="container">
+    <div class="row align-middle">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <div class="row">
+                <div class="col mt-4 login-font">
+                    <h2 class="mt-2 mb-4 text-center">Информация о разработчике</h2>
+                    <table class="table table-striped">
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Key</td>
+                                    <td>@item.Value</td>
+
+                                    <td>
+                                        @switch (item.Key)
+                                        {
+                                            case "Роль":
+                                                <a asp-controller="ProjectManager" asp-action="UpdateRole" asp-route-id=@int.Parse(Model["Код"]) asp-route-projectid=@ViewBag.ProjectId class="btn btn-dark">
+                                                    <i class="bi bi-pencil-fill"></i>
+                                                </a>
+                                                break;
+                                            case "Ставка":
+                                                <a asp-controller="ProjectManager" asp-action="UpdateRate" asp-route-id=@int.Parse(Model["Код"]) asp-route-projectid=@ViewBag.ProjectId class="btn btn-dark">
+                                                    <i class="bi bi-pencil-fill"></i>
+                                                </a>
+                                                break;
+                                            case "ДатаОкончанияРаботыНаПроекте":
+                                                <a asp-controller="ProjectManager" asp-action="UpdateEndDate" asp-route-id=@int.Parse(Model["Код"]) asp-route-projectid=@ViewBag.ProjectId class="btn btn-dark">
+                                                    <i class="bi bi-pencil-fill"></i>
+                                                </a>
+                                                break;
+                                            default:
+                                                break;
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="text-end">
+                <a asp-controller="ProjectManager" asp-action="Index" asp-route-projectid=@ViewBag.ProjectId class="btn btn-secondary" style="width:150px">
+                    Назад
+                </a>
+            </div>
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>
+

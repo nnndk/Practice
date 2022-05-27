@@ -1,0 +1,68 @@
+﻿@model ПроектыИСотрудники
+@{
+    ViewData["Title"] = "UpdateEndDate";
+}
+
+<div class="row">
+    <h1 class="mt-3 mb-3">Менеджер проекта</h1>
+</div>
+
+<form method="post" asp-action="UpdateEndDate">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="border p-3 mt-4 col-6">
+            <div class="row pb-2">
+                <h2 class="text_primary">Изменение даты окончания работы на проекте</h2>
+                <hr />
+            </div>
+            <div class="mb-3">
+                <label asp-for="Код">Код</label>
+                <input asp-for="Код" class="form-control" value=@Model.Код readonly />
+            </div>
+            <div class="mb-3">
+                <label asp-for="КодСотрудника">Код сотрудника</label>
+                <input asp-for="КодСотрудника" class="form-control" value=@Model.КодСотрудника readonly />
+            </div>
+            <div class="mb-3">
+                <label asp-for="КодПроекта">Код проекта</label>
+                <input asp-for="КодПроекта" class="form-control" value=@Model.КодПроекта readonly />
+            </div>
+            <div class="mb-3">
+                <label asp-for="ДатаНачалаРаботыНаПроекте">Дата начала работы на проекте</label>
+                <input asp-for="ДатаНачалаРаботыНаПроекте" class="form-control" type="datetime" value=@Model.ДатаНачалаРаботыНаПроекте readonly />
+            </div>
+            <div class="mb-3">
+                <label asp-for="КодРоли">Код роли</label>
+                <input asp-for="КодРоли" class="form-control" value=@Model.КодРоли readonly />
+            </div>
+            <div class="mb-3">
+                <label>Дата окончания работы на проекте</label>
+                @if (Model.ДатаОкончанияРаботыНаПроекте == null)
+                {
+                    <input class="form-control" readonly />
+                }
+                else
+                {
+                    <input type="date" class="form-control" value=@Model.ДатаОкончанияРаботыНаПроекте readonly />
+                }
+                
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="ДатаОкончанияРаботыНаПроекте">Новая дата окончания работы на проекте</label>
+                <input asp-for="ДатаОкончанияРаботыНаПроекте" class="form-control" />
+                
+            </div>
+
+            <div class="text-end">
+                <a asp-controller="ProjectManager" asp-action="UpdateDeveloper" asp-route-id=@Model.КодСотрудника asp-route-projectid=@Model.КодПроекта class="btn btn-secondary mx-3" style="width:150px">
+                    Назад
+                </a>
+                <button type="submit" class="btn btn-dark" style="width:150px">
+                    Отправить
+                </button>
+            </div>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</form>

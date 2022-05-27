@@ -1,0 +1,54 @@
+﻿@using Practice.Data;
+@model ПроектыИСотрудники
+@{
+    ViewData["Title"] = "AddDeveloper";
+
+    using (var db = new CourseProject2DBContext())
+    {
+        ViewBag.Roles = (from role in db.Ролиs select role).ToList();
+    }
+}
+
+<div class="row">
+    <h1 class="mt-3 mb-3">Менеджер проекта</h1>
+</div>
+
+<form method="post">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="border p-3 mt-4 col-6">
+            <div class="row pb-2">
+                <h2 class="text_primary">Добавить разработчика</h2>
+                <hr />
+            </div>
+            <div class="mb-3">
+                <select class="form-control" asp-for="КодРоли">
+                    <option selected>Выбрать роль...</option>
+                    @foreach (var role in ViewBag.Roles)
+                    {
+                        <option value=@role.Код>@role.Роль</option>
+                    }
+                </select>
+                <span asp-validation-for="КодРоли" class="text_danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="ДатаНачалаРаботыНаПроекте">Дата начала работы на проекте</label>
+                <input asp-for="ДатаНачалаРаботыНаПроекте" class="form-control" />
+                <span asp-validation-for="ДатаНачалаРаботыНаПроекте" class="text_danger"></span>
+            </div>
+
+            <input asp-for="КодСотрудника" class="form-control d-none" value=@ViewBag.Id />
+            <input asp-for="КодПроекта" class="form-control d-none" value=@ViewBag.ProjectId />
+
+            <div class="text-end">
+                <a asp-controller="ProjectManager" asp-action="AvailableEmployees" asp-route-projectid=@ViewBag.ProjectId class="btn btn-secondary mx-3" style="width:150px">
+                    Назад
+                </a>
+                <button type="submit" class="btn btn-dark" style="width:150px">
+                    Добавить
+                </button>
+            </div>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</form>

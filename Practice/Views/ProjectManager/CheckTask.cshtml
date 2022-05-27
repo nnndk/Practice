@@ -1,0 +1,70 @@
+﻿@model ФактическиеТрудозатраты
+@{
+    ViewData["Title"] = "CheckTask";
+}
+
+<div class="row">
+    <h1 class="mt-3 mb-3">Менеджер проекта</h1>
+</div>
+
+<form method="post" asp-action="CheckTask">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="border p-3 mt-4 col-6">
+            <div class="row pb-2">
+                <h2 class="text_primary">Проверка трудозатраты</h2>
+                <hr />
+            </div>
+            <div asp-validation-summary="All"></div>
+
+            <div class="mb-3">
+                <label asp-for="Код">Код</label>
+                <input asp-for="Код" class="form-control" value=@Model.Код readonly />
+            </div>
+            <div class="mb-3">
+                <label asp-for="КодРазработчика">Код разработчика</label>
+                <input asp-for="КодРазработчика" class="form-control" value=@Model.КодРазработчика readonly />
+            </div>
+            <div class="mb-3">
+                <label asp-for="КодПроекта">Код проекта</label>
+                <input asp-for="КодПроекта" class="form-control" value=@Model.КодПроекта readonly />
+            </div>
+            <div class="mb-3">
+                <label asp-for="Задача">Задача</label>
+                <input asp-for="Задача" class="form-control" value=@Model.Задача readonly />
+            </div>
+            <div class="mb-3">
+                <label asp-for="ДатаТрудозатраты">Дата трудозатраты</label>
+                <input asp-for="ДатаТрудозатраты" class="form-control" type="datetime" value=@Model.ДатаТрудозатраты readonly />
+            </div>
+            <div class="mb-3">
+                <label asp-for="КодСтатуса">Код статуса</label>
+                <input asp-for="КодСтатуса" class="form-control" value=@Model.КодСтатуса readonly />
+            </div>
+            <div class="mb-3">
+                <label asp-for="КоличествоЧасов">Количество часов</label>
+                <input asp-for="КоличествоЧасов" class="form-control" value=@Model.КоличествоЧасов readonly />
+            </div>
+            <div class="mb-3">
+                <label asp-for="ПоследнееИзменение">Последнее изменение</label>
+                <input asp-for="ПоследнееИзменение" class="form-control" type="datetime" value=@Model.ПоследнееИзменение readonly />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Комментарий">Комментарий</label>
+                <input asp-for="Комментарий" class="form-control" />
+                <span asp-validation-for="Комментарий" class="text_danger"></span>
+            </div>
+
+            <div class="text-end">
+                <a asp-controller="ProjectManager" asp-action="GetAllTasks" asp-route-projectid=@Model.КодПроекта class="btn btn-secondary mx-3" style="width:150px">
+                    Назад
+                </a>
+                <button type="submit" class="btn btn-dark" style="width:150px">
+                    Отправить
+                </button>
+            </div>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</form>

@@ -1,0 +1,52 @@
+﻿@model List<Dictionary<string, string>>
+@{
+    ViewData["Title"] = "AvailableEmployees";
+}
+
+<div class="row">
+    <h1 class="mt-3 mb-3">Менеджер проекта</h1>
+</div>
+
+<div class="row">
+    <div class="col-1"></div>
+    <div class="col-10">
+        <h4 class="mt-2">Доступные сотрудники</h4>
+        <table class="table table-striped align-middle table-responsive fixed-table">
+            <thead>
+                <tr>
+                    @foreach (var item in Model[0])
+                    {
+                        <th scope="col">@item.Key</th>
+                    }
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        @foreach (var col in item)
+                        {
+                            <td><p class="my-0">@col.Value</p></td>
+                        }
+
+                        @if (item["Код"] != null)
+                        {
+                            <td class="text-center" nowrap>
+                                <a asp-controller="ProjectManager" asp-action="AddDeveloper" asp-route-id=@int.Parse(item["Код"]) asp-route-projectid=@ViewBag.ProjectId>
+                                    <i class="bi bi-plus-circle" style="font-size: 1.5rem; color:black;"></i>
+                                </a>
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="text-end">
+                <a asp-controller="ProjectManager" asp-action="Index" asp-route-projectid=@ViewBag.ProjectId class="btn btn-secondary">
+                    Назад
+                </a>
+            </div>
+    </div>
+    <div class="col-1"></div>
+</div>

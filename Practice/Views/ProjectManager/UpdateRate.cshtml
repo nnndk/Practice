@@ -1,0 +1,48 @@
+﻿@model СтавкиСотрудников
+@{
+    ViewData["Title"] = "UpdateRate";
+}
+
+<div class="row">
+    <h1 class="mt-3 mb-3">Менеджер проекта</h1>
+</div>
+
+<form method="post" asp-action="UpdateRate">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="border p-3 mt-4 col-6">
+            <div class="row pb-2">
+                <h2 class="text_primary">Изменение ставки разработчика</h2>
+                <hr />
+            </div>
+            <div class="mb-3">
+                <label asp-for="КодСотрудника">Код сотрудника</label>
+                <input asp-for="КодСотрудника" class="form-control" value=@Model.КодСотрудника readonly />
+            </div>
+            <div class="mb-3">
+                <label asp-for="КодПроекта">Код проекта</label>
+                <input asp-for="КодПроекта" class="form-control" value=@Model.КодПроекта readonly />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="ДатаНачалаДействияСтавки">Дата начала действия ставки</label>
+                <input asp-for="ДатаНачалаДействияСтавки" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label asp-for="Ставка">Ставка</label>
+                <input asp-for="Ставка" class="form-control" />
+            </div>
+
+            <div class="text-end">
+                <a asp-controller="ProjectManager" asp-action="UpdateDeveloper" asp-route-id=@Model.КодСотрудника asp-route-projectid=@Model.КодПроекта class="btn btn-secondary mx-3" style="width:150px">
+                    Назад
+                </a>
+                <button type="submit" class="btn btn-dark" style="width:150px">
+                    Отправить
+                </button>
+            </div>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</form>
+

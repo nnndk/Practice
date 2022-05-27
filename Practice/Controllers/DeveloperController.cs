@@ -123,11 +123,6 @@ namespace Practice.Controllers
             return View(new DeveloperPage() { projects = projects, selectedProject = GetSelectedProject(id), tasks = GetEmployeeTasks(id) });
         }
 
-        public IActionResult BlockedProjectError()
-        {
-            return View();
-        }
-
         [HttpGet]
         public IActionResult AddTask(int id = -1)
         {
