@@ -181,6 +181,10 @@ namespace Practice.Controllers
                              join pr_emp in db.ПроектыИСотрудникиs on emp.Код equals pr_emp.КодСотрудника into gr
                              from g in gr.DefaultIfEmpty()
                              where !projectDevs.Contains(emp.Код) && emp.Логин != User.Identity.Name
+                             && (
+                             from employee in db.УстройствоНаРаботуs
+                             where employee.ДатаУвольнения > DateTime.Now.Date || employee.ДатаУвольнения == null
+                             select employee.КодСотрудника).ToList().Contains(emp.Код)
                              select new
                              {
                                  Код = emp.Код.ToString(),

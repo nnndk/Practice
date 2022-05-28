@@ -60,17 +60,17 @@ app.MapPost("/login", async (string? returnUrl, HttpContext context) =>
     using (var db = new CourseProject2DBContext())
     {
         employee = (from emp in db.Сотрудникиs
-                        where emp.Логин == login
-                        select emp).FirstOrDefault();
+                    where emp.Логин == login
+                    select emp).FirstOrDefault();
     }
 
     if (employee is null || !Auth.VerifyHashedPassword(employee.Пароль, password))
         //return Results.Unauthorized(); // code 401
-        return Results.LocalRedirect("~/Login/Index/1");
+        return Results.BadRequest("Неправильный логин и/или пароль!");
 
     var claims = new List<Claim> { new Claim(ClaimTypes.Name, employee.Логин) };
 
-    foreach(var role in Queries.GetEmployeeRoles(login))
+    foreach (var role in Queries.GetEmployeeRoles(login))
         claims.Add(new Claim(ClaimTypes.Role, role.Key));
 
     // создаем объект ClaimsIdentity

@@ -1,0 +1,111 @@
+﻿@using Practice.Data
+@model Сотрудники
+@{
+    ViewData["Title"] = "UpdateEmployee";
+
+    using (var db = new CourseProject2DBContext())
+    {
+        ViewBag.Genders = (from sex in db.Полs select sex).ToList<Пол>();
+        ViewBag.EmpTypes = (from empType in db.ВидыТрудоустройстваs select empType).ToList<ВидыТрудоустройства>();
+    }
+}
+
+<div class="row">
+    <h1 class="mt-3 mb-3">Администратор</h1>
+</div>
+
+<form method="post" asp-action="UpdateEmployee">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="border p-3 mt-4 col-6">
+            <div class="row pb-2">
+                <h2 class="text_primary">Изменение роли</h2>
+                <hr />
+            </div>
+            <div class="mb-3">
+                <label asp-for="Код">Код</label>
+                <input asp-for="Код" class="form-control" value=@Model.Код readonly />
+            </div>
+            <div class="mb-3">
+                <label asp-for="Фамилия">Фамилия</label>
+                <input asp-for="Фамилия" class="form-control" value=@Model.Фамилия />
+                <span asp-validation-for="Фамилия" class="text_danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Имя">Имя</label>
+                <input asp-for="Имя" class="form-control" value=@Model.Имя />
+                <span asp-validation-for="Имя" class="text_danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Отчество">Отчество</label>
+                <input asp-for="Отчество" class="form-control" value=@Model.Отчество />
+                <span asp-validation-for="Отчество" class="text_danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="КодПола">Пол</label>
+                <select class="form-control" asp-for="КодПола">
+                    <option selected>Выбрать пол...</option>
+
+                    @foreach (var item in ViewBag.Genders)
+                    {
+                        <option value=@item.Код>@item.Пол1</option>
+                    }
+                </select>
+                <span asp-validation-for="КодПола" class="text_danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="ДатаРождения">Дата рождения</label>
+                <input asp-for="ДатаРождения" class="form-control" />
+                <span asp-validation-for="ДатаРождения" class="text_danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Телефон1">Телефон1</label>
+                <input asp-for="Телефон1" class="form-control" value=@Model.Телефон1 />
+                <span asp-validation-for="Телефон1" class="text_danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Телефон2">Телефон2</label>
+                <input asp-for="Телефон2" class="form-control" value=@Model.Телефон2 />
+                <span asp-validation-for="Телефон2" class="text_danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="ДатаНачалаРаботыВSap">Дата начала работы в SAP</label>
+                <input asp-for="ДатаНачалаРаботыВSap" class="form-control" />
+                <span asp-validation-for="ДатаНачалаРаботыВSap" class="text_danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="КодВидаТрудоустройства">Вид трудоустройства</label>
+                <select class="form-control" asp-for="КодВидаТрудоустройства">
+                    <option selected>Выбрать вид трудоустройства...</option>
+
+                    @foreach (var item in ViewBag.EmpTypes)
+                    {
+                        <option value=@item.Код>@item.ВидТрудоустройства</option>
+                    }
+                </select>
+                <span asp-validation-for="КодВидаТрудоустройства" class="text_danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Логин">Логин</label>
+                <input asp-for="Логин" class="form-control" value=@Model.Логин />
+                <span asp-validation-for="Логин" class="text_danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Пароль">Пароль</label>
+                <input asp-for="Пароль" class="form-control" value=@Model.Пароль />
+                <span asp-validation-for="Пароль" class="text_danger"></span>
+            </div>
+            
+
+            <div class="text-end">
+                <a asp-controller="Admin" asp-action="Index"class="btn btn-secondary mx-3" style="width:150px">
+                    Назад
+                </a>
+                <button type="submit" class="btn btn-dark" style="width:150px">
+                    Обновить
+                </button>
+            </div>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</form>
