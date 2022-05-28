@@ -1,0 +1,43 @@
+﻿@model Департаменты
+@{
+    ViewData["Title"] = "UpdateDepartment";
+}
+
+<div class="row">
+    <h1 class="mt-3 mb-3">Сотрудник договорного отдела</h1>
+</div>
+
+<form method="post" asp-action="UpdateDepartment">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="border p-3 mt-4 col-6">
+            <div class="row pb-2">
+                <h2>Изменение департамента</h2>
+                <hr />
+            </div>
+            <div class="mb-3">
+                <label asp-for="НазваниеДепартамента">Название департамента</label>
+                <input asp-for="НазваниеДепартамента" class="form-control" value=@Model.НазваниеДепартамента />
+                <span asp-validation-for="НазваниеДепартамента" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="КодДиректораДепартамента">Код директора департамента</label>
+                <input asp-for="КодДиректораДепартамента" class="form-control" />
+                <span asp-validation-for="КодДиректораДепартамента" class="text-danger"></span>
+            </div>
+
+            <input asp-for="Код" class="form-control d-none" value=@Model.Код />
+
+            <div class="text-end">
+                <a asp-controller="ContractDepEmp" asp-action="Index" class="btn btn-secondary mx-3" style="width:150px">
+                    Назад
+                </a>
+                <button type="submit" class="btn btn-dark" style="width:150px">
+                    Обновить
+                </button>
+            </div>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</form>
+

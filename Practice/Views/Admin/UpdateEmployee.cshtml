@@ -95,17 +95,22 @@
                 <input asp-for="Пароль" class="form-control" value=@Model.Пароль />
                 <span asp-validation-for="Пароль" class="text-danger"></span>
             </div>
-            
 
-            <div class="text-end">
-                <a asp-controller="Admin" asp-action="Index"class="btn btn-secondary mx-3" style="width:150px">
-                    Назад
-                </a>
-                <button type="submit" class="btn btn-dark" style="width:150px">
-                    Обновить
-                </button>
+            <div class="row">
+                <div class="col-4 text-start">
+                    <a asp-controller="Admin" asp-action="EmployeePositions" asp-route-id=@Model.Код class="btn btn-dark" style="width:200px">
+                        Должности сотрудника
+                    </a>
+                </div>
+                <div class="col-8 text-end">
+                    <a asp-controller="Admin" asp-action="Index" class="btn btn-secondary mx-3" style="width:150px">
+                        Назад
+                    </a>
+                    <button type="submit" class="btn btn-dark" style="width:150px">
+                        Обновить
+                    </button>
+                </div>
             </div>
         </div>
-        <div class="col-3"></div>
     </div>
 </form>

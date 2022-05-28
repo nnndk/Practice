@@ -85,7 +85,10 @@ namespace Practice.Controllers
                     emps.Add(dict);
                 }
 
-                return View(new ContractDepEmpPage() { projects = projects, employees = emps });
+                var deps = (from dep in db.Департаментыs
+                            select dep).ToList();
+
+                return View(new ContractDepEmpPage() { projects = projects, employees = emps, departments = deps });
             }
         }
 
@@ -254,8 +257,8 @@ namespace Practice.Controllers
             {
                 // есть ли искомый сотрудник в базе (добавил ли его администратор) и не числится ли он в штате в данный момент
                 var empl = (from employment in db.УстройствоНаРаботуs
-                             where employment.КодСотрудника == id && (employment.ДатаУвольнения > DateTime.Now.Date || employment.ДатаУвольнения == null)
-                             select employment).First();
+                            where employment.КодСотрудника == id && (employment.ДатаУвольнения > DateTime.Now.Date || employment.ДатаУвольнения == null)
+                            select employment).First();
 
                 if (empl == null)
                     return NotFound();
@@ -334,6 +337,117 @@ namespace Practice.Controllers
 
                 return View(tasks);
             }
+        }
+
+        [HttpGet]
+        public IActionResult AddDepartment()
+        {
+            return View(new Департаменты());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AddDepartment(Департаменты dep)
+        {
+            using (var db = new CourseProject2DBContext())
+            {
+                var query = (from emp in db.Сотрудникиs
+                             where (from employee in db.УстройствоНаРаботуs
+                                    where employee.ДатаУвольнения > DateTime.Now.Date || employee.ДатаУвольнения == null
+                                    select employee.КодСотрудника).ToList().Contains(emp.Код) && emp.Код == dep.КодДиректораДепартамента
+                             select emp.Код).Any();
+
+                if (!query)
+                {
+                    ModelState.AddModelError("КодДиректораДепартамента", "Ошибка! Нет сотрудника с таким кодом!");
+                    return View(dep);
+                }
+
+                if (ModelState.ErrorCount == 1)
+                {
+                    db.Департаментыs.Add(dep);
+                    db.SaveChanges();
+
+                    db.ДолжностиСотрудниковs.Add(new ДолжностиСотрудников()
+                    {
+                        КодДепартамента = dep.Код,
+                        КодСотрудника = dep.КодДиректораДепартамента,
+                        ДатаНазначения = DateTime.Now.Date,
+                        КодДолжности = 8
+                    });
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+            }
+
+            return View(dep);
+        }
+
+        [HttpGet]
+        public IActionResult UpdateDepartment(int id = -1)
+        {
+            if (id == -1)
+                return NotFound();
+
+            using (var db = new CourseProject2DBContext())
+            {
+                var department = (from dep in db.Департаментыs
+                                  where dep.Код == id
+                                  select dep).FirstOrDefault();
+
+                return View(department);
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult UpdateDepartment(Департаменты dep)
+        {
+            using (var db = new CourseProject2DBContext())
+            {
+                var query = (from emp in db.Сотрудникиs
+                             where (from employee in db.УстройствоНаРаботуs
+                                    where employee.ДатаУвольнения > DateTime.Now.Date || employee.ДатаУвольнения == null
+                                    select employee.КодСотрудника).ToList().Contains(emp.Код) && emp.Код == dep.КодДиректораДепартамента
+                             select emp.Код).Any();
+
+                if (!query)
+                {
+                    ModelState.AddModelError("КодДиректораДепартамента", "Ошибка! Нет сотрудника с таким кодом!");
+                    return View(dep);
+                }
+
+                long oldDepDir = (from department in db.Департаментыs
+                                  where department.Код == dep.Код
+                                  select department.КодДиректораДепартамента).First();
+
+                if (ModelState.ErrorCount == 1)
+                {
+                    db.Департаментыs.Update(dep);
+                    db.SaveChanges();
+
+                    if (oldDepDir != dep.КодДиректораДепартамента)
+                    {
+                        var pos = (from emp_pos in db.ДолжностиСотрудниковs
+                                      where emp_pos.КодСотрудника == oldDepDir && emp_pos.КодДолжности == 8
+                                      select emp_pos).FirstOrDefault();
+
+                        if (pos == null)
+                            return NotFound();
+
+                        pos.КодСотрудника = dep.КодДиректораДепартамента;
+                        pos.ДатаНазначения = DateTime.Now.Date;
+
+                        db.ДолжностиСотрудниковs.Update(pos);
+                        db.SaveChanges();
+                    }
+
+                    return RedirectToAction("Index");
+                }
+            }
+
+            return View(dep);
         }
     }
 }

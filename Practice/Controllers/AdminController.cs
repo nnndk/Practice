@@ -38,8 +38,6 @@ namespace Practice.Controllers
                                 Логин = emp.Логин
                             };
 
-                int x = query.Count();
-
                 foreach (var item in query)
                 {
                     var json_emps = JsonConvert.SerializeObject(item);
@@ -145,6 +143,144 @@ namespace Practice.Controllers
             }
 
             return View(emp);
+        }
+
+        public IActionResult EmployeePositions(long id = -1)
+        {
+            if (id == -1)
+                return NotFound();
+
+            using (var db = new CourseProject2DBContext())
+            {
+                var positions = new List<Dictionary<string, string>>();
+
+                var query = from empPos in db.ДолжностиСотрудниковs
+                            join dep in db.Департаментыs on empPos.КодДепартамента equals dep.Код
+                            join pos in db.Должностиs on empPos.КодДолжности equals pos.Код
+                            where empPos.КодСотрудника == id
+                            select new
+                            {
+                                Код = empPos.Код,
+                                НазваниеДепартамента = dep.НазваниеДепартамента,
+                                ДатаНазначения = empPos.ДатаНазначения.ToString("yyyy-MM-dd HH:mm:ss"),
+                                Должность = pos.Должность
+                            };
+
+                foreach (var item in query)
+                {
+                    var json_emps = JsonConvert.SerializeObject(item);
+                    positions.Add(JsonConvert.DeserializeObject<Dictionary<string, string>>(json_emps));
+                }
+
+                if (positions.Count == 0)
+                {
+                    var list = new List<Dictionary<string, string>>();
+                    var dict = new Dictionary<string, string>();
+                    var keys = new string[] { "НазваниеДепартамента", "ДатаНазначения", "Должность" };
+
+                    foreach (var key in keys)
+                        dict.Add(key, null);
+
+                    positions.Add(dict);
+                }
+
+                ViewBag.EmpId = id;
+
+                return View(positions);
+            }
+        }
+
+        [HttpGet]
+        public IActionResult DeletePosition(long id = -1)
+        {
+            if (id == -1)
+                return NotFound();
+
+            using (var db = new CourseProject2DBContext())
+            {
+                var query = (from emp_pos in db.ДолжностиСотрудниковs
+                            join dep in db.Департаментыs on emp_pos.КодДепартамента equals dep.Код
+                            join pos in db.Должностиs on emp_pos.КодДолжности equals pos.Код
+                            where emp_pos.Код == id
+                            select new
+                            {
+                                Код = emp_pos.Код,
+                                НазваниеДепартамента = dep.НазваниеДепартамента,
+                                КодСотрудника = emp_pos.КодСотрудника,
+                                ДатаНазначения = emp_pos.ДатаНазначения,
+                                Должность = pos.Должность
+                            }).First();
+
+                var json_pos= JsonConvert.SerializeObject(query);
+                var dict_pos = JsonConvert.DeserializeObject<Dictionary<string, string>>(json_pos);
+
+                if (dict_pos == null)
+                    return NotFound();
+
+                if (query.Должность == "Директор департамента")
+                    return NotFound();
+
+                return View(dict_pos);
+            }
+        }
+
+        [HttpPost, ActionName("DeletePosition")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeletePositionPOST(long id = -1)
+        {
+            using (var db = new CourseProject2DBContext())
+            {
+                var pos = db.ДолжностиСотрудниковs.Find(id);
+
+                if (pos == null)
+                    return NotFound();
+
+                db.ДолжностиСотрудниковs.Remove(pos);
+                db.SaveChanges();
+                TempData["success"] = "Employee position deleted successfully";
+
+                return RedirectToAction("EmployeePositions", new { id = pos.КодСотрудника });
+            }
+        }
+
+        [HttpGet]
+        public IActionResult AddPosition(long id = -1)
+        {
+            if (id == -1)
+                return NotFound();
+
+            return View(new ДолжностиСотрудников() { КодСотрудника = id });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AddPosition(ДолжностиСотрудников empPosition)
+        {
+            using (var db = new CourseProject2DBContext())
+            {
+                var query = (from empPos in db.ДолжностиСотрудниковs
+                             where empPos.КодДепартамента == empPosition.КодДепартамента
+                             && empPos.КодСотрудника == empPosition.КодСотрудника
+                             && empPos.КодДолжности == empPosition.КодДолжности
+                             select empPos).Any();
+
+                if (query)
+                {
+                    ModelState.AddModelError("КодДолжности", "Ошибка! В этом департаменте указанный сотрудник уже имеет такую должность!");
+
+                    return View(empPosition);
+                }
+
+                if (ModelState.ErrorCount == 3)
+                {
+                    db.ДолжностиСотрудниковs.Add(empPosition);
+                    db.SaveChanges();
+
+                    return RedirectToAction("EmployeePositions", new { id = empPosition.КодСотрудника });
+                }
+            }
+
+            return View(empPosition);
         }
     }
 }

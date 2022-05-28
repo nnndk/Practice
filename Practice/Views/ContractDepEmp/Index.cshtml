@@ -105,6 +105,45 @@
                 </a>
             </div>
         </div>
+
+        <h4 class="mt-5">Департаменты</h4>
+        <div>
+            <table class="table table-striped align-middle table-responsive fixed-table">
+                <thead>
+                    <tr>
+                        <th scope="col">Код</th>
+                        <th scope="col">НазваниеДепартаменты</th>
+                        <th scope="col">КодДиректораДепартамента</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.employees != null)
+                    {
+                        @foreach (var dep in Model.departments)
+                        {
+                            <tr>
+                                <td><p>@dep.Код</p></td>
+                                <td><p>@dep.НазваниеДепартамента</p></td>
+                                <td><p>@dep.КодДиректораДепартамента</p></td>
+
+                                <td class="text-end" nowrap>
+                                    <a asp-controller="ContractDepEmp" asp-action="UpdateDepartment" asp-route-id=@dep.Код class="btn btn-dark">
+                                        <i class="bi bi-pencil-fill"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="mt-2 text-end">
+            <a asp-controller="ContractDepEmp" asp-action="AddDepartment" class="btn btn-dark text-start">
+                Добавить департамент
+            </a>
+        </div>
     </div>
 
     <div class="col-1"></div>

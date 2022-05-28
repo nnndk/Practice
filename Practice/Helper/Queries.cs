@@ -38,8 +38,11 @@ namespace Practice.Helper
                 foreach (var pos in query)
                 {
                     if (developerTypes.Contains(pos.Должность))
-                        empPositions.Add("Разработчик", dictRolesPosViews["Разработчик"]);
-                    else
+                    {
+                        if (!empPositions.Keys.Contains("Разработчик"))
+                            empPositions.Add("Разработчик", dictRolesPosViews["Разработчик"]);
+                    }
+                    else if (!empPositions.Keys.Contains(pos.Должность))
                         empPositions.Add(pos.Должность, dictRolesPosViews[pos.Должность]);
                 }
 

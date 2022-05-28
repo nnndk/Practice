@@ -18,7 +18,7 @@
         <div class="col-3"></div>
         <div class="border p-3 mt-4 col-6">
             <div class="row pb-2">
-                <h2 class="text_primary">Добавить разработчика</h2>
+                <h2>Добавить разработчика</h2>
                 <hr />
             </div>
             <div class="mb-3">
@@ -29,12 +29,12 @@
                         <option value=@role.Код>@role.Роль</option>
                     }
                 </select>
-                <span asp-validation-for="КодРоли" class="text_danger"></span>
+                <span asp-validation-for="КодРоли" class="text-danger"></span>
             </div>
             <div class="mb-3">
                 <label asp-for="ДатаНачалаРаботыНаПроекте">Дата начала работы на проекте</label>
                 <input asp-for="ДатаНачалаРаботыНаПроекте" class="form-control" />
-                <span asp-validation-for="ДатаНачалаРаботыНаПроекте" class="text_danger"></span>
+                <span asp-validation-for="ДатаНачалаРаботыНаПроекте" class="text-danger"></span>
             </div>
 
             <input asp-for="КодСотрудника" class="form-control d-none" value=@ViewBag.Id />

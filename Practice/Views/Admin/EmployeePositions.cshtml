@@ -1,0 +1,62 @@
+﻿@model List<Dictionary<string, string>>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <h1 class="mt-3 mb-3">Администратор</h1>
+</div>
+
+<div class="row">
+    <div class="col-1"></div>
+    <div class="col-10">
+        <h4 class="mt-5">Должности</h4>
+        <div>
+            <table class="table table-striped align-middle table-responsive fixed-table">
+                <thead>
+                    <tr>
+                        @foreach (var item in Model[0])
+                        {
+                            <th scope="col">@item.Key</th>
+                        }
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            @foreach (var col in item)
+                            {
+                                <td><p>@col.Value</p></td>
+                            }
+
+                            @if (item["Код"] != null && item["Должность"] != "Директор департамента")
+                            {
+                                <td class="text-end" nowrap>
+                                    <a asp-controller="Admin" asp-action="DeletePosition" asp-route-id=@item["Код"]>
+                                        <i class="bi bi-x-lg" style="font-size: 1.75rem; color:black;"></i>
+                                    </a>
+                                </td>
+                            }
+                            else if (item["Код"] != null && item["Должность"] == "Директор департамента")
+                            {
+                                <td class="text-end" nowrap>
+                                </td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="text-end">
+            <a asp-controller="Admin" asp-action="UpdateEmployee" asp-route-id=@ViewBag.EmpId class="btn btn-secondary mx-3" style="width:150px">
+                        Назад
+                    </a>
+            <a asp-controller="Admin" asp-action="AddPosition" asp-route-id=@ViewBag.EmpId class="btn btn-dark">
+                Добавить должность
+            </a>
+        </div>
+    </div>
+    <div class="col-1"></div>
+</div>

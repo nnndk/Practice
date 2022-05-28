@@ -1,0 +1,47 @@
+﻿@model Dictionary<string, string>
+@{
+    ViewData["Title"] = "DeleteTask";
+}
+
+<form method="post" asp-action="DeletePosition">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="border p-3 mt-4 col-6">
+            <div class="row pb-2">
+                <h2>Удаление должности у сотрудника</h2>
+                <hr />
+            </div>
+            <div class="mb-3">
+                <label>Код</label>
+                <input class="form-control" value=@Model["Код"] readonly />
+            </div>
+            <div class="mb-3">
+                <label>Департамент</label>
+                <input class="form-control" value=@Model["НазваниеДепартамента"] readonly />
+            </div>
+            <div class="mb-3">
+                <label>Код сотрудника</label>
+                <input class="form-control" value=@Model["КодСотрудника"] readonly />
+            </div>
+            <div class="mb-3">
+                <label>Дата назначения</label>
+                <input class="form-control" value=@Model["ДатаНазначения"] readonly />
+            </div>
+            <div class="mb-3">
+                <label>Код должности</label>
+                <input class="form-control" value=@Model["Должность"] readonly />
+            </div>
+            
+            <div class="text-end">
+                <a asp-controller="Admin" asp-action="EmployeePositions" asp-route-id=@Model["КодСотрудника"] class="btn btn-secondary mx-3" style="width:150px">
+                    Назад
+                </a>
+                <button type="submit" class="btn btn-dark" style="width:150px">
+                    Удалить
+                </button>
+            </div>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</form>
+

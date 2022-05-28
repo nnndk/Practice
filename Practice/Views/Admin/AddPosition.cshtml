@@ -1,0 +1,66 @@
+﻿@using Practice.Data;
+@model ДолжностиСотрудников
+@{
+    ViewData["Title"] = "AddPosition";
+
+    using (var db = new CourseProject2DBContext())
+    {
+        ViewBag.Deps = (from dep in db.Департаментыs select dep).ToList<Департаменты>();
+        ViewBag.Positions = (from pos in db.Должностиs where pos.Должность != "Директор департамента" select pos).ToList<Должности>();
+    }
+}
+
+<h1>AddPosition</h1>
+
+<div class="row">
+    <h1 class="mt-3 mb-3">Администратор</h1>
+</div>
+
+<form method="post" asp-action="AddPosition">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="border p-3 mt-4 col-6">
+            <div class="row pb-2">
+                <h2 class="text_primary">Добавить должность разработчику</h2>
+                <hr />
+            </div>
+            <div class="mb-3">
+                <select class="form-control" asp-for="КодДепартамента">
+                    <option selected>Выбрать департамент...</option>
+                    @foreach (var item in ViewBag.Deps)
+                    {
+                        <option value=@item.Код>@item.НазваниеДепартамента</option>
+                    }
+                </select>
+                <span asp-validation-for="КодДепартамента" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="ДатаНазначения">Дата назначения</label>
+                <input asp-for="ДатаНазначения" class="form-control" />
+                <span asp-validation-for="ДатаНазначения" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <select class="form-control" asp-for="КодДолжности">
+                    <option selected>Выбрать должность...</option>
+                    @foreach (var item in ViewBag.Positions)
+                    {
+                        <option value=@item.Код>@item.Должность</option>
+                    }
+                </select>
+                <span asp-validation-for="КодДолжности" class="text-danger"></span>
+            </div>
+
+            <input asp-for="КодСотрудника" class="form-control d-none" />
+
+            <div class="text-end">
+                <a asp-controller="Admin" asp-action="EmployeePositions" asp-route-id=@Model.КодСотрудника class="btn btn-secondary mx-3" style="width:150px">
+                    Назад
+                </a>
+                <button type="submit" class="btn btn-dark" style="width:150px">
+                    Добавить
+                </button>
+            </div>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</form>
