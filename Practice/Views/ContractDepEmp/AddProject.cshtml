@@ -1,0 +1,68 @@
+﻿@using Practice.Data
+@model Проекты
+@{
+    ViewData["Title"] = "AddProject";
+
+    using (var db = new CourseProject2DBContext())
+    {
+        ViewBag.ProjectTypes = (from type in db.ТипыПроектовs select type).ToList<ТипыПроектов>();
+    }
+}
+
+<div class="row">
+    <h1 class="mt-3 mb-3">Сотрудник договорного отдела</h1>
+</div>
+
+<form method="post" asp-action="AddProject">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="border p-3 mt-4 col-6">
+            <div class="row pb-2">
+                <h2>Добавление проекта</h2>
+                <hr />
+            </div>
+            <div class="mb-3">
+                <label asp-for="НазваниеПроекта">Название проекта</label>
+                <input asp-for="НазваниеПроекта" class="form-control" value=@Model.НазваниеПроекта />
+                <span asp-validation-for="НазваниеПроекта" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="ДатаНачалаПроекта">Дата начала проекта</label>
+                <input asp-for="ДатаНачалаПроекта" class="form-control" />
+                <span asp-validation-for="ДатаНачалаПроекта" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="ДатаЗавершенияПроекта">Дата завершения проекта</label>
+                <input asp-for="ДатаЗавершенияПроекта" class="form-control" />
+                <span asp-validation-for="ДатаЗавершенияПроекта" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="КодМенеджераПроекта">Код менеджера проекта</label>
+                <input asp-for="КодМенеджераПроекта" class="form-control" value=@Model.КодМенеджераПроекта />
+                <span asp-validation-for="КодМенеджераПроекта" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="КодТипаПроекта">Тип проекта</label>
+                <select class="form-control" asp-for="КодТипаПроекта">
+                    <option selected>Выбрать тип проекта...</option>
+
+                    @foreach (var item in ViewBag.ProjectTypes)
+                    {
+                        <option value=@item.Код>@item.ТипПроекта</option>
+                    }
+                </select>
+                <span asp-validation-for="КодТипаПроекта" class="text-danger"></span>
+            </div>
+
+            <div class="text-end">
+                <a asp-controller="ContractDepEmp" asp-action="Index" class="btn btn-secondary mx-3" style="width:150px">
+                    Назад
+                </a>
+                <button type="submit" class="btn btn-dark" style="width:150px">
+                    Добавить
+                </button>
+            </div>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</form>

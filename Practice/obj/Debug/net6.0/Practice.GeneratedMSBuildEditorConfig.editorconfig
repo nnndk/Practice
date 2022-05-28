@@ -35,8 +35,28 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ0VPXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/ContractDepEmp/AddProject.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhY3REZXBFbXBcQWRkUHJvamVjdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/ContractDepEmp/FireEmployee.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhY3REZXBFbXBcRmlyZUVtcGxveWVlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/ContractDepEmp/GetUnemployedPersons.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhY3REZXBFbXBcR2V0VW5lbXBsb3llZFBlcnNvbnMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/ContractDepEmp/HireEmployee.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhY3REZXBFbXBcSGlyZUVtcGxveWVlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/ContractDepEmp/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhY3REZXBFbXBcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/ContractDepEmp/UpdateProject.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhY3REZXBFbXBcVXBkYXRlUHJvamVjdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/DbAdmin/Index.cshtml]

@@ -1,7 +1,104 @@
-﻿
+﻿@using Practice.Helper
+@model ContractDepEmpPage
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>ContractDepEmp</h1>
+<div class="row">
+    <h1 class="mt-3 mb-3">Сотрудник договорного отдела</h1>
+</div>
 
+<div class="row">
+    <div class="col-1"></div>
+    <div class="col-10">
+        <h4 class="mt-2">Проекты</h4>
+        <div>
+            <table class="table table-striped align-middle table-responsive fixed-table">
+                <thead>
+                    <tr>
+                        @foreach (var item in Model.projects[0])
+                        {
+                            <th scope="col">@item.Key</th>
+                        }
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.projects != null)
+                    {
+                        @foreach (var project in Model.projects)
+                        {
+                            <tr>
+                                @foreach (var col in project)
+                                {
+                                    <td><p>@col.Value</p></td>
+                                }
+
+                                @if (project["Код"] != null)
+                                {
+                                    <td class="text-end" nowrap>
+                                        <a asp-controller="ContractDepEmp" asp-action="UpdateProject" asp-route-id=@int.Parse(project["Код"]) class="btn btn-dark">
+                                            <i class="bi bi-pencil-fill"></i>
+                                        </a>
+                                    </td>
+                                }
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="text-end">
+            <a asp-controller="ContractDepEmp" asp-action="AddProject" class="btn btn-dark">
+                Добавить проект
+            </a>
+        </div>
+
+        <h4 class="mt-5">Сотрудники</h4>
+        <div>
+            <table class="table table-striped align-middle table-responsive fixed-table">
+                <thead>
+                    <tr>
+                        @foreach (var item in Model.employees[0])
+                        {
+                            <th scope="col">@item.Key</th>
+                        }
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.employees != null)
+                    {
+                        @foreach (var emp in Model.employees)
+                        {
+                            <tr>
+                                @foreach (var col in emp)
+                                {
+                                    <td><p>@col.Value</p></td>
+                                }
+
+                                @if (emp["Код"] != null)
+                                {
+                                    <td class="text-end" nowrap>
+                                        <a asp-controller="ContractDepEmp" asp-action="FireEmployee" asp-route-id=@long.Parse(emp["Код"])>
+                                            <i class="bi bi-x-lg" style="font-size: 1.75rem; color:black;"></i>
+                                        </a>
+                                    </td>
+                                }
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="text-end">
+            <a asp-controller="ContractDepEmp" asp-action="GetUnemployedPersons" class="btn btn-dark">
+                Добавить сотрудника
+            </a>
+        </div>
+    </div>
+
+    <div class="col-1"></div>
+</div>

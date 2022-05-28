@@ -1,0 +1,48 @@
+﻿@model УстройствоНаРаботу
+@{
+    ViewData["Title"] = "FireEmployee";
+}
+
+<div class="row">
+    <h1 class="mt-3 mb-3">Сотрудник договорного отдела</h1>
+</div>
+
+<form method="post" asp-action="FireEmployee">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="border p-3 mt-4 col-6">
+            <div class="row pb-2">
+                <h2>Трудоустройство сотрудника</h2>
+                <hr />
+            </div>
+            <input asp-for="КодУстройстваНаРаботу" class="form-control d-none" value=@Model.КодУстройстваНаРаботу />
+            <div class="mb-3">
+                <label asp-for="КодСотрудника">Код сотрудника</label>
+                <input asp-for="КодСотрудника" class="form-control" value=@Model.КодСотрудника readonly />
+                <span asp-validation-for="КодСотрудника" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="ДатаЗачисленияВШтат">ДатаЗачисленияВШтат</label>
+                <input asp-for="ДатаЗачисленияВШтат" class="form-control" readonly />
+                <span asp-validation-for="ДатаЗачисленияВШтат" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="ДатаУвольнения">Дата увольнения</label>
+                <input asp-for="ДатаУвольнения" class="form-control" />
+                <span asp-validation-for="ДатаУвольнения" class="text-danger"></span>
+            </div>
+
+            <div class="text-end">
+                <a asp-controller="ContractDepEmp" asp-action="Index" class="btn btn-secondary mx-3" style="width:150px">
+                    Назад
+                </a>
+                <button type="submit" class="btn btn-dark" style="width:150px">
+                    Уволить
+                </button>
+            </div>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</form>
+

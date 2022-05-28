@@ -38,7 +38,6 @@
                             @if (item["КодРазработчика"] != null)
                             {
                                 <td class="text-center" nowrap>
-
                                     <a asp-controller="ProjectManager" asp-action="CheckTask" asp-route-projectid=@ViewBag.ProjectId asp-route-taskid=@item["Код"] asp-route-statusid=2 style="color: white;">
                                         <i class="bi bi-check2 px-2" style="font-size: 1.75rem; color:black;"></i>
                                     </a>

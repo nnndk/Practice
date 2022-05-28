@@ -19,23 +19,23 @@
         <div class="col-3"></div>
         <div class="border p-3 mt-4 col-6">
             <div class="row pb-2">
-                <h2 class="text_primary">Изменение роли</h2>
+                <h2>Добавление сотрудника</h2>
                 <hr />
             </div>
             <div class="mb-3">
                 <label asp-for="Фамилия">Фамилия</label>
                 <input asp-for="Фамилия" class="form-control" value=@Model.Фамилия />
-                <span asp-validation-for="Фамилия" class="text_danger"></span>
+                <span asp-validation-for="Фамилия" class="text-danger"></span>
             </div>
             <div class="mb-3">
                 <label asp-for="Имя">Имя</label>
                 <input asp-for="Имя" class="form-control" value=@Model.Имя />
-                <span asp-validation-for="Имя" class="text_danger"></span>
+                <span asp-validation-for="Имя" class="text-danger"></span>
             </div>
             <div class="mb-3">
                 <label asp-for="Отчество">Отчество</label>
                 <input asp-for="Отчество" class="form-control" value=@Model.Отчество />
-                <span asp-validation-for="Отчество" class="text_danger"></span>
+                <span asp-validation-for="Отчество" class="text-danger"></span>
             </div>
             <div class="mb-3">
                 <label asp-for="КодПола">Пол</label>
@@ -47,27 +47,27 @@
                         <option value=@item.Код>@item.Пол1</option>
                     }
                 </select>
-                <span asp-validation-for="КодПола" class="text_danger"></span>
+                <span asp-validation-for="КодПола" class="text-danger"></span>
             </div>
             <div class="mb-3">
                 <label asp-for="ДатаРождения">Дата рождения</label>
                 <input asp-for="ДатаРождения" class="form-control" value=@Model.ДатаРождения />
-                <span asp-validation-for="ДатаРождения" class="text_danger"></span>
+                <span asp-validation-for="ДатаРождения" class="text-danger"></span>
             </div>
             <div class="mb-3">
                 <label asp-for="Телефон1">Телефон1</label>
                 <input asp-for="Телефон1" class="form-control" value=@Model.Телефон1 />
-                <span asp-validation-for="Телефон1" class="text_danger"></span>
+                <span asp-validation-for="Телефон1" class="text-danger"></span>
             </div>
             <div class="mb-3">
                 <label asp-for="Телефон2">Телефон2</label>
                 <input asp-for="Телефон2" class="form-control" value=@Model.Телефон2 />
-                <span asp-validation-for="Телефон2" class="text_danger"></span>
+                <span asp-validation-for="Телефон2" class="text-danger"></span>
             </div>
             <div class="mb-3">
                 <label asp-for="ДатаНачалаРаботыВSap">Дата начала работы в SAP</label>
                 <input asp-for="ДатаНачалаРаботыВSap" class="form-control" value=@Model.ДатаНачалаРаботыВSap />
-                <span asp-validation-for="ДатаНачалаРаботыВSap" class="text_danger"></span>
+                <span asp-validation-for="ДатаНачалаРаботыВSap" class="text-danger"></span>
             </div>
             <div class="mb-3">
                 <label asp-for="КодВидаТрудоустройства">Вид трудоустройства</label>
@@ -79,22 +79,22 @@
                         <option value=@item.Код>@item.ВидТрудоустройства</option>
                     }
                 </select>
-                <span asp-validation-for="КодВидаТрудоустройства" class="text_danger"></span>
+                <span asp-validation-for="КодВидаТрудоустройства" class="text-danger"></span>
             </div>
             <div class="mb-3">
                 <label asp-for="Логин">Логин</label>
                 <input asp-for="Логин" class="form-control" value=@Model.Логин />
-                <span asp-validation-for="Логин" class="text_danger"></span>
+                <span asp-validation-for="Логин" class="text-danger"></span>
             </div>
             <div class="mb-3">
                 <label asp-for="Пароль">Пароль</label>
                 <input asp-for="Пароль" class="form-control" value=@Model.Пароль />
-                <span asp-validation-for="Пароль" class="text_danger"></span>
+                <span asp-validation-for="Пароль" class="text-danger"></span>
             </div>
             
 
             <div class="text-end">
-                <a asp-controller="Admin" asp-action="Index"class="btn btn-secondary mx-3" style="width:150px">
+                <a asp-controller="Admin" asp-action="Index" class="btn btn-secondary mx-3" style="width:150px">
                     Назад
                 </a>
                 <button type="submit" class="btn btn-dark" style="width:150px">

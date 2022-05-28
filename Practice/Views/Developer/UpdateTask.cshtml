@@ -1,5 +1,4 @@
 ﻿@model ФактическиеТрудозатраты
-
 @{
     ViewData["Title"] = "UpdateTask";
 }
@@ -9,23 +8,23 @@
         <div class="col-3"></div>
         <div class="border p-3 mt-4 col-6">
             <div class="row pb-2">
-                <h2 class="text_primary">Редактировать трудозатрату</h2>
+                <h2>Редактирование трудозатраты</h2>
                 <hr />
             </div>
             <div class="mb-3">
                 <label asp-for="Задача">Задача</label>
                 <input asp-for="Задача" class="form-control" />
-                <span asp-validation-for="Задача" class="text_danger"></span>
+                <span asp-validation-for="Задача" class="text-danger"></span>
             </div>
             <div class="mb-3">
                 <label asp-for="ДатаТрудозатраты">Дата трудозатраты</label>
                 <input asp-for="ДатаТрудозатраты" class="form-control" />
-                <span asp-validation-for="ДатаТрудозатраты" class="text_danger"></span>
+                <span asp-validation-for="ДатаТрудозатраты" class="text-danger"></span>
             </div>
             <div class="mb-3">
                 <label asp-for="КоличествоЧасов">Количество часов</label>
                 <input asp-for="КоличествоЧасов" class="form-control" />
-                <span asp-validation-for="КоличествоЧасов" class="text_danger"></span>
+                <span asp-validation-for="КоличествоЧасов" class="text-danger"></span>
             </div>
 
             <input asp-for="КодПроекта" class="form-control d-none" value=@ViewBag.ProjectId />

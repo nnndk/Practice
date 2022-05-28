@@ -1,0 +1,55 @@
+﻿@model List<Dictionary<string, string>>
+@{
+    ViewData["Title"] = "GetUnemployedPersons";
+}
+
+<div class="row">
+    <h1 class="mt-3 mb-3">Сотрудник договорного отдела</h1>
+</div>
+
+<div class="row">
+    <div class="col-1"></div>
+    <div class="col-10">
+        <h4 class="mt-5">Нетрудоустроенные сотрудники</h4>
+        <div>
+            <table class="table table-striped align-middle table-responsive fixed-table">
+                <thead>
+                    <tr>
+                        @foreach (var item in Model[0])
+                        {
+                            <th scope="col">@item.Key</th>
+                        }
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var emp in Model)
+                    {
+                        <tr>
+                            @foreach (var col in emp)
+                            {
+                                <td><p>@col.Value</p></td>
+                            }
+
+                            @if (emp["Код"] != null)
+                            {
+                                <td class="text-end" nowrap>
+                                    <a asp-controller="ContractDepEmp" asp-action="HireEmployee" asp-route-id=@long.Parse(emp["Код"]) style="color: white;">
+                                        <i class="bi bi-plus-lg" style="font-size: 1.75rem; color:black;"></i>
+                                    </a>
+                                </td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="text-end">
+            <a asp-controller="ContractDepEmp" asp-action="Index" class="btn btn-secondary mx-3" style="width:150px">
+                Назад
+            </a>
+        </div>
+    </div>
+    <div class="col-1"></div>
+</div>
