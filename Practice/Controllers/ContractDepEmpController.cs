@@ -287,5 +287,53 @@ namespace Practice.Controllers
 
             return View(employment);
         }
+
+        [HttpGet]
+        public IActionResult GetAllTasks()
+        {
+            using (var db = new CourseProject2DBContext())
+            {
+                var tasks = new List<Dictionary<string, string>>();
+
+                var query1 = from task in db.ФактическиеТрудозатратыs
+                             join status in db.Статусыs on task.КодСтатуса equals status.Код
+                             join emp in db.Сотрудникиs on task.КодРазработчика equals emp.Код
+                             orderby status.Статус, task.ПоследнееИзменение descending
+                             select new
+                             {
+                                 Код = task.Код,
+                                 КодРазработчика = task.КодРазработчика,
+                                 КодПроекта = task.КодПроекта,
+                                 Задача = task.Задача,
+                                 ДатаТрудозатраты = task.ДатаТрудозатраты.ToString("yyyy-MM-dd HH:mm:ss"),
+                                 КоличествоЧасов = task.КоличествоЧасов,
+                                 Комментарий = task.Комментарий,
+                                 Статус = status.Статус,
+                                 ПоследнееИзменение = task.ПоследнееИзменение.ToString("yyyy-MM-dd HH:mm:ss")
+                             };
+
+                foreach (var item in query1)
+                {
+                    var json_tasks = JsonConvert.SerializeObject(item);
+                    var dict_tasks = JsonConvert.DeserializeObject<Dictionary<string, string>>(json_tasks);
+
+                    tasks.Add(dict_tasks);
+                }
+
+                if (tasks.Count == 0)
+                {
+                    var keys = new string[] { "Код", "КодРазработчика", "Логин", "КодПроекта", "Задача",
+                        "ДатаТрудозатраты", "КоличествоЧасов", "Комментарий", "Статус", "ПоследнееИзменение" };
+                    var dict = new Dictionary<string, string>();
+
+                    foreach (var key in keys)
+                        dict.Add(key, null);
+
+                    tasks.Add(dict);
+                }
+
+                return View(tasks);
+            }
+        }
     }
 }

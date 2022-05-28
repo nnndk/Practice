@@ -93,10 +93,17 @@
             </table>
         </div>
 
-        <div class="text-end">
-            <a asp-controller="ContractDepEmp" asp-action="GetUnemployedPersons" class="btn btn-dark">
-                Добавить сотрудника
-            </a>
+        <div class="row">
+            <div class="col-6 text-start">
+                <a asp-controller="ContractDepEmp" asp-action="GetAllTasks" class="btn btn-dark text-start">
+                    Посмотреть все трудозатраты
+                </a>
+            </div>
+            <div class="col-6 text-end">
+                <a asp-controller="ContractDepEmp" asp-action="GetUnemployedPersons" class="btn btn-dark ">
+                    Добавить сотрудника
+                </a>
+            </div>
         </div>
     </div>
 

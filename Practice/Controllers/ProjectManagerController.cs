@@ -333,6 +333,18 @@ namespace Practice.Controllers
                     tasks.Add(dict_tasks);
                 }
 
+                if (tasks.Count == 0)
+                {
+                    var keys = new string[] { "Код", "КодРазработчика", "Фамилия", "Имя", "Задача",  
+                        "ДатаТрудозатраты", "КоличествоЧасов", "Комментарий", "Статус", "ПоследнееИзменение" };
+                    var dict = new Dictionary<string, string>();
+
+                    foreach (var key in keys)
+                        dict.Add(key, null);
+
+                    tasks.Add(dict);
+                }
+
                 ViewBag.ProjectId = projectId;
 
                 return View(tasks);

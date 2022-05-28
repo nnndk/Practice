@@ -1,0 +1,49 @@
+﻿@model List<Dictionary<string, string>>
+@{
+    ViewData["Title"] = "GetAllTasks";
+}
+
+<div class="row">
+    <h1 class="mt-3 mb-3">Сотрудник договорного отдела</h1>
+</div>
+
+<div class="row">
+    <div class="col-1"></div>
+    <div class="col-10">
+        <h4 class="mt-2">Трудозатраты всех разработчиков</h4>
+        <table class="table table-striped align-middle table-responsive fixed-table">
+            <thead>
+                <tr>
+                    @if (Model != null)
+                    {
+                        @foreach (var item in Model[0])
+                        {
+                            <th scope="col">@item.Key</th>
+                        }
+                    }
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            @foreach (var col in item)
+                            {
+                                <td><p class="my-0">@col.Value</p></td>
+                            }
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        <div class="text-end">
+            <a asp-controller="ContractDepEmp" asp-action="Index" class="btn btn-secondary">
+                Назад
+            </a>
+        </div>
+    </div>
+    <div class="col-1"></div>
+</div>

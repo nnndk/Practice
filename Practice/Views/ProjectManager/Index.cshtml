@@ -98,15 +98,18 @@
 
         @if (Model.selectedProject != null)
         {
-            <div class="text-start">
-                <a asp-controller="ProjectManager" asp-action="GetAllTasks" asp-route-projectid=@int.Parse(Model.selectedProject["Код"]) class="btn btn-dark">
-                    Посмотреть все трудозатраты
-                </a>
-            </div>
-            <div class="text-end">
-                <a asp-controller="ProjectManager" asp-action="AvailableEmployees" asp-route-projectid=@int.Parse(Model.selectedProject["Код"]) class="btn btn-dark">
-                    Добавить разработчика
-                </a>
+            <div class="row">
+
+                <div class="col-6 text-start">
+                    <a asp-controller="ProjectManager" asp-action="GetAllTasks" asp-route-projectid=@int.Parse(Model.selectedProject["Код"]) class="btn btn-dark">
+                        Посмотреть все трудозатраты
+                    </a>
+                </div>
+                <div class="col-6 text-end">
+                    <a asp-controller="ProjectManager" asp-action="AvailableEmployees" asp-route-projectid=@int.Parse(Model.selectedProject["Код"]) class="btn btn-dark">
+                        Добавить разработчика
+                    </a>
+                </div>
             </div>
         }
     </div>
