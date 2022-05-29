@@ -1,0 +1,32 @@
+﻿@model ТипыПроектов
+@{
+    ViewData["Title"] = "AddProjectType";
+}
+
+<form method="post" asp-action="AddProjectType">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="border p-3 mt-4 col-6">
+            <div class="row pb-2">
+                <h2>Добавление типа проекта</h2>
+                <hr />
+            </div>
+            <div class="mb-3">
+                <label asp-for="ТипПроекта">Тип проекта</label>
+                <input asp-for="ТипПроекта" class="form-control" value=@Model.ТипПроекта />
+                <span asp-validation-for="ТипПроекта" class="text-danger"></span>
+            </div>
+
+            <div class="text-end">
+                <a asp-controller="DbAdmin" asp-action="Index" asp-route-tableName="Типы проектов" class="btn btn-secondary mx-3" style="width:150px">
+                    Назад
+                </a>
+                <button type="submit" class="btn btn-dark" style="width:150px">
+                    Добавить
+                </button>
+            </div>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</form>
+

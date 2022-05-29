@@ -29,7 +29,10 @@ namespace Practice.Controllers
                                  ДатаНачалаРаботыВSap = emp.ДатаНачалаРаботыВSap.Value.Date.ToString(),
                                  ВидТрудоустройства = empType.ВидТрудоустройства,
                                  Логин = emp.Логин
-                             }).First();
+                             }).FirstOrDefault();
+
+                if (query == null)
+                    return NotFound();
 
                 var json_emp = JsonConvert.SerializeObject(query);
                 var dict_emp = JsonConvert.DeserializeObject<Dictionary<string, string>>(json_emp);

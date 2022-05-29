@@ -83,8 +83,56 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhY3REZXBFbXBcVXBkYXRlUHJvamVjdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/DbAdmin/AddEmpType.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGJBZG1pblxBZGRFbXBUeXBlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/DbAdmin/AddGender.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGJBZG1pblxBZGRHZW5kZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/DbAdmin/AddPosition.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGJBZG1pblxBZGRQb3NpdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/DbAdmin/AddProjectType.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGJBZG1pblxBZGRQcm9qZWN0VHlwZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/DbAdmin/AddRole.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGJBZG1pblxBZGRSb2xlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/DbAdmin/AddStatus.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGJBZG1pblxBZGRTdGF0dXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/DbAdmin/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGJBZG1pblxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/DbAdmin/UpdateEmpType.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGJBZG1pblxVcGRhdGVFbXBUeXBlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/DbAdmin/UpdateGender.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGJBZG1pblxVcGRhdGVHZW5kZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/DbAdmin/UpdatePosition.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGJBZG1pblxVcGRhdGVQb3NpdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/DbAdmin/UpdateProjectType.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGJBZG1pblxVcGRhdGVQcm9qZWN0VHlwZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/DbAdmin/UpdateRole.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGJBZG1pblxVcGRhdGVSb2xlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/DbAdmin/UpdateStatus.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGJBZG1pblxVcGRhdGVTdGF0dXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/DepDirector/Index.cshtml]

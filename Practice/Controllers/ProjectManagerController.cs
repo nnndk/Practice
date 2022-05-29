@@ -367,7 +367,7 @@ namespace Practice.Controllers
                 // существует ли такая трудозатрата и верно ли указан проект
                 var query1 = (from task in db.ФактическиеТрудозатратыs
                               where task.Код == taskId && task.КодПроекта == projectId
-                              select task).First();
+                              select task).FirstOrDefault();
 
                 if (query1 == null)
                     return NotFound();
@@ -479,7 +479,7 @@ namespace Practice.Controllers
                                  Ставка = rate.Ставка
                              };
 
-                var json_emps1 = JsonConvert.SerializeObject(query2.First());
+                var json_emps1 = JsonConvert.SerializeObject(query2.FirstOrDefault());
                 developer = JsonConvert.DeserializeObject<Dictionary<string, string>>(json_emps1);
 
                 var query5 = (from emp in query2
@@ -503,8 +503,10 @@ namespace Practice.Controllers
                                   ДатаНачалаДействияСтавки = g.ДатаНачалаДействияСтавки.ToString("yyyy-MM-dd HH:mm:ss") ?? string.Empty,
                                   Ставка = g.Ставка.ToString() ?? string.Empty,
                                   ДатаОкончанияРаботыНаПроекте = emp.ДатаОкончанияРаботыНаПроекте
-                              }).First();
+                              }).FirstOrDefault();
 
+                if (query5 == null)
+                    return NotFound();
 
                 var json_emps = JsonConvert.SerializeObject(query5);
                 developer = JsonConvert.DeserializeObject<Dictionary<string, string>>(json_emps);
@@ -552,7 +554,10 @@ namespace Practice.Controllers
 
                 var query3 = (from pr_emp in db.ПроектыИСотрудникиs
                               where pr_emp.КодПроекта == projectId && pr_emp.КодСотрудника == id
-                              select pr_emp).First();
+                              select pr_emp).FirstOrDefault();
+
+                if (query3 == null)
+                    return NotFound();
 
                 return View(query3);
             }
@@ -613,7 +618,10 @@ namespace Practice.Controllers
 
                 var query3 = (from pr_emp in db.ПроектыИСотрудникиs
                               where pr_emp.КодПроекта == projectId && pr_emp.КодСотрудника == id
-                              select pr_emp).First();
+                              select pr_emp).FirstOrDefault();
+
+                if (query3 == null)
+                    return NotFound();
 
                 return View(query3);
             }

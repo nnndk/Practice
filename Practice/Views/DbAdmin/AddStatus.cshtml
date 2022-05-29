@@ -1,0 +1,32 @@
+﻿@model Статусы
+@{
+    ViewData["Title"] = "AddStatus";
+}
+
+<form method="post" asp-action="AddStatus">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="border p-3 mt-4 col-6">
+            <div class="row pb-2">
+                <h2>Добавление статуса</h2>
+                <hr />
+            </div>
+            <div class="mb-3">
+                <label asp-for="Статус">Статус</label>
+                <input asp-for="Статус" class="form-control" value=@Model.Статус />
+                <span asp-validation-for="Статус" class="text-danger"></span>
+            </div>
+
+            <div class="text-end">
+                <a asp-controller="DbAdmin" asp-action="Index" asp-route-tableName="Статусы" class="btn btn-secondary mx-3" style="width:150px">
+                    Назад
+                </a>
+                <button type="submit" class="btn btn-dark" style="width:150px">
+                    Добавить
+                </button>
+            </div>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</form>
+

@@ -1,0 +1,35 @@
+﻿@model ВидыТрудоустройства
+@{
+    ViewData["Title"] = "AddEmpType";
+}
+
+<div class="row">
+    <h1 class="mt-3 mb-3">Администратор баз данных</h1>
+</div>
+
+<form method="post" asp-action="AddEmpType">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="border p-3 mt-4 col-6">
+            <div class="row pb-2">
+                <h2>Добавление вида трудоустройства</h2>
+                <hr />
+            </div>
+            <div class="mb-3">
+                <label asp-for="ВидТрудоустройства">Вид трудоустройства</label>
+                <input asp-for="ВидТрудоустройства" class="form-control" value=@Model.ВидТрудоустройства />
+                <span asp-validation-for="ВидТрудоустройства" class="text-danger"></span>
+            </div>
+
+            <div class="text-end">
+                <a asp-controller="DbAdmin" asp-action="Index" asp-route-tableName="Виды трудоустройства" class="btn btn-secondary mx-3" style="width:150px">
+                    Назад
+                </a>
+                <button type="submit" class="btn btn-dark" style="width:150px">
+                    Добавить
+                </button>
+            </div>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</form>

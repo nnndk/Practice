@@ -126,7 +126,7 @@ namespace Practice.Controllers
             {
                 var project = (from pr in db.Проектыs
                                where pr.Код == id
-                               select pr).First();
+                               select pr).FirstOrDefault();
 
                 if (project == null)
                     return NotFound();
@@ -258,7 +258,7 @@ namespace Practice.Controllers
                 // есть ли искомый сотрудник в базе (добавил ли его администратор) и не числится ли он в штате в данный момент
                 var empl = (from employment in db.УстройствоНаРаботуs
                             where employment.КодСотрудника == id && (employment.ДатаУвольнения > DateTime.Now.Date || employment.ДатаУвольнения == null)
-                            select employment).First();
+                            select employment).FirstOrDefault();
 
                 if (empl == null)
                     return NotFound();

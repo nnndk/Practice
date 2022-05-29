@@ -54,7 +54,10 @@ namespace Practice.Controllers
                                 ИмяМенеджераПроекта = emp.Имя,
                                 ОтчествоМенеджераПроекта = emp.Отчество,
                                 ТипПроекта = prType.ТипПроекта
-                            }).First();
+                            }).FirstOrDefault();
+
+                if (query == null)
+                    return new Dictionary<string, string>();
 
                 var json_pr = JsonConvert.SerializeObject(query);
                 var dict_pr = JsonConvert.DeserializeObject<Dictionary<string, string>>(json_pr);

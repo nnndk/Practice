@@ -101,7 +101,7 @@ namespace Practice.Controllers
                               from employee in db.УстройствоНаРаботуs
                               where employee.ДатаУвольнения > DateTime.Now.Date || employee.ДатаУвольнения == null
                               select employee.КодСотрудника).ToList().Contains(emp.Код) && emp.Код == id
-                              select emp).First();
+                              select emp).FirstOrDefault();
 
                 if (newEmp == null)
                     return NotFound();
@@ -209,13 +209,13 @@ namespace Practice.Controllers
                                 КодСотрудника = emp_pos.КодСотрудника,
                                 ДатаНазначения = emp_pos.ДатаНазначения,
                                 Должность = pos.Должность
-                            }).First();
+                            }).FirstOrDefault();
+
+                if (query == null)
+                    return NotFound();
 
                 var json_pos= JsonConvert.SerializeObject(query);
                 var dict_pos = JsonConvert.DeserializeObject<Dictionary<string, string>>(json_pos);
-
-                if (dict_pos == null)
-                    return NotFound();
 
                 if (query.Должность == "Директор департамента")
                     return NotFound();
