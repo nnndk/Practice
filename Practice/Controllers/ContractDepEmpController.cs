@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Practice.Data;
-using Practice.Helper;
 using Practice.Models;
+using Practice.Models.ViewModels;
 
 namespace Practice.Controllers
 {
@@ -88,7 +88,7 @@ namespace Practice.Controllers
                 var deps = (from dep in db.Департаментыs
                             select dep).ToList();
 
-                return View(new ContractDepEmpPage() { projects = projects, employees = emps, departments = deps });
+                return View(new ContractDepEmpViewModel() { projects = projects, employees = emps, departments = deps });
             }
         }
 

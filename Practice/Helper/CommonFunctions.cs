@@ -1,4 +1,8 @@
-﻿namespace Practice.Helper
+﻿using ClosedXML.Excel;
+using Microsoft.AspNetCore.Mvc;
+using Practice.Models.ViewModels;
+
+namespace Practice.Helper
 {
     public static class CommonFunctions
     {
@@ -50,6 +54,45 @@
                 return date1;
 
             return date2;
+        }
+
+        public static IActionResult GetReport(ReportViewModel page)
+        {
+            using (XLWorkbook workbook = new XLWorkbook(XLEventTracking.Disabled))
+            {
+                var worksheet = workbook.Worksheets.Add(page.ReportType);
+                worksheet.Row(1).Style.Font.Bold = true;
+                int k = 1;
+
+                foreach (var item in page.Report[0])
+                {
+                    worksheet.Cell(1, k).Value = item.Key;
+                    k++;
+                }
+
+                for (int i = 2; i <= page.Report.Count + 1; i++)
+                {
+                    int j = 1;
+
+                    foreach (var item in page.Report[i - 2].Values)
+                    {
+                        worksheet.Cell(i, j).Value = item;
+                        j++;
+                    }
+                }
+
+                using (var stream = new MemoryStream())
+                {
+                    workbook.SaveAs(stream);
+                    stream.Flush();
+
+                    return new FileContentResult(stream.ToArray(),
+                        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+                    {
+                        FileDownloadName = $"report_{DateTime.UtcNow.ToShortDateString()}.xlsx"
+                    };
+                }
+            }
         }
     }
 }

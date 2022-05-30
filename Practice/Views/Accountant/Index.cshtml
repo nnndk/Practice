@@ -1,6 +1,6 @@
 ﻿@using Practice.Data
-@using Practice.Helper
-@model ReportPage
+@using Practice.Models.ViewModels
+@model ReportViewModel
 @{
     ViewData["Title"] = "Index";
     ViewBag.ReportTypes = new string[] { "Отчёт по выручке" };
@@ -88,6 +88,14 @@
                     </tbody>
                 </table>
             </div>
+            @if (Model != null && Model.Report != null)
+            {
+                <div class="text-end">
+                    <button type="submit" class="btn btn-dark" asp-route-printReport=@true style="width:150px">
+                        Экспорт в Excel
+                    </button>
+                </div>
+            }
         </div>
     </div>
 </form>

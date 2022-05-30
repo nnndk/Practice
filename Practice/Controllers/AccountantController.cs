@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Practice.Data;
 using Practice.Helper;
+using Practice.Models.ViewModels;
 
 namespace Practice.Controllers
 {
@@ -10,17 +11,17 @@ namespace Practice.Controllers
     public class AccountantController : Controller
     {
         [HttpGet]
-        public IActionResult Index(ReportPage? page = null)
+        public IActionResult Index(ReportViewModel? page = null)
         {
             if (page == null)
-                return View(new ReportPage());
+                return View(new ReportViewModel());
 
             return View(page);
         }
 
         [HttpPost, ActionName("Index")]
         [ValidateAntiForgeryToken]
-        public IActionResult IndexPOST(ReportPage page)
+        public IActionResult IndexPOST(ReportViewModel page, bool printReport = false)
         {
             if (page.StartDate >= page.EndDate)
                 ModelState.AddModelError("EndDate", "Ошибка! Дата окончания периода должна быть больше даты его начала!");
@@ -365,6 +366,9 @@ namespace Practice.Controllers
                     }
                 }
             }
+
+            if (printReport)
+                return CommonFunctions.GetReport(page);
 
             return View(page);
         }

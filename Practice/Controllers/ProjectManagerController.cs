@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Practice.Data;
-using Practice.Helper;
 using Practice.Models;
+using Practice.Models.ViewModels;
 
 namespace Practice.Controllers
 {
@@ -150,11 +150,11 @@ namespace Practice.Controllers
             var projects = GetProjectManagerProjects(User.Identity.Name);
 
             if (projectId == -1)
-                return View(new ProjectManagerPage() { projects = projects });
+                return View(new ProjectManagerViewModel() { projects = projects });
             else if (!projects.Keys.Contains(projectId))
                 return NotFound();
 
-            return View(new ProjectManagerPage() { projects = projects, selectedProject = GetSelectedProject(projectId), employees = GetProjectDevelopers(projectId) });
+            return View(new ProjectManagerViewModel() { projects = projects, selectedProject = GetSelectedProject(projectId), employees = GetProjectDevelopers(projectId) });
         }
 
         [HttpGet]

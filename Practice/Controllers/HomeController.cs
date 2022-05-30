@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Practice.Data;
+﻿using Microsoft.AspNetCore.Mvc;
 using Practice.Models;
 using System.Diagnostics;
 using Practice.Helper;
@@ -10,17 +8,6 @@ namespace Practice.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        private readonly Dictionary<string, string> dictRolesPosViews = new Dictionary<string, string>() {
-            { "Разработчик", "Developer" },
-            { "Менеджер проекта", "ProjectManager" },
-            { "Администратор", "Admin" },
-            { "Администратор баз данных", "DbAdmin" },
-            { "Директор департамента", "DepDirector" },
-            { "Генеральный директор", "CEO" },
-            { "Бухгалтер", "Accountant" },
-            { "Сотрудник договорного отдела", "ContractDepEmp" }
-        };
 
         public HomeController(ILogger<HomeController> logger)
         {
