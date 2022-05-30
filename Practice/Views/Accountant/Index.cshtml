@@ -1,7 +1,93 @@
-﻿
+﻿@using Practice.Data
+@using Practice.Helper
+@model ReportPage
 @{
     ViewData["Title"] = "Index";
+    ViewBag.ReportTypes = new string[] { "Отчёт по выручке" };
+
+    using (var db = new CourseProject2DBContext())
+    {
+        ViewBag.Deps = (from dep in db.Департаментыs select dep).ToList();
+    }
 }
 
-<h1>Accountant</h1>
+<div class="row">
+    <h1 class="mt-3 mb-3">Бухгалтер</h1>
+</div>
 
+<form method="post" asp-action="Index">
+    <div class="row">
+        <div class="col-2 mt-5 px-3">
+            <div class="mb-3">
+                <select class="form-control" asp-for="ReportType">
+                    <option selected>Выбрать отчёт...</option>
+                    @foreach (var type in ViewBag.ReportTypes)
+                    {
+                        <option value=@type>@type</option>
+                    }
+                </select>
+                <span asp-validation-for="ReportType" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <select class="form-control" asp-for="DepId">
+                    <option value=@null selected>Выбрать департамент...</option>
+                    @foreach (var dep in ViewBag.Deps)
+                    {
+                        <option value=@dep.Код>@dep.НазваниеДепартамента</option>
+                    }
+                </select>
+                <span asp-validation-for="DepId" class="text-danger"></span>
+            </div>
+            <div class="mb-3" nowrap>
+                <label asp-for="OnlyCurrEmployees">Только текущие сотрудники</label>
+                <input asp-for="OnlyCurrEmployees" class="text-end mx-2 bigger-checkbox" type="checkbox" />
+            </div>
+            <div class="mb-3">
+                <label asp-for="StartDate">Дата начала периода</label>
+                <input asp-for="StartDate" class="form-control" type="date" />
+            </div>
+            <div class="mb-3">
+                <label asp-for="EndDate">Дата окончания периода</label>
+                <input asp-for="EndDate" class="form-control" type="date" />
+            </div>
+
+            <div class="text-end">
+                <button type="submit" class="btn btn-dark" style="width:150px">
+                    Применить
+                </button>
+            </div>
+        </div>
+        <div class="col-10">
+            <h4 class="mt-5">Сотрудники</h4>
+            <div>
+                <table class="table table-striped align-middle table-responsive fixed-table">
+                    <thead>
+                        <tr>
+                            @if (Model != null && Model.Report != null)
+                            {
+                                @foreach (var item in Model.Report[0])
+                                {
+                                    <th scope="col">@item.Key</th>
+                                }
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null && Model.Report != null)
+                        {
+                            @foreach (var item in Model.Report)
+                            {
+                                <tr>
+                                    @foreach (var col in item)
+                                    {
+                                        <td><p>@col.Value</p></td>
+                                    }
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</form>
