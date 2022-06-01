@@ -17,7 +17,7 @@ builder.Services.AddDbContext<CourseProject2DBContext>(options =>
 
 // Authentication
 builder.Services.AddAuthentication("Cookies")  // схема аутентификации - с помощью jwt-токенов
-    .AddCookie(options => options.LoginPath = "/login");
+    .AddCookie(options => options.LoginPath = "/Auth/Login");
 
 // Authorization
 builder.Services.AddAuthorization();
@@ -44,41 +44,5 @@ app.UseAuthorization(); // authorization middleware
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
-app.MapPost("/login", async (string? returnUrl, HttpContext context) =>
-{
-    // получаем из формы email и пароль
-    var form = context.Request.Form;
-    // если email и/или пароль не установлены, посылаем статусный код ошибки 400
-    if (form["login"] == "" || form["password"] == "")
-        return Results.BadRequest("Логин и/или пароль не установлены");
-
-    string login = form["login"];
-    string password = form["password"];
-    Сотрудники? employee;
-
-    using (var db = new CourseProject2DBContext())
-    {
-        employee = (from emp in db.Сотрудникиs
-                    where emp.Логин == login
-                    select emp).FirstOrDefault();
-    }
-
-    if (employee is null || !Auth.VerifyHashedPassword(employee.Пароль, password))
-        //return Results.Unauthorized(); // code 401
-        return Results.BadRequest("Неправильный логин и/или пароль!");
-
-    var claims = new List<Claim> { new Claim(ClaimTypes.Name, employee.Логин) };
-
-    foreach (var role in Queries.GetEmployeeRoles(login))
-        claims.Add(new Claim(ClaimTypes.Role, role.Key));
-
-    // создаем объект ClaimsIdentity
-    ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, "Cookies");
-    // установка аутентификационных куки
-    await context.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
-
-    return Results.Redirect(returnUrl ?? "/");
-});
 
 app.Run();

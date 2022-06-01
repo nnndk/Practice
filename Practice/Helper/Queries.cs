@@ -1,9 +1,8 @@
 ﻿using Practice.Data;
-using System.Security.Claims;
 
 namespace Practice.Helper
 {
-    public static class Queries
+    public class Queries
     {
         private static readonly Dictionary<string, string> dictRolesPosViews = new Dictionary<string, string>() {
             { "Разработчик", "Developer" },
@@ -62,7 +61,7 @@ namespace Practice.Helper
                                   join role in db.Ролиs on pr_emps.КодРоли equals role.Код
                                   join project in db.Проектыs on pr_emps.КодПроекта equals project.Код
                                   join emp in db.Сотрудникиs on pr_emps.КодСотрудника equals emp.Код
-                                  where emp.Логин ==login && project.ДатаЗавершенияПроекта == null
+                                  where emp.Логин == login && project.ДатаЗавершенияПроекта == null
                                   select role.Роль).Count();
 
                     if (query2 > 0)
