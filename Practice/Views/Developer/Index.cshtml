@@ -14,7 +14,7 @@
         <div class="dropdown-menu">
             @foreach (var item in Model.projects)
             {
-                <a class="dropdown-item" asp-controller="Developer" asp-action="Index" asp-route-id=@item.Key>@item.Value</a>
+                <a class="dropdown-item" asp-controller="Developer" asp-action="Index" asp-route-projectid=@item.Key>@item.Value</a>
             }
         </div>
     </div>

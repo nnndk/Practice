@@ -64,8 +64,14 @@ namespace Practice.Controllers
 
                                     var query = from emp in db.Сотрудникиs.ToList()
                                                 join empType in db.ВидыТрудоустройстваs on emp.КодВидаТрудоустройства equals empType.Код
-                                                join ext in extProjectsTime on emp.Код equals ext.Код
-                                                join empWT in empWorkingTime on emp.Код equals empWT.Код
+                                                join ext in extProjectsTime on emp.Код equals ext.Код into gr1
+                                                from g1 in gr1.DefaultIfEmpty()
+                                                join empWT in empWorkingTime on emp.Код equals empWT.Код into gr2
+                                                from g2 in gr2.DefaultIfEmpty()
+                                                where (from empl in db.УстройствоНаРаботуs
+                                                       where empl.ДатаУвольнения > DateTime.Now.Date
+                                                       || empl.ДатаУвольнения == null
+                                                       select empl.КодСотрудника).ToList().Contains(emp.Код)
                                                 select new
                                                 {
                                                     emp.Код,
@@ -74,7 +80,8 @@ namespace Practice.Controllers
                                                     emp.Отчество,
                                                     emp.Логин,
                                                     empType.ВидТрудоустройства,
-                                                    ВремяНаВнешнихПроектах = Math.Round((double)ext.ВремяНаВнешнихПроектах / empWT.КоличествоРабочихЧасов, 2)
+                                                    ВремяНаВнешнихПроектах = Math.Round((double)(g1 == null ? 0 : g1.ВремяНаВнешнихПроектах) /
+                                                    (g2 == null ? 1 : g2.КоличествоРабочихЧасов == 0 ? 1 : g2.КоличествоРабочихЧасов), 2)
                                                 };
 
                                     foreach (var item in query)
@@ -107,8 +114,10 @@ namespace Practice.Controllers
 
                                     var query = from emp in db.Сотрудникиs.ToList()
                                                 join empType in db.ВидыТрудоустройстваs on emp.КодВидаТрудоустройства equals empType.Код
-                                                join ext in extProjectsTime on emp.Код equals ext.Код
-                                                join empWT in empWorkingTime on emp.Код equals empWT.Код
+                                                join ext in extProjectsTime on emp.Код equals ext.Код into gr1
+                                                from g1 in gr1.DefaultIfEmpty()
+                                                join empWT in empWorkingTime on emp.Код equals empWT.Код into gr2
+                                                from g2 in gr2.DefaultIfEmpty()
                                                 select new
                                                 {
                                                     emp.Код,
@@ -117,7 +126,8 @@ namespace Practice.Controllers
                                                     emp.Отчество,
                                                     emp.Логин,
                                                     empType.ВидТрудоустройства,
-                                                    ВремяНаВнешнихПроектах = Math.Round((double)ext.ВремяНаВнешнихПроектах / empWT.КоличествоРабочихЧасов, 2)
+                                                    ВремяНаВнешнихПроектах = Math.Round((double)(g1 == null ? 0 : g1.ВремяНаВнешнихПроектах) /
+                                                    (g2 == null ? 1 : g2.КоличествоРабочихЧасов == 0 ? 1 : g2.КоличествоРабочихЧасов), 2)
                                                 };
 
                                     var lst = empWorkingTime.ToList();
@@ -163,8 +173,17 @@ namespace Practice.Controllers
 
                                     var query = from emp in db.Сотрудникиs.ToList()
                                                 join empType in db.ВидыТрудоустройстваs on emp.КодВидаТрудоустройства equals empType.Код
-                                                join ext in extProjectsTime on emp.Код equals ext.Код
-                                                join empWT in empWorkingTime on emp.Код equals empWT.Код
+                                                join ext in extProjectsTime on emp.Код equals ext.Код into gr1
+                                                from g1 in gr1.DefaultIfEmpty()
+                                                join empWT in empWorkingTime on emp.Код equals empWT.Код into gr2
+                                                from g2 in gr2.DefaultIfEmpty()
+                                                where (from empl in db.УстройствоНаРаботуs
+                                                       where empl.ДатаУвольнения > DateTime.Now.Date
+                                                       || empl.ДатаУвольнения == null
+                                                       select empl.КодСотрудника).ToList().Contains(emp.Код)
+                                                       && (from empPos in db.ДолжностиСотрудниковs
+                                                           where empPos.КодДепартамента == page.DepId
+                                                           select empPos.КодСотрудника).Distinct().ToList().Contains(emp.Код)
                                                 select new
                                                 {
                                                     emp.Код,
@@ -173,7 +192,8 @@ namespace Practice.Controllers
                                                     emp.Отчество,
                                                     emp.Логин,
                                                     empType.ВидТрудоустройства,
-                                                    ВремяНаВнешнихПроектах = Math.Round((double)ext.ВремяНаВнешнихПроектах / empWT.КоличествоРабочихЧасов, 2)
+                                                    ВремяНаВнешнихПроектах = Math.Round((double)(g1 == null ? 0 : g1.ВремяНаВнешнихПроектах) /
+                                                    (g2 == null ? 1 : g2.КоличествоРабочихЧасов == 0 ? 1 : g2.КоличествоРабочихЧасов), 2)
                                                 };
 
                                     foreach (var item in query)
@@ -209,8 +229,13 @@ namespace Practice.Controllers
 
                                     var query = from emp in db.Сотрудникиs.ToList()
                                                 join empType in db.ВидыТрудоустройстваs on emp.КодВидаТрудоустройства equals empType.Код
-                                                join ext in extProjectsTime on emp.Код equals ext.Код
-                                                join empWT in empWorkingTime on emp.Код equals empWT.Код
+                                                join ext in extProjectsTime on emp.Код equals ext.Код into gr1
+                                                from g1 in gr1.DefaultIfEmpty()
+                                                join empWT in empWorkingTime on emp.Код equals empWT.Код into gr2
+                                                from g2 in gr2.DefaultIfEmpty()
+                                                where (from empPos in db.ДолжностиСотрудниковs
+                                                           where empPos.КодДепартамента == page.DepId
+                                                           select empPos.КодСотрудника).Distinct().ToList().Contains(emp.Код)
                                                 select new
                                                 {
                                                     emp.Код,
@@ -219,7 +244,8 @@ namespace Practice.Controllers
                                                     emp.Отчество,
                                                     emp.Логин,
                                                     empType.ВидТрудоустройства,
-                                                    ВремяНаВнешнихПроектах = Math.Round((double)ext.ВремяНаВнешнихПроектах / empWT.КоличествоРабочихЧасов, 2)
+                                                    ВремяНаВнешнихПроектах = Math.Round((double)(g1 == null ? 0 : g1.ВремяНаВнешнихПроектах) /
+                                                    (g2 == null ? 1 : g2.КоличествоРабочихЧасов == 0 ? 1 : g2.КоличествоРабочихЧасов), 2)
                                                 };
 
                                     foreach (var item in query)
@@ -416,7 +442,8 @@ namespace Practice.Controllers
                                                         task.КодРазработчика,
                                                         task.КоличествоЧасов,
                                                         task.ДатаТрудозатраты,
-                                                        ДатаНачалаДействияСтавки = g.ДатаНачалаДействияСтавки.ToString("yyyy-MM-dd") ?? new DateTime(2000, 1, 1).ToString("yyyy-MM-dd"),
+                                                        ДатаНачалаДействияСтавки = g.ДатаНачалаДействияСтавки.ToString("yyyy-MM-dd") 
+                                                        ?? new DateTime(2000, 1, 1).ToString("yyyy-MM-dd"),
                                                         Ставка = int.Parse(g.Ставка.ToString() ?? "0")
                                                     }).Distinct().ToList();
 
@@ -435,7 +462,8 @@ namespace Practice.Controllers
                                                     };
 
                                     var profitByTask = from task in currRates
-                                                       join rate in lessRates on new { Код = task.Key, task.ДатаНачалаДействияСтавки } equals new { rate.Код, rate.ДатаНачалаДействияСтавки }
+                                                       join rate in lessRates on new { Код = task.Key, task.ДатаНачалаДействияСтавки } 
+                                                       equals new { rate.Код, rate.ДатаНачалаДействияСтавки }
                                                        select new
                                                        {
                                                            rate.Код,

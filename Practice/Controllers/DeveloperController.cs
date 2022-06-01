@@ -16,16 +16,17 @@ namespace Practice.Controllers
             {
                 var projects = new Dictionary<int, string>();
 
-                var query = from pr_emp in db.ПроектыИСотрудникиs
+                var query = (from pr_emp in db.ПроектыИСотрудникиs
                             join project in db.Проектыs on pr_emp.КодПроекта equals project.Код
                             join emp in db.Сотрудникиs on pr_emp.КодСотрудника equals emp.Код
-                            where emp.Логин == login && project.ДатаЗавершенияПроекта == null
+                            where emp.Логин == login && project.ДатаЗавершенияПроекта == null 
+                            && (pr_emp.ДатаОкончанияРаботыНаПроекте == null || pr_emp.ДатаОкончанияРаботыНаПроекте > DateTime.Now.Date)
                             orderby project.НазваниеПроекта
                             select new
                             {
                                 Код = project.Код,
                                 НазваниеПроекта = project.НазваниеПроекта
-                            };
+                            }).Distinct();
 
                 foreach (var item in query)
                     projects.Add(item.Код, item.НазваниеПроекта);
@@ -65,7 +66,7 @@ namespace Practice.Controllers
             }
         }
 
-        private static List<Dictionary<string, string>> GetEmployeeTasks(int projectId)
+        private static List<Dictionary<string, string>> GetEmployeeTasks(int projectId, string login)
         {
             using (var db = new CourseProject2DBContext())
             {
@@ -73,7 +74,8 @@ namespace Practice.Controllers
 
                 var query = from task in db.ФактическиеТрудозатратыs
                             join status in db.Статусыs on task.КодСтатуса equals status.Код
-                            where task.КодПроекта == projectId
+                            join emp in db.Сотрудникиs on task.КодРазработчика equals emp.Код
+                            where task.КодПроекта == projectId && emp.Логин == login
                             orderby task.ПоследнееИзменение descending
                             select new
                             {
@@ -113,16 +115,16 @@ namespace Practice.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index(int id = -1)
+        public IActionResult Index(int projectId = -1)
         {
             var projects = GetEmployeeProjects(User.Identity.Name);
 
-            if (id == -1)
+            if (projectId == -1)
                 return View(new DeveloperViewModel() { projects = projects });
-            else if (!projects.Keys.Contains(id))
+            else if (!projects.Keys.Contains(projectId))
                 return NotFound();
 
-            return View(new DeveloperViewModel() { projects = projects, selectedProject = GetSelectedProject(id), tasks = GetEmployeeTasks(id) });
+            return View(new DeveloperViewModel() { projects = projects, selectedProject = GetSelectedProject(projectId), tasks = GetEmployeeTasks(projectId, User.Identity.Name) });
         }
 
         [HttpGet]
@@ -242,7 +244,6 @@ namespace Practice.Controllers
 
                 db.ФактическиеТрудозатратыs.Remove(task);
                 db.SaveChanges();
-                TempData["success"] = "Category deleted successfully";
 
                 return RedirectToAction("Index", new { id = task.КодПроекта });
             }

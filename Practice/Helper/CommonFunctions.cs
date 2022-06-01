@@ -6,20 +6,6 @@ namespace Practice.Helper
 {
     public static class CommonFunctions
     {
-        public static int CountWorkingDays(DateTime start, DateTime end)
-        {
-            int count = 0;
-
-            while (start != end)
-            {
-                start = start.AddDays(1);
-                if ((start.DayOfWeek != DayOfWeek.Saturday) && (start.DayOfWeek != DayOfWeek.Sunday))
-                    count++;
-            }
-
-            return count;
-        }
-
         public static int CountWorkingDays(DateTime start1, DateTime start2, DateTime? end1, DateTime end2)
         {
             DateTime start = GetMaxDate(start1, start2);
@@ -58,6 +44,7 @@ namespace Practice.Helper
 
         public static IActionResult GetReport(ReportViewModel page)
         {
+            // https://alekseev74.ru/lessons/show/aspnet-mvc/ms-excel
             using (XLWorkbook workbook = new XLWorkbook(XLEventTracking.Disabled))
             {
                 var worksheet = workbook.Worksheets.Add(page.ReportType);
