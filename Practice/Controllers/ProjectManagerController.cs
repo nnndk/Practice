@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Practice.Data;
+using Practice.Helper;
 using Practice.Models;
 using Practice.Models.ViewModels;
 
@@ -185,6 +186,10 @@ namespace Practice.Controllers
                              from employee in db.УстройствоНаРаботуs
                              where employee.ДатаУвольнения > DateTime.Now.Date || employee.ДатаУвольнения == null
                              select employee.КодСотрудника).ToList().Contains(emp.Код)
+                             && (from emp_pos in db.ДолжностиСотрудниковs
+                                 join pos in db.Должностиs on emp_pos.КодДолжности equals pos.Код
+                                 where Queries.developerTypes.Contains(pos.Должность)
+                                 select emp_pos.КодСотрудника).Contains(emp.Код)
                              select new
                              {
                                  Код = emp.Код.ToString(),
@@ -699,7 +704,9 @@ namespace Practice.Controllers
                              select g.Max(s => s.ДатаНачалаДействияСтавки);
 
                 if (query1.Count() != 0 && query1.First() >= empRate.ДатаНачалаДействияСтавки)
-                    ModelState.AddModelError("ДатаНачалаДействияСтавки", $"Ошибка! Дата начала действия предыдущей ставки: {query1}. Дата начала действия новой ставки должна быть больше!");
+                    ModelState.AddModelError("ДатаНачалаДействияСтавки", $"Ошибка! " +
+                        $"Дата начала действия предыдущей ставки: {query1.First()}. " +
+                        $"Дата начала действия новой ставки должна быть больше!");
 
                 if (ModelState.ErrorCount == 2)
                 {

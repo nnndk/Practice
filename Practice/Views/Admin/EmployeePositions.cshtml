@@ -31,18 +31,21 @@
                                 <td><p>@col.Value</p></td>
                             }
 
-                            @if (item["Код"] != null && item["Должность"] != "Директор департамента")
+                            @if (item.ContainsKey("Код"))
                             {
-                                <td class="text-end" nowrap>
-                                    <a asp-controller="Admin" asp-action="DeletePosition" asp-route-id=@item["Код"]>
-                                        <i class="bi bi-x-lg" style="font-size: 1.75rem; color:black;"></i>
-                                    </a>
-                                </td>
-                            }
-                            else if (item["Код"] != null && item["Должность"] == "Директор департамента")
-                            {
-                                <td class="text-end" nowrap>
-                                </td>
+                                @if (item["Код"] != null && item["Должность"] != "Директор департамента")
+                                {
+                                    <td class="text-end" nowrap>
+                                        <a asp-controller="Admin" asp-action="DeletePosition" asp-route-id=@item["Код"]>
+                                            <i class="bi bi-x-lg" style="font-size: 1.75rem; color:black;"></i>
+                                        </a>
+                                    </td>
+                                }
+                                else if (item["Код"] != null && item["Должность"] == "Директор департамента")
+                                {
+                                    <td class="text-end" nowrap>
+                                    </td>
+                                }
                             }
                         </tr>
                     }
@@ -51,8 +54,8 @@
         </div>
         <div class="text-end">
             <a asp-controller="Admin" asp-action="UpdateEmployee" asp-route-id=@ViewBag.EmpId class="btn btn-secondary mx-3" style="width:150px">
-                        Назад
-                    </a>
+                Назад
+            </a>
             <a asp-controller="Admin" asp-action="AddPosition" asp-route-id=@ViewBag.EmpId class="btn btn-dark">
                 Добавить должность
             </a>

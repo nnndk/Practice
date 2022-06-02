@@ -70,6 +70,12 @@ namespace Practice.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult AddEmployee(Сотрудники emp)
         {
+            if (emp.Пароль == null || emp.Пароль.Length < 8)
+            {
+                ModelState.AddModelError("Пароль", "Ошибка! Минимальная длина пароля - 8 символов!");
+                return View(emp);
+            }
+
             using (var db = new CourseProject2DBContext())
             {
                 if (ModelState.ErrorCount == 2)

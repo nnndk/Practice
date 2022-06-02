@@ -2,7 +2,7 @@
 
 namespace Practice.Helper
 {
-    public class Queries
+    public static class Queries
     {
         private static readonly Dictionary<string, string> dictRolesPosViews = new Dictionary<string, string>() {
             { "Разработчик", "Developer" },
@@ -14,6 +14,9 @@ namespace Practice.Helper
             { "Бухгалтер", "Accountant" },
             { "Сотрудник договорного отдела", "ContractDepEmp" }
         };
+
+        public static readonly string[] developerTypes = new string[] { "Разработчик 1 категории", "Разработчик 2 категории",
+                    "Разработчик 3 категории", "Разработчик 4 категории", "Разработчик 5 категории", "Разработчик-эксперт" };
 
         public static Dictionary<string, string> GetEmployeeRoles(string login)
         {
@@ -31,8 +34,6 @@ namespace Practice.Helper
                             };
 
                 var empPositions = new Dictionary<string, string>();
-                var developerTypes = new string[] { "Разработчик 1 категории", "Разработчик 2 категории",
-                    "Разработчик 3 категории", "Разработчик 4 категории", "Разработчик 5 категории", "Разработчик-эксперт" };
 
                 foreach (var pos in query)
                 {

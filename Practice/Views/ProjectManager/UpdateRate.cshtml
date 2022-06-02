@@ -27,10 +27,12 @@
             <div class="mb-3">
                 <label asp-for="ДатаНачалаДействияСтавки">Дата начала действия ставки</label>
                 <input asp-for="ДатаНачалаДействияСтавки" class="form-control" />
+                <span asp-validation-for="ДатаНачалаДействияСтавки" class="text-danger"></span>
             </div>
             <div class="mb-3">
                 <label asp-for="Ставка">Ставка</label>
                 <input asp-for="Ставка" class="form-control" />
+                <span asp-validation-for="Ставка" class="text-danger"></span>
             </div>
 
             <div class="text-end">
