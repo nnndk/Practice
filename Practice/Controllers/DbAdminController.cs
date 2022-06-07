@@ -334,8 +334,8 @@ namespace Practice.Controllers
 
             using (var db = new CourseProject2DBContext())
             {
-                var tableItem = (from item in db.ВидыТрудоустройстваs 
-                                 where item.Код == id 
+                var tableItem = (from item in db.ВидыТрудоустройстваs
+                                 where item.Код == id
                                  select item).FirstOrDefault();
 
                 if (tableItem == null)
@@ -539,6 +539,299 @@ namespace Practice.Controllers
                 if (ModelState.ErrorCount == 0)
                 {
                     db.ТипыПроектовs.Update(prType);
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index", new { tableName = "Типы проектов" });
+                }
+            }
+
+            return View(prType);
+        }
+
+        public IActionResult DeleteItem(string tableName = "", int id = -1)
+        {
+            if (id == -1)
+                return NotFound();
+
+            switch (tableName)
+            {
+                case "Виды трудоустройства":
+                    return RedirectToAction("DeleteEmpType", new { id = id });
+                case "Должности":
+                    return RedirectToAction("DeletePosition", new { id = id });
+                case "Пол":
+                    return RedirectToAction("DeleteGender", new { id = id });
+                case "Роли":
+                    return RedirectToAction("DeleteRole", new { id = id });
+                case "Статусы":
+                    return RedirectToAction("DeleteStatus", new { id = id });
+                case "Типы проектов":
+                    return RedirectToAction("DeleteProjectType", new { id = id });
+                default:
+                    return NotFound();
+            }
+        }
+
+        public IActionResult DeletionForbidden()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult DeleteEmpType(int id = -1)
+        {
+            if (id == -1)
+                return NotFound();
+
+            using (var db = new CourseProject2DBContext())
+            {
+                var tableItem = (from item in db.ВидыТрудоустройстваs
+                                 where item.Код == id
+                                 select item).FirstOrDefault();
+
+                if (tableItem == null)
+                    return NotFound();
+
+                var query = (from item in db.Сотрудникиs
+                            where item.КодВидаТрудоустройства == id
+                            select item).Any();
+
+                if (query)
+                    return RedirectToAction("DeletionForbidden");
+
+                return View(tableItem);
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteEmpType(ВидыТрудоустройства empType)
+        {
+            using (var db = new CourseProject2DBContext())
+            {
+                if (ModelState.ErrorCount == 0)
+                {
+                    db.ВидыТрудоустройстваs.Remove(empType);
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index", new { tableName = "Виды трудоустройства" });
+                }
+            }
+
+            return View(empType);
+        }
+
+        [HttpGet]
+        public IActionResult DeletePosition(int id = -1)
+        {
+            if (id == -1)
+                return NotFound();
+
+            using (var db = new CourseProject2DBContext())
+            {
+                var tableItem = (from item in db.Должностиs
+                                 where item.Код == id
+                                 select item).FirstOrDefault();
+
+                if (tableItem == null)
+                    return NotFound();
+
+                var query = (from item in db.ДолжностиСотрудниковs
+                             where item.КодДолжности == id
+                             select item).Any();
+
+                if (query)
+                    return RedirectToAction("DeletionForbidden");
+
+                return View(tableItem);
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeletePosition(Должности pos)
+        {
+            using (var db = new CourseProject2DBContext())
+            {
+                if (ModelState.ErrorCount == 0)
+                {
+                    db.Должностиs.Remove(pos);
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index", new { tableName = "Должности" });
+                }
+            }
+
+            return View(pos);
+        }
+
+        [HttpGet]
+        public IActionResult DeleteGender(int id = -1)
+        {
+            if (id == -1)
+                return NotFound();
+
+            using (var db = new CourseProject2DBContext())
+            {
+                var tableItem = (from item in db.Полs
+                                 where item.Код == id
+                                 select item).FirstOrDefault();
+
+                if (tableItem == null)
+                    return NotFound();
+
+                var query = (from item in db.Сотрудникиs
+                             where item.КодПола == id
+                             select item).Any();
+
+                if (query)
+                    return RedirectToAction("DeletionForbidden");
+
+                return View(tableItem);
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteGender(Пол sex)
+        {
+            using (var db = new CourseProject2DBContext())
+            {
+                if (ModelState.ErrorCount == 0)
+                {
+                    db.Полs.Remove(sex);
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index", new { tableName = "Пол" });
+                }
+            }
+
+            return View(sex);
+        }
+
+        [HttpGet]
+        public IActionResult DeleteRole(int id = -1)
+        {
+            if (id == -1)
+                return NotFound();
+
+            using (var db = new CourseProject2DBContext())
+            {
+                var tableItem = (from item in db.Ролиs
+                                 where item.Код == id
+                                 select item).FirstOrDefault();
+
+                if (tableItem == null)
+                    return NotFound();
+
+                var query = (from item in db.ПроектыИСотрудникиs
+                             where item.КодРоли == id
+                             select item).Any();
+
+                if (query)
+                    return RedirectToAction("DeletionForbidden");
+
+                return View(tableItem);
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteRole(Роли role)
+        {
+            using (var db = new CourseProject2DBContext())
+            {
+                if (ModelState.ErrorCount == 0)
+                {
+                    db.Ролиs.Remove(role);
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index", new { tableName = "Роли" });
+                }
+            }
+
+            return View(role);
+        }
+
+        [HttpGet]
+        public IActionResult DeleteStatus(int id = -1)
+        {
+            if (id == -1)
+                return NotFound();
+
+            using (var db = new CourseProject2DBContext())
+            {
+                var tableItem = (from item in db.Статусыs
+                                 where item.Код == id
+                                 select item).FirstOrDefault();
+
+                if (tableItem == null)
+                    return NotFound();
+
+                var query = (from item in db.ФактическиеТрудозатратыs
+                             where item.КодСтатуса == id
+                             select item).Any();
+
+                if (query)
+                    return RedirectToAction("DeletionForbidden");
+
+                return View(tableItem);
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteStatus(Статусы status)
+        {
+            using (var db = new CourseProject2DBContext())
+            {
+                if (ModelState.ErrorCount == 0)
+                {
+                    db.Статусыs.Remove(status);
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index", new { tableName = "Статусы" });
+                }
+            }
+
+            return View(status);
+        }
+
+        [HttpGet]
+        public IActionResult DeleteProjectType(int id = -1)
+        {
+            if (id == -1)
+                return NotFound();
+
+            using (var db = new CourseProject2DBContext())
+            {
+                var tableItem = (from item in db.ТипыПроектовs
+                                 where item.Код == id
+                                 select item).FirstOrDefault();
+
+                if (tableItem == null)
+                    return NotFound();
+
+                var query = (from item in db.Проектыs
+                             where item.КодТипаПроекта == id
+                             select item).Any();
+
+                if (query)
+                    return RedirectToAction("DeletionForbidden");
+
+                return View(tableItem);
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteProjectType(ТипыПроектов prType)
+        {
+            using (var db = new CourseProject2DBContext())
+            {
+                if (ModelState.ErrorCount == 0)
+                {
+                    db.ТипыПроектовs.Remove(prType);
                     db.SaveChanges();
 
                     return RedirectToAction("Index", new { tableName = "Типы проектов" });

@@ -3,7 +3,6 @@
 @model ReportViewModel
 @{
     ViewData["Title"] = "Index";
-    ViewBag.ReportTypes = new string[] { "Отчёт по утилизации", "Отчёт по выручке" };
 
     using (var db = new CourseProject2DBContext())
     {

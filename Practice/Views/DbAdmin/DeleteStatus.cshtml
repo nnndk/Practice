@@ -1,23 +1,27 @@
 ﻿@model Статусы
 @{
-    ViewData["Title"] = "AddStatus";
+    ViewData["Title"] = "DeleteStatus";
 }
 
 <div class="row">
     <h1 class="mt-3 mb-3">Администратор баз данных</h1>
 </div>
 
-<form method="post" asp-action="AddStatus">
+<form method="post" asp-action="DeleteStatus">
     <div class="row">
         <div class="col-3"></div>
         <div class="border p-3 mt-4 col-6">
             <div class="row pb-2">
-                <h2>Добавление статуса</h2>
+                <h2>Удаление статуса</h2>
                 <hr />
             </div>
             <div class="mb-3">
+                <label asp-for="Код">Код</label>
+                <input asp-for="Код" class="form-control" value=@Model.Код readonly />
+            </div>
+            <div class="mb-3">
                 <label asp-for="Статус">Статус</label>
-                <input asp-for="Статус" class="form-control" value=@Model.Статус />
+                <input asp-for="Статус" class="form-control" value=@Model.Статус readonly />
                 <span asp-validation-for="Статус" class="text-danger"></span>
             </div>
 
@@ -26,7 +30,7 @@
                     Назад
                 </a>
                 <button type="submit" class="btn btn-dark" style="width:150px">
-                    Добавить
+                    Удалить
                 </button>
             </div>
         </div>

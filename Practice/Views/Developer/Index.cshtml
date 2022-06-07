@@ -57,7 +57,7 @@
             <h4 class="mt-5">Трудозатраты</h4>
         }
         <div>
-            <table class="table table-striped align-middle table-responsive fixed-table">
+            <table class="table align-middle table-responsive fixed-table">
                 <thead>
                     @if (Model.tasks != null)
                     {
@@ -75,21 +75,63 @@
                     {
                         @foreach (var item in Model.tasks)
                         {
-                            <tr>
+                            @switch (item["Статус"])
+                            {
+                                case "Не подтверждено":
+                                    <tr class="table-danger">
 
-                                @foreach (var col in item)
-                                {
-                                    <td><p>@col.Value</p></td>
-                                }
+                                        @foreach (var col in item)
+                                        {
+                                            <td><p>@col.Value</p></td>
+                                        }
 
-                                @if (item["Код"] != null)
-                                {
-                                    <td class="text-end" nowrap>
-                                        <a asp-controller="Developer" asp-action="UpdateTask" asp-route-id=@int.Parse(item["Код"]) class="btn btn-dark"><i class="bi bi-pencil-fill"></i></a>
-                                        <a asp-controller="Developer" asp-action="DeleteTask" asp-route-id=@int.Parse(item["Код"]) class="btn btn-dark"><i class="bi bi-trash3-fill"></i></a>
-                                    </td>
-                                }
-                            </tr>
+                                        @if (item["Код"] != null)
+                                        {
+                                            <td class="text-end" nowrap>
+                                                <a asp-controller="Developer" asp-action="UpdateTask" asp-route-id=@int.Parse(item["Код"]) class="btn btn-dark"><i class="bi bi-pencil-fill"></i></a>
+                                                <a asp-controller="Developer" asp-action="DeleteTask" asp-route-id=@int.Parse(item["Код"]) class="btn btn-dark"><i class="bi bi-trash3-fill"></i></a>
+                                            </td>
+                                        }
+                                    </tr>
+
+                                    break;
+                                case "Подтверждено":
+                                    <tr class="table-success">
+
+                                        @foreach (var col in item)
+                                        {
+                                            <td><p>@col.Value</p></td>
+                                        }
+
+                                        @if (item["Код"] != null)
+                                        {
+                                            <td class="text-end" nowrap>
+                                                <a asp-controller="Developer" asp-action="UpdateTask" asp-route-id=@int.Parse(item["Код"]) class="btn btn-dark disabled"><i class="bi bi-pencil-fill"></i></a>
+                                                <a asp-controller="Developer" asp-action="DeleteTask" asp-route-id=@int.Parse(item["Код"]) class="btn btn-dark disabled"><i class="bi bi-trash3-fill"></i></a>
+                                            </td>
+                                        }
+                                    </tr>
+
+                                    break;
+                                default:
+                                    <tr>
+
+                                        @foreach (var col in item)
+                                        {
+                                            <td><p>@col.Value</p></td>
+                                        }
+
+                                        @if (item["Код"] != null)
+                                        {
+                                            <td class="text-end" nowrap>
+                                                <a asp-controller="Developer" asp-action="UpdateTask" asp-route-id=@int.Parse(item["Код"]) class="btn btn-dark"><i class="bi bi-pencil-fill"></i></a>
+                                                <a asp-controller="Developer" asp-action="DeleteTask" asp-route-id=@int.Parse(item["Код"]) class="btn btn-dark"><i class="bi bi-trash3-fill"></i></a>
+                                            </td>
+                                        }
+                                    </tr>
+
+                                    break;
+                            }
                         }
                     }
                 </tbody>

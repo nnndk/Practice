@@ -111,6 +111,34 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGJBZG1pblxBZGRTdGF0dXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/DbAdmin/DeleteEmpType.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGJBZG1pblxEZWxldGVFbXBUeXBlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/DbAdmin/DeleteGender.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGJBZG1pblxEZWxldGVHZW5kZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/DbAdmin/DeletePosition.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGJBZG1pblxEZWxldGVQb3NpdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/DbAdmin/DeleteProjectType.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGJBZG1pblxEZWxldGVQcm9qZWN0VHlwZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/DbAdmin/DeleteRole.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGJBZG1pblxEZWxldGVSb2xlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/DbAdmin/DeleteStatus.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGJBZG1pblxEZWxldGVTdGF0dXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/DbAdmin/DeletionForbidden.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGJBZG1pblxEZWxldGlvbkZvcmJpZGRlbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/DbAdmin/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGJBZG1pblxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -177,6 +205,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/ProjectManager/CheckTask.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdE1hbmFnZXJcQ2hlY2tUYXNrLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/ProjectManager/GetAllRates.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdE1hbmFnZXJcR2V0QWxsUmF0ZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/ProjectManager/GetAllTasks.cshtml]

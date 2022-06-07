@@ -10,11 +10,15 @@ namespace Practice.Controllers
     [Authorize(Roles = "Бухгалтер")]
     public class AccountantController : Controller
     {
+        private static string[] reportTypes = new string[] { "Отчёт по выручке" };
+
         [HttpGet]
         public IActionResult Index(ReportViewModel? page = null)
         {
             if (page == null)
                 return View(new ReportViewModel());
+
+            ViewBag.ReportTypes = reportTypes;
 
             return View(page);
         }
@@ -23,9 +27,13 @@ namespace Practice.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult IndexPOST(ReportViewModel page, bool printReport = false)
         {
-            if (page.StartDate >= page.EndDate)
+            if (!reportTypes.Contains(page.ReportType))
+                ModelState.AddModelError("ReportType", "Ошибка! Необходимо выбрать тип отчёта!");
+
+            if (page.StartDate > page.EndDate)
                 ModelState.AddModelError("EndDate", "Ошибка! Дата окончания периода должна быть больше даты его начала!");
-            else
+
+            if (ModelState.ErrorCount == 0)
             {
                 using (var db = new CourseProject2DBContext())
                 {
@@ -45,7 +53,7 @@ namespace Practice.Controllers
                                                     equals new { x1 = rate.КодПроекта, x2 = rate.КодСотрудника } into gr
                                                     from g in gr.DefaultIfEmpty()
                                                     where projectType.ТипПроекта == "Внешний" && task.ДатаТрудозатраты >= page.StartDate
-                                                    && task.ДатаТрудозатраты < page.EndDate
+                                                    && task.ДатаТрудозатраты <= page.EndDate
                                                     select new
                                                     {
                                                         task.Код,
@@ -120,7 +128,7 @@ namespace Practice.Controllers
                                                     join rate in db.СтавкиСотрудниковs
                                                     on new { x1 = task.КодПроекта, x2 = task.КодРазработчика } equals new { x1 = rate.КодПроекта, x2 = rate.КодСотрудника } into gr
                                                     from g in gr.DefaultIfEmpty()
-                                                    where projectType.ТипПроекта == "Внешний" && task.ДатаТрудозатраты >= page.StartDate && task.ДатаТрудозатраты < page.EndDate
+                                                    where projectType.ТипПроекта == "Внешний" && task.ДатаТрудозатраты >= page.StartDate && task.ДатаТрудозатраты <= page.EndDate
                                                     select new
                                                     {
                                                         task.Код,
@@ -195,7 +203,7 @@ namespace Practice.Controllers
                                                     equals new { x1 = rate.КодПроекта, x2 = rate.КодСотрудника } into gr
                                                     from g in gr.DefaultIfEmpty()
                                                     where projectType.ТипПроекта == "Внешний" && task.ДатаТрудозатраты >= page.StartDate
-                                                    && task.ДатаТрудозатраты < page.EndDate
+                                                    && task.ДатаТрудозатраты <= page.EndDate
                                                     select new
                                                     {
                                                         task.Код,
@@ -275,7 +283,7 @@ namespace Practice.Controllers
                                                     equals new { x1 = rate.КодПроекта, x2 = rate.КодСотрудника } into gr
                                                     from g in gr.DefaultIfEmpty()
                                                     where projectType.ТипПроекта == "Внешний" && task.ДатаТрудозатраты >= page.StartDate
-                                                    && task.ДатаТрудозатраты < page.EndDate
+                                                    && task.ДатаТрудозатраты <= page.EndDate
                                                     select new
                                                     {
                                                         task.Код,
@@ -369,6 +377,8 @@ namespace Practice.Controllers
 
             if (printReport)
                 return CommonFunctions.GetReport(page);
+
+            ViewBag.ReportTypes = reportTypes;
 
             return View(page);
         }

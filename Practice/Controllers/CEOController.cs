@@ -10,11 +10,15 @@ namespace Practice.Controllers
     [Authorize(Roles = "Генеральный директор")]
     public class CEOController : Controller
     {
+        private static string[] reportTypes = new string[] { "Отчёт по утилизации", "Отчёт по выручке" };
+
         [HttpGet]
         public IActionResult Index(ReportViewModel? page = null)
         {
             if (page == null)
                 return View(new ReportViewModel());
+
+            ViewBag.ReportTypes = reportTypes;
 
             return View(page);
         }
@@ -23,9 +27,13 @@ namespace Practice.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult IndexPOST(ReportViewModel page, bool printReport = false)
         {
-            if (page.StartDate >= page.EndDate)
+            if (!reportTypes.Contains(page.ReportType))
+                ModelState.AddModelError("ReportType", "Ошибка! Необходимо выбрать тип отчёта!");
+
+            if (page.StartDate > page.EndDate)
                 ModelState.AddModelError("EndDate", "Ошибка! Дата окончания периода должна быть больше даты его начала!");
-            else
+
+            if (ModelState.ErrorCount == 0)
             {
                 using (var db = new CourseProject2DBContext())
                 {
@@ -42,10 +50,10 @@ namespace Practice.Controllers
                                                           join project in db.Проектыs on task.КодПроекта equals project.Код
                                                           join projectType in db.ТипыПроектовs on project.КодТипаПроекта equals projectType.Код
                                                           where projectType.ТипПроекта == "Внешний" && task.ДатаТрудозатраты >= page.StartDate
-                                                          && task.ДатаТрудозатраты < page.EndDate && (from empl in db.УстройствоНаРаботуs
-                                                                                                      where empl.ДатаУвольнения > DateTime.Now.Date
-                                                                                                      || empl.ДатаУвольнения == null
-                                                                                                      select empl.КодСотрудника).ToList()
+                                                          && task.ДатаТрудозатраты <= page.EndDate && (from empl in db.УстройствоНаРаботуs
+                                                                                                       where empl.ДатаУвольнения > DateTime.Now.Date
+                                                                                                       || empl.ДатаУвольнения == null
+                                                                                                       select empl.КодСотрудника).ToList()
                                                                                                       .Contains(task.КодРазработчика)
                                                           group task by task.КодРазработчика into g
                                                           select new
@@ -54,12 +62,13 @@ namespace Practice.Controllers
                                                               ВремяНаВнешнихПроектах = g.Sum(x => x.КоличествоЧасов)
                                                           };
 
-                                    var empWorkingTime = db.УстройствоНаРаботуs.Select(emp => emp).ToList().GroupBy(empl => empl.КодСотрудника).ToList()
+                                    var empWorkingTime = db.УстройствоНаРаботуs.Select(emp => emp).ToList()
+                                        .GroupBy(empl => empl.КодСотрудника).ToList()
                                         .Select(g => new
                                         {
                                             Код = g.Key,
                                             КоличествоРабочихЧасов = g.ToList()
-                                        .Sum(x => CommonFunctions.CountWorkingDays(x.ДатаЗачисленияВШтат, page.StartDate, x.ДатаУвольнения, page.EndDate))
+                                        .Sum(x => CommonFunctions.CountWorkingDays(x.ДатаЗачисленияВШтат, page.StartDate, x.ДатаУвольнения, page.EndDate) * 8)
                                         }).ToList();
 
                                     var query = from emp in db.Сотрудникиs.ToList()
@@ -96,7 +105,7 @@ namespace Practice.Controllers
                                                           join project in db.Проектыs on task.КодПроекта equals project.Код
                                                           join projectType in db.ТипыПроектовs on project.КодТипаПроекта equals projectType.Код
                                                           where projectType.ТипПроекта == "Внешний" && task.ДатаТрудозатраты >= page.StartDate
-                                                          && task.ДатаТрудозатраты < page.EndDate
+                                                          && task.ДатаТрудозатраты <= page.EndDate
                                                           group task by task.КодРазработчика into g
                                                           select new
                                                           {
@@ -104,12 +113,13 @@ namespace Practice.Controllers
                                                               ВремяНаВнешнихПроектах = g.Sum(x => x.КоличествоЧасов)
                                                           };
 
-                                    var empWorkingTime = db.УстройствоНаРаботуs.Select(emp => emp).ToList().GroupBy(empl => empl.КодСотрудника).ToList()
+                                    var empWorkingTime = db.УстройствоНаРаботуs.Select(emp => emp).ToList()
+                                        .GroupBy(empl => empl.КодСотрудника).ToList()
                                         .Select(g => new
                                         {
                                             Код = g.Key,
                                             КоличествоРабочихЧасов = g.ToList()
-                                        .Sum(x => CommonFunctions.CountWorkingDays(x.ДатаЗачисленияВШтат, page.StartDate, x.ДатаУвольнения, page.EndDate))
+                                        .Sum(x => CommonFunctions.CountWorkingDays(x.ДатаЗачисленияВШтат, page.StartDate, x.ДатаУвольнения, page.EndDate) * 8)
                                         }).ToList();
 
                                     var query = from emp in db.Сотрудникиs.ToList()
@@ -148,7 +158,7 @@ namespace Practice.Controllers
                                                           join projectType in db.ТипыПроектовs on project.КодТипаПроекта equals projectType.Код
                                                           where projectType.ТипПроекта == "Внешний"
                                                           && task.ДатаТрудозатраты >= page.StartDate
-                                                          && task.ДатаТрудозатраты < page.EndDate
+                                                          && task.ДатаТрудозатраты <= page.EndDate
                                                           && (from empl in db.УстройствоНаРаботуs
                                                               where empl.ДатаУвольнения > DateTime.Now.Date || empl.ДатаУвольнения == null
                                                               select empl.КодСотрудника).ToList().Contains(task.КодРазработчика)
@@ -163,12 +173,13 @@ namespace Practice.Controllers
                                                               ВремяНаВнешнихПроектах = g.Sum(x => x.КоличествоЧасов)
                                                           };
 
-                                    var empWorkingTime = db.УстройствоНаРаботуs.Select(emp => emp).ToList().GroupBy(empl => empl.КодСотрудника).ToList()
+                                    var empWorkingTime = db.УстройствоНаРаботуs.Select(emp => emp).ToList()
+                                        .GroupBy(empl => empl.КодСотрудника).ToList()
                                         .Select(g => new
                                         {
                                             Код = g.Key,
                                             КоличествоРабочихЧасов = g.ToList()
-                                        .Sum(x => CommonFunctions.CountWorkingDays(x.ДатаЗачисленияВШтат, page.StartDate, x.ДатаУвольнения, page.EndDate))
+                                        .Sum(x => CommonFunctions.CountWorkingDays(x.ДатаЗачисленияВШтат, page.StartDate, x.ДатаУвольнения, page.EndDate) * 8)
                                         }).ToList();
 
                                     var query = from emp in db.Сотрудникиs.ToList()
@@ -208,9 +219,9 @@ namespace Practice.Controllers
                                                           join project in db.Проектыs on task.КодПроекта equals project.Код
                                                           join projectType in db.ТипыПроектовs on project.КодТипаПроекта equals projectType.Код
                                                           where projectType.ТипПроекта == "Внешний" && task.ДатаТрудозатраты >= page.StartDate
-                                                          && task.ДатаТрудозатраты < page.EndDate && (from empPos in db.ДолжностиСотрудниковs
-                                                                                                      where empPos.КодДепартамента == page.DepId
-                                                                                                      select empPos.КодСотрудника).Distinct().ToList()
+                                                          && task.ДатаТрудозатраты <= page.EndDate && (from empPos in db.ДолжностиСотрудниковs
+                                                                                                       where empPos.КодДепартамента == page.DepId
+                                                                                                       select empPos.КодСотрудника).Distinct().ToList()
                                                                                                       .Contains(task.КодРазработчика)
                                                           group task by task.КодРазработчика into g
                                                           select new
@@ -219,12 +230,13 @@ namespace Practice.Controllers
                                                               ВремяНаВнешнихПроектах = g.Sum(x => x.КоличествоЧасов)
                                                           };
 
-                                    var empWorkingTime = db.УстройствоНаРаботуs.Select(emp => emp).ToList().GroupBy(empl => empl.КодСотрудника).ToList()
+                                    var empWorkingTime = db.УстройствоНаРаботуs.Select(emp => emp).ToList()
+                                        .GroupBy(empl => empl.КодСотрудника).ToList()
                                         .Select(g => new
                                         {
                                             Код = g.Key,
                                             КоличествоРабочихЧасов = g.ToList()
-                                        .Sum(x => CommonFunctions.CountWorkingDays(x.ДатаЗачисленияВШтат, page.StartDate, x.ДатаУвольнения, page.EndDate))
+                                        .Sum(x => CommonFunctions.CountWorkingDays(x.ДатаЗачисленияВШтат, page.StartDate, x.ДатаУвольнения, page.EndDate) * 8)
                                         }).ToList();
 
                                     var query = from emp in db.Сотрудникиs.ToList()
@@ -234,8 +246,8 @@ namespace Practice.Controllers
                                                 join empWT in empWorkingTime on emp.Код equals empWT.Код into gr2
                                                 from g2 in gr2.DefaultIfEmpty()
                                                 where (from empPos in db.ДолжностиСотрудниковs
-                                                           where empPos.КодДепартамента == page.DepId
-                                                           select empPos.КодСотрудника).Distinct().ToList().Contains(emp.Код)
+                                                       where empPos.КодДепартамента == page.DepId
+                                                       select empPos.КодСотрудника).Distinct().ToList().Contains(emp.Код)
                                                 select new
                                                 {
                                                     emp.Код,
@@ -285,7 +297,7 @@ namespace Practice.Controllers
                                                     equals new { x1 = rate.КодПроекта, x2 = rate.КодСотрудника } into gr
                                                     from g in gr.DefaultIfEmpty()
                                                     where projectType.ТипПроекта == "Внешний" && task.ДатаТрудозатраты >= page.StartDate
-                                                    && task.ДатаТрудозатраты < page.EndDate
+                                                    && task.ДатаТрудозатраты <= page.EndDate
                                                     select new
                                                     {
                                                         task.Код,
@@ -360,7 +372,7 @@ namespace Practice.Controllers
                                                     join rate in db.СтавкиСотрудниковs
                                                     on new { x1 = task.КодПроекта, x2 = task.КодРазработчика } equals new { x1 = rate.КодПроекта, x2 = rate.КодСотрудника } into gr
                                                     from g in gr.DefaultIfEmpty()
-                                                    where projectType.ТипПроекта == "Внешний" && task.ДатаТрудозатраты >= page.StartDate && task.ДатаТрудозатраты < page.EndDate
+                                                    where projectType.ТипПроекта == "Внешний" && task.ДатаТрудозатраты >= page.StartDate && task.ДатаТрудозатраты <= page.EndDate
                                                     select new
                                                     {
                                                         task.Код,
@@ -435,14 +447,14 @@ namespace Practice.Controllers
                                                     equals new { x1 = rate.КодПроекта, x2 = rate.КодСотрудника } into gr
                                                     from g in gr.DefaultIfEmpty()
                                                     where projectType.ТипПроекта == "Внешний" && task.ДатаТрудозатраты >= page.StartDate
-                                                    && task.ДатаТрудозатраты < page.EndDate
+                                                    && task.ДатаТрудозатраты <= page.EndDate
                                                     select new
                                                     {
                                                         task.Код,
                                                         task.КодРазработчика,
                                                         task.КоличествоЧасов,
                                                         task.ДатаТрудозатраты,
-                                                        ДатаНачалаДействияСтавки = g.ДатаНачалаДействияСтавки.ToString("yyyy-MM-dd") 
+                                                        ДатаНачалаДействияСтавки = g.ДатаНачалаДействияСтавки.ToString("yyyy-MM-dd")
                                                         ?? new DateTime(2000, 1, 1).ToString("yyyy-MM-dd"),
                                                         Ставка = int.Parse(g.Ставка.ToString() ?? "0")
                                                     }).Distinct().ToList();
@@ -462,7 +474,7 @@ namespace Practice.Controllers
                                                     };
 
                                     var profitByTask = from task in currRates
-                                                       join rate in lessRates on new { Код = task.Key, task.ДатаНачалаДействияСтавки } 
+                                                       join rate in lessRates on new { Код = task.Key, task.ДатаНачалаДействияСтавки }
                                                        equals new { rate.Код, rate.ДатаНачалаДействияСтавки }
                                                        select new
                                                        {
@@ -517,7 +529,7 @@ namespace Practice.Controllers
                                                     equals new { x1 = rate.КодПроекта, x2 = rate.КодСотрудника } into gr
                                                     from g in gr.DefaultIfEmpty()
                                                     where projectType.ТипПроекта == "Внешний" && task.ДатаТрудозатраты >= page.StartDate
-                                                    && task.ДатаТрудозатраты < page.EndDate
+                                                    && task.ДатаТрудозатраты <= page.EndDate
                                                     select new
                                                     {
                                                         task.Код,
@@ -611,6 +623,8 @@ namespace Practice.Controllers
 
             if (printReport)
                 return CommonFunctions.GetReport(page);
+
+            ViewBag.ReportTypes = reportTypes;
 
             return View(page);
         }

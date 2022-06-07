@@ -3,7 +3,6 @@
 @model ReportViewModel
 @{
     ViewData["Title"] = "Index";
-    ViewBag.ReportTypes = new string[] { "Отчёт по утилизации", "Отчёт по выручке" };
 
     using (var db = new CourseProject2DBContext())
     {
@@ -45,10 +44,12 @@
             <div class="mb-3">
                 <label asp-for="StartDate">Дата начала периода</label>
                 <input asp-for="StartDate" class="form-control" type="date" />
+                <span asp-validation-for="StartDate" class="text-danger"></span>
             </div>
             <div class="mb-3">
                 <label asp-for="EndDate">Дата окончания периода</label>
                 <input asp-for="EndDate" class="form-control" type="date" />
+                <span asp-validation-for="EndDate" class="text-danger"></span>
             </div>
 
             <div class="text-end">

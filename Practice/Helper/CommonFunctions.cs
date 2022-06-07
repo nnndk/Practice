@@ -13,6 +13,9 @@ namespace Practice.Helper
 
             int count = 0;
 
+            if (start > end)
+                return count;
+
             while (start != end)
             {
                 start = start.AddDays(1);

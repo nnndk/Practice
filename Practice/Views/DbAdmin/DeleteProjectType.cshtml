@@ -1,23 +1,27 @@
 ﻿@model ТипыПроектов
 @{
-    ViewData["Title"] = "AddProjectType";
+    ViewData["Title"] = "DeleteProjectType";
 }
 
 <div class="row">
     <h1 class="mt-3 mb-3">Администратор баз данных</h1>
 </div>
 
-<form method="post" asp-action="AddProjectType">
+<form method="post" asp-action="DeleteProjectType">
     <div class="row">
         <div class="col-3"></div>
         <div class="border p-3 mt-4 col-6">
             <div class="row pb-2">
-                <h2>Добавление типа проекта</h2>
+                <h2>Удаление типа проекта</h2>
                 <hr />
             </div>
             <div class="mb-3">
+                <label asp-for="Код">Код</label>
+                <input asp-for="Код" class="form-control" value=@Model.Код readonly />
+            </div>
+            <div class="mb-3">
                 <label asp-for="ТипПроекта">Тип проекта</label>
-                <input asp-for="ТипПроекта" class="form-control" value=@Model.ТипПроекта />
+                <input asp-for="ТипПроекта" class="form-control" value=@Model.ТипПроекта readonly />
                 <span asp-validation-for="ТипПроекта" class="text-danger"></span>
             </div>
 
@@ -26,7 +30,7 @@
                     Назад
                 </a>
                 <button type="submit" class="btn btn-dark" style="width:150px">
-                    Добавить
+                    Удалить
                 </button>
             </div>
         </div>

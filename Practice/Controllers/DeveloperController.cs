@@ -76,7 +76,7 @@ namespace Practice.Controllers
                             join status in db.Статусыs on task.КодСтатуса equals status.Код
                             join emp in db.Сотрудникиs on task.КодРазработчика equals emp.Код
                             where task.КодПроекта == projectId && emp.Логин == login
-                            orderby task.ПоследнееИзменение descending
+                            orderby status.Код, task.ПоследнееИзменение descending
                             select new
                             {
                                 Код = task.Код.ToString(),
@@ -157,7 +157,7 @@ namespace Practice.Controllers
                     db.ФактическиеТрудозатратыs.Add(task);
                     db.SaveChanges();
 
-                    return RedirectToAction("Index", new { id = task.КодПроекта });
+                    return RedirectToAction("Index", new { projectid = task.КодПроекта });
                 }
             }
 
@@ -174,7 +174,7 @@ namespace Practice.Controllers
             {
                 var task = db.ФактическиеТрудозатратыs.Find(id);
 
-                if (task == null)
+                if (task == null || task.КодСтатуса == 2)
                     return NotFound();
 
                 ViewBag.ProjectId = task.КодПроекта;
@@ -204,7 +204,7 @@ namespace Practice.Controllers
                     db.SaveChanges();
                     TempData["success"] = "Category updated successfully";
 
-                    return RedirectToAction("Index", new { id = task.КодПроекта });
+                    return RedirectToAction("Index", new { projectid = task.КодПроекта });
                 }
             }
 
@@ -221,7 +221,7 @@ namespace Practice.Controllers
             {
                 var task = db.ФактическиеТрудозатратыs.Find(id);
 
-                if (task == null)
+                if (task == null || task.КодСтатуса == 2)
                     return NotFound();
 
                 ViewBag.ProjectId = task.КодПроекта;
@@ -245,7 +245,7 @@ namespace Practice.Controllers
                 db.ФактическиеТрудозатратыs.Remove(task);
                 db.SaveChanges();
 
-                return RedirectToAction("Index", new { id = task.КодПроекта });
+                return RedirectToAction("Index", new { projectid = task.КодПроекта });
             }
         }
     }

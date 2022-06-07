@@ -56,6 +56,9 @@
                                         <a asp-controller="DbAdmin" asp-action="UpdateItem" asp-route-tableName=@ViewBag.TableName asp-route-id=@item["Код"] class="btn btn-dark">
                                             <i class="bi bi-pencil-fill"></i>
                                         </a>
+                                        <a asp-controller="DbAdmin" asp-action="DeleteItem" asp-route-tableName=@ViewBag.TableName asp-route-id=@int.Parse(item["Код"]) class="btn btn-dark">
+                                            <i class="bi bi-trash3-fill"></i>
+                                        </a>
                                     </td>
                                 }
                             </tr>

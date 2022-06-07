@@ -89,7 +89,7 @@ namespace Practice.Controllers
                              group rate by rate.КодСотрудника into g
                              select new
                              {
-                                 Код = g.Select(a => a.Код).First(),
+                                 Код = g.Where(x => x.ДатаНачалаДействияСтавки == g.Max(s => s.ДатаНачалаДействияСтавки)).Select(a => a.Код).First(),
                                  КодСотрудника = g.Key,
                                  ДатаНачалаДействияСтавки = g.Max(s => s.ДатаНачалаДействияСтавки)
                              };
@@ -315,7 +315,7 @@ namespace Practice.Controllers
                              join status in db.Статусыs on task.КодСтатуса equals status.Код
                              join emp in db.Сотрудникиs on task.КодРазработчика equals emp.Код
                              where task.КодПроекта == projectId
-                             orderby status.Статус, task.ПоследнееИзменение descending
+                             orderby status.Код descending, task.ПоследнееИзменение descending
                              select new
                              {
                                  Код = task.Код,
@@ -340,7 +340,7 @@ namespace Practice.Controllers
 
                 if (tasks.Count == 0)
                 {
-                    var keys = new string[] { "Код", "КодРазработчика", "Фамилия", "Имя", "Задача",  
+                    var keys = new string[] { "Код", "КодРазработчика", "Фамилия", "Имя", "Задача",
                         "ДатаТрудозатраты", "КоличествоЧасов", "Комментарий", "Статус", "ПоследнееИзменение" };
                     var dict = new Dictionary<string, string>();
 
@@ -470,7 +470,7 @@ namespace Practice.Controllers
                              group rate by rate.КодСотрудника into g
                              select new
                              {
-                                 Код = g.Select(a => a.Код).First(),
+                                 Код = g.Where(x => x.ДатаНачалаДействияСтавки == g.Max(s => s.ДатаНачалаДействияСтавки)).Select(a => a.Код).First(),
                                  КодСотрудника = g.Key,
                                  ДатаНачалаДействияСтавки = g.Max(s => s.ДатаНачалаДействияСтавки)
                              };
@@ -548,23 +548,14 @@ namespace Practice.Controllers
                 if (!query1)
                     return NotFound();
 
-                // является ли текущий пользователь менеджером данного проекта
-                bool query2 = (from project in db.Проектыs
-                               join emp in db.Сотрудникиs on project.КодМенеджераПроекта equals emp.Код
-                               where project.Код == projectId && emp.Логин == User.Identity.Name
-                               select emp).Any();
-
-                if (!query2)
-                    return NotFound();
-
-                var query3 = (from pr_emp in db.ПроектыИСотрудникиs
+                var query2 = (from pr_emp in db.ПроектыИСотрудникиs
                               where pr_emp.КодПроекта == projectId && pr_emp.КодСотрудника == id
                               select pr_emp).FirstOrDefault();
 
-                if (query3 == null)
+                if (query2 == null)
                     return NotFound();
 
-                return View(query3);
+                return View(query2);
             }
         }
 
@@ -612,23 +603,14 @@ namespace Practice.Controllers
                 if (!query1)
                     return NotFound();
 
-                // является ли текущий пользователь менеджером данного проекта
-                bool query2 = (from project in db.Проектыs
-                               join emp in db.Сотрудникиs on project.КодМенеджераПроекта equals emp.Код
-                               where project.Код == projectId && emp.Логин == User.Identity.Name
-                               select emp).Any();
-
-                if (!query2)
-                    return NotFound();
-
-                var query3 = (from pr_emp in db.ПроектыИСотрудникиs
+                var query2 = (from pr_emp in db.ПроектыИСотрудникиs
                               where pr_emp.КодПроекта == projectId && pr_emp.КодСотрудника == id
                               select pr_emp).FirstOrDefault();
 
-                if (query3 == null)
+                if (query2 == null)
                     return NotFound();
 
-                return View(query3);
+                return View(query2);
             }
         }
 
@@ -679,15 +661,6 @@ namespace Practice.Controllers
                 if (!query1)
                     return NotFound();
 
-                // является ли текущий пользователь менеджером данного проекта
-                bool query2 = (from project in db.Проектыs
-                               join emp in db.Сотрудникиs on project.КодМенеджераПроекта equals emp.Код
-                               where project.Код == projectId && emp.Логин == User.Identity.Name
-                               select emp).Any();
-
-                if (!query2)
-                    return NotFound();
-
                 return View(new СтавкиСотрудников() { КодСотрудника = id, КодПроекта = projectId });
             }
         }
@@ -718,6 +691,40 @@ namespace Practice.Controllers
             }
 
             return View(empRate);
+        }
+
+        public IActionResult GetAllRates(long id = -1, int projectId = -1)
+        {
+            if (id == -1 || projectId == -1)
+                return NotFound();
+
+            using (var db = new CourseProject2DBContext())
+            {
+                // является ли текущий пользователь менеджером данного проекта
+                bool query = (from project in db.Проектыs
+                              join emp in db.Сотрудникиs on project.КодМенеджераПроекта equals emp.Код
+                              where project.Код == projectId && emp.Логин == User.Identity.Name
+                              select emp).Any();
+
+                if (!query)
+                    return NotFound();
+
+                // является ли сотрудник разработчиком проекта в данный момент
+                bool query1 = (from pr_emp in db.ПроектыИСотрудникиs
+                               where pr_emp.КодСотрудника == id && pr_emp.КодПроекта == projectId
+                               && (pr_emp.ДатаОкончанияРаботыНаПроекте > DateTime.Now.Date || pr_emp.ДатаОкончанияРаботыНаПроекте == null)
+                               select pr_emp).Any();
+
+                if (!query1)
+                    return NotFound();
+
+                var query2 = from rates in db.СтавкиСотрудниковs
+                             where rates.КодСотрудника == id && rates.КодПроекта == projectId
+                             orderby rates.ДатаНачалаДействияСтавки descending
+                             select rates;
+
+                return View(query2.ToList());
+            }
         }
     }
 }
