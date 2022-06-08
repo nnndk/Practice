@@ -21,7 +21,6 @@ namespace Practice.Models
         [Required(ErrorMessage = "Ошибка! Не указана дата начала проекта!")]
         public DateTime ДатаНачалаПроекта { get; set; }
 
-        [Required(ErrorMessage = "Ошибка! Не указана дата завершения проекта!")]
         public DateTime? ДатаЗавершенияПроекта { get; set; }
 
         [Required(ErrorMessage = "Ошибка! Не выбран менеджер проекта!")]

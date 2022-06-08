@@ -49,7 +49,7 @@ namespace Practice.Helper
                 // роль менеджер проекта
                 int query1 = (from project in db.Проектыs
                               join emp in db.Сотрудникиs on project.КодМенеджераПроекта equals emp.Код
-                              where emp.Логин == login && project.ДатаЗавершенияПроекта == null
+                              where emp.Логин == login && (project.ДатаЗавершенияПроекта == null || project.ДатаЗавершенияПроекта > DateTime.Now.Date)
                               select project.Код).Count();
 
                 if (query1 > 0)

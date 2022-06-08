@@ -19,8 +19,6 @@ namespace Practice.Models
 
         [Required(ErrorMessage = "Ошибка! Не указана дата начала работы на проекте!")]
         public DateTime ДатаНачалаРаботыНаПроекте { get; set; }
-
-        [Required(ErrorMessage = "Ошибка! Не указана дата окончания работы на проекте!")]
         public DateTime? ДатаОкончанияРаботыНаПроекте { get; set; }
 
         public virtual Проекты КодПроектаNavigation { get; set; } = null!;

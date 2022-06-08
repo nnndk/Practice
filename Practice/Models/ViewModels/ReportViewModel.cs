@@ -7,7 +7,6 @@ namespace Practice.Models.ViewModels
         [Required(ErrorMessage = "Ошибка! Не выбран тип отчёта!")]
         public string? ReportType { get; set; } = null;
 
-        [Required(ErrorMessage = "Ошибка! Не выбран департамент!")]
         public int? DepId { get; set; } = null;
         public bool OnlyCurrEmployees { get; set; } = false;
 
