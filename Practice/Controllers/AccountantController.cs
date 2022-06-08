@@ -11,6 +11,7 @@ namespace Practice.Controllers
     public class AccountantController : Controller
     {
         private static string[] reportTypes = new string[] { "Отчёт по выручке" };
+        private static IActionResult? report = null;
 
         [HttpGet]
         public IActionResult Index(ReportViewModel? page = null)
@@ -27,6 +28,9 @@ namespace Practice.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult IndexPOST(ReportViewModel page, bool printReport = false)
         {
+            if (report != null && printReport)
+                return report;
+
             if (!reportTypes.Contains(page.ReportType))
                 ModelState.AddModelError("ReportType", "Ошибка! Необходимо выбрать тип отчёта!");
 
@@ -373,10 +377,9 @@ namespace Practice.Controllers
                             break;
                     }
                 }
-            }
 
-            if (printReport)
-                return CommonFunctions.GetReport(page);
+                report = CommonFunctions.GetReport(page);
+            }
 
             ViewBag.ReportTypes = reportTypes;
 

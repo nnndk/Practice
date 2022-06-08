@@ -61,7 +61,7 @@
         <div class="col-10">
             <h4 class="mt-5">Сотрудники</h4>
             <div>
-                <table class="table table-striped align-middle table-responsive fixed-table">
+                <table class="table align-middle table-responsive fixed-table">
                     <thead>
                         <tr>
                             @if (Model != null && Model.Report != null)
@@ -78,12 +78,24 @@
                         {
                             @foreach (var item in Model.Report)
                             {
-                                <tr>
-                                    @foreach (var col in item)
-                                    {
-                                        <td><p>@col.Value</p></td>
-                                    }
-                                </tr>
+                                if (double.Parse(item["ВремяНаВнешнихПроектах"], System.Globalization.CultureInfo.InvariantCulture) < 0.75)
+                                {
+                                    <tr class="table-danger">
+                                        @foreach (var col in item)
+                                        {
+                                            <td><p>@col.Value</p></td>
+                                        }
+                                    </tr>
+                                }
+                                else
+                                {
+                                    <tr>
+                                        @foreach (var col in item)
+                                        {
+                                            <td><p>@col.Value</p></td>
+                                        }
+                                    </tr>
+                                }
                             }
                         }
                     </tbody>

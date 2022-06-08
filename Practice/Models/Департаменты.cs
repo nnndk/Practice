@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Practice.Models
 {
@@ -10,8 +11,13 @@ namespace Practice.Models
             ДолжностиСотрудниковs = new HashSet<ДолжностиСотрудников>();
         }
 
+        [Required(ErrorMessage = "Ошибка! Не указан код департамента!")]
         public int Код { get; set; }
+
+        [Required(ErrorMessage = "Ошибка! Не указано название департамента!")]
         public string НазваниеДепартамента { get; set; } = null!;
+
+        [Required(ErrorMessage = "Ошибка! Не указан код директора департамента!")]
         public long КодДиректораДепартамента { get; set; }
 
         public virtual Сотрудники КодДиректораДепартаментаNavigation { get; set; } = null!;

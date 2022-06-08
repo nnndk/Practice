@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Practice.Models
 {
@@ -11,6 +12,8 @@ namespace Practice.Models
         }
 
         public int Код { get; set; }
+
+        [Required(ErrorMessage = "Ошибка! Не указано название статуса!")]
         public string Статус { get; set; } = null!;
 
         public virtual ICollection<ФактическиеТрудозатраты> ФактическиеТрудозатратыs { get; set; }

@@ -11,6 +11,7 @@ namespace Practice.Controllers
     public class DepDirectorController : Controller
     {
         private static string[] reportTypes = new string[] { "Отчёт по утилизации", "Отчёт по выручке" };
+        private static IActionResult? report = null;
 
         [HttpGet]
         public IActionResult Index(ReportViewModel? page = null)
@@ -27,6 +28,9 @@ namespace Practice.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult IndexPOST(ReportViewModel page, bool printReport = false)
         {
+            if (report != null && printReport)
+                return report;
+
             if (page.StartDate > page.EndDate)
                 ModelState.AddModelError("EndDate", "Ошибка! Дата окончания периода должна быть больше даты его начала!");
 
@@ -68,13 +72,14 @@ namespace Practice.Controllers
                                                       };
 
                                 var empWorkingTime = db.УстройствоНаРаботуs.Select(emp => emp).ToList()
-                                    .GroupBy(empl => empl.КодСотрудника).ToList()
-                                    .Select(g => new
-                                    {
-                                        Код = g.Key,
-                                        КоличествоРабочихЧасов = g.ToList()
-                                    .Sum(x => CommonFunctions.CountWorkingDays(x.ДатаЗачисленияВШтат, page.StartDate, x.ДатаУвольнения, page.EndDate) * 8)
-                                    }).ToList();
+                                        .Where(item => (item.ДатаУвольнения == null || item.ДатаУвольнения > page.StartDate) && (item.ДатаЗачисленияВШтат <= page.EndDate))
+                                        .GroupBy(empl => empl.КодСотрудника).ToList()
+                                        .Select(g => new
+                                        {
+                                            Код = g.Key,
+                                            КоличествоРабочихЧасов = g.ToList()
+                                        .Sum(x => (CommonFunctions.CountWorkingDays(x.ДатаЗачисленияВШтат, page.StartDate, x.ДатаУвольнения, page.EndDate) + 1) * 8)
+                                        }).ToList();
 
                                 var query = from emp in db.Сотрудникиs.ToList()
                                             join empType in db.ВидыТрудоустройстваs on emp.КодВидаТрудоустройства equals empType.Код
@@ -114,8 +119,8 @@ namespace Practice.Controllers
                                                       join projectType in db.ТипыПроектовs on project.КодТипаПроекта equals projectType.Код
                                                       where projectType.ТипПроекта == "Внешний" && task.ДатаТрудозатраты >= page.StartDate
                                                       && task.ДатаТрудозатраты <= page.EndDate && (from empPos in db.ДолжностиСотрудниковs
-                                                                                                  where empPos.КодДепартамента == page.DepId
-                                                                                                  select empPos.КодСотрудника).Distinct().ToList()
+                                                                                                   where empPos.КодДепартамента == page.DepId
+                                                                                                   select empPos.КодСотрудника).Distinct().ToList()
                                                                                                   .Contains(task.КодРазработчика)
                                                       group task by task.КодРазработчика into g
                                                       select new
@@ -125,13 +130,14 @@ namespace Practice.Controllers
                                                       };
 
                                 var empWorkingTime = db.УстройствоНаРаботуs.Select(emp => emp).ToList()
-                                    .GroupBy(empl => empl.КодСотрудника).ToList()
-                                    .Select(g => new
-                                    {
-                                        Код = g.Key,
-                                        КоличествоРабочихЧасов = g.ToList()
-                                    .Sum(x => CommonFunctions.CountWorkingDays(x.ДатаЗачисленияВШтат, page.StartDate, x.ДатаУвольнения, page.EndDate) * 8)
-                                    }).ToList();
+                                        .Where(item => (item.ДатаУвольнения == null || item.ДатаУвольнения > page.StartDate) && (item.ДатаЗачисленияВШтат <= page.EndDate))
+                                        .GroupBy(empl => empl.КодСотрудника).ToList()
+                                        .Select(g => new
+                                        {
+                                            Код = g.Key,
+                                            КоличествоРабочихЧасов = g.ToList()
+                                        .Sum(x => (CommonFunctions.CountWorkingDays(x.ДатаЗачисленияВШтат, page.StartDate, x.ДатаУвольнения, page.EndDate) + 1) * 8)
+                                        }).ToList();
 
                                 var query = from emp in db.Сотрудникиs.ToList()
                                             join empType in db.ВидыТрудоустройстваs on emp.КодВидаТрудоустройства equals empType.Код
@@ -357,10 +363,9 @@ namespace Practice.Controllers
                             break;
                     }
                 }
-            }
 
-            if (printReport)
-                return CommonFunctions.GetReport(page);
+                report = CommonFunctions.GetReport(page);
+            }
 
             ViewBag.ReportTypes = reportTypes;
 

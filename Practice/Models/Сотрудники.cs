@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Practice.Models
 {
@@ -17,16 +18,34 @@ namespace Practice.Models
         }
 
         public long Код { get; set; }
+
+        [Required(ErrorMessage = "Ошибка! Не указана фамилия!")]
         public string Фамилия { get; set; } = null!;
+
+        [Required(ErrorMessage = "Ошибка! Не указано имя!")]
         public string Имя { get; set; } = null!;
+
         public string? Отчество { get; set; }
+
+        [Required(ErrorMessage = "Ошибка! Не выбран пол!")]
         public int КодПола { get; set; }
+
+        [Required(ErrorMessage = "Ошибка! Не указан день рождения!")]
         public DateTime ДатаРождения { get; set; }
+
+        [Required(ErrorMessage = "Ошибка! Не указан телефон1!")]
         public string Телефон1 { get; set; } = null!;
         public string? Телефон2 { get; set; }
+
         public DateTime? ДатаНачалаРаботыВSap { get; set; }
+
+        [Required(ErrorMessage = "Ошибка! Не выбран вид трудоустройства!")]
         public int КодВидаТрудоустройства { get; set; }
+
+        [Required(ErrorMessage = "Ошибка! Не указан логин!")]
         public string Логин { get; set; } = null!;
+
+        [Required(ErrorMessage = "Ошибка! Не указан пароль!")]
         public string Пароль { get; set; } = null!;
 
         public virtual ВидыТрудоустройства КодВидаТрудоустройстваNavigation { get; set; } = null!;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Practice.Models
 {
@@ -13,10 +14,20 @@ namespace Practice.Models
         }
 
         public int Код { get; set; }
+
+        [Required(ErrorMessage = "Ошибка! Не указано название проекта!")]
         public string НазваниеПроекта { get; set; } = null!;
+
+        [Required(ErrorMessage = "Ошибка! Не указана дата начала проекта!")]
         public DateTime ДатаНачалаПроекта { get; set; }
+
+        [Required(ErrorMessage = "Ошибка! Не указана дата завершения проекта!")]
         public DateTime? ДатаЗавершенияПроекта { get; set; }
+
+        [Required(ErrorMessage = "Ошибка! Не выбран менеджер проекта!")]
         public long КодМенеджераПроекта { get; set; }
+
+        [Required(ErrorMessage = "Ошибка! Не выбран тип проекта!")]
         public int КодТипаПроекта { get; set; }
 
         public virtual Сотрудники КодМенеджераПроектаNavigation { get; set; } = null!;

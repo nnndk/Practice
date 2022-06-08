@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Practice.Models
 {
@@ -11,6 +12,8 @@ namespace Practice.Models
         }
 
         public int Код { get; set; }
+
+        [Required(ErrorMessage = "Ошибка! Не указано название типа проекта!")]
         public string ТипПроекта { get; set; } = null!;
 
         public virtual ICollection<Проекты> Проектыs { get; set; }

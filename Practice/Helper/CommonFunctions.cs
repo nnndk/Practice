@@ -16,7 +16,7 @@ namespace Practice.Helper
             if (start > end)
                 return count;
 
-            while (start != end)
+            while (start < end)
             {
                 start = start.AddDays(1);
                 if ((start.DayOfWeek != DayOfWeek.Saturday) && (start.DayOfWeek != DayOfWeek.Sunday))

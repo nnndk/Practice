@@ -11,6 +11,7 @@ namespace Practice.Controllers
     public class CEOController : Controller
     {
         private static string[] reportTypes = new string[] { "Отчёт по утилизации", "Отчёт по выручке" };
+        private static IActionResult? report = null;
 
         [HttpGet]
         public IActionResult Index(ReportViewModel? page = null)
@@ -27,6 +28,9 @@ namespace Practice.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult IndexPOST(ReportViewModel page, bool printReport = false)
         {
+            if (report != null && printReport)
+                return report;
+
             if (!reportTypes.Contains(page.ReportType))
                 ModelState.AddModelError("ReportType", "Ошибка! Необходимо выбрать тип отчёта!");
 
@@ -63,12 +67,13 @@ namespace Practice.Controllers
                                                           };
 
                                     var empWorkingTime = db.УстройствоНаРаботуs.Select(emp => emp).ToList()
+                                        .Where(item => (item.ДатаУвольнения == null || item.ДатаУвольнения > page.StartDate) && (item.ДатаЗачисленияВШтат <= page.EndDate))
                                         .GroupBy(empl => empl.КодСотрудника).ToList()
                                         .Select(g => new
                                         {
                                             Код = g.Key,
                                             КоличествоРабочихЧасов = g.ToList()
-                                        .Sum(x => CommonFunctions.CountWorkingDays(x.ДатаЗачисленияВШтат, page.StartDate, x.ДатаУвольнения, page.EndDate) * 8)
+                                        .Sum(x => (CommonFunctions.CountWorkingDays(x.ДатаЗачисленияВШтат, page.StartDate, x.ДатаУвольнения, page.EndDate) + 1) * 8)
                                         }).ToList();
 
                                     var query = from emp in db.Сотрудникиs.ToList()
@@ -114,12 +119,13 @@ namespace Practice.Controllers
                                                           };
 
                                     var empWorkingTime = db.УстройствоНаРаботуs.Select(emp => emp).ToList()
+                                        .Where(item => (item.ДатаУвольнения == null || item.ДатаУвольнения > page.StartDate) && (item.ДатаЗачисленияВШтат <= page.EndDate))
                                         .GroupBy(empl => empl.КодСотрудника).ToList()
                                         .Select(g => new
                                         {
                                             Код = g.Key,
                                             КоличествоРабочихЧасов = g.ToList()
-                                        .Sum(x => CommonFunctions.CountWorkingDays(x.ДатаЗачисленияВШтат, page.StartDate, x.ДатаУвольнения, page.EndDate) * 8)
+                                        .Sum(x => (CommonFunctions.CountWorkingDays(x.ДатаЗачисленияВШтат, page.StartDate, x.ДатаУвольнения, page.EndDate) + 1) * 8)
                                         }).ToList();
 
                                     var query = from emp in db.Сотрудникиs.ToList()
@@ -174,12 +180,13 @@ namespace Practice.Controllers
                                                           };
 
                                     var empWorkingTime = db.УстройствоНаРаботуs.Select(emp => emp).ToList()
+                                        .Where(item => (item.ДатаУвольнения == null || item.ДатаУвольнения > page.StartDate) && (item.ДатаЗачисленияВШтат <= page.EndDate))
                                         .GroupBy(empl => empl.КодСотрудника).ToList()
                                         .Select(g => new
                                         {
                                             Код = g.Key,
                                             КоличествоРабочихЧасов = g.ToList()
-                                        .Sum(x => CommonFunctions.CountWorkingDays(x.ДатаЗачисленияВШтат, page.StartDate, x.ДатаУвольнения, page.EndDate) * 8)
+                                        .Sum(x => (CommonFunctions.CountWorkingDays(x.ДатаЗачисленияВШтат, page.StartDate, x.ДатаУвольнения, page.EndDate) + 1) * 8)
                                         }).ToList();
 
                                     var query = from emp in db.Сотрудникиs.ToList()
@@ -231,12 +238,13 @@ namespace Practice.Controllers
                                                           };
 
                                     var empWorkingTime = db.УстройствоНаРаботуs.Select(emp => emp).ToList()
+                                        .Where(item => (item.ДатаУвольнения == null || item.ДатаУвольнения > page.StartDate) && (item.ДатаЗачисленияВШтат <= page.EndDate))
                                         .GroupBy(empl => empl.КодСотрудника).ToList()
                                         .Select(g => new
                                         {
                                             Код = g.Key,
                                             КоличествоРабочихЧасов = g.ToList()
-                                        .Sum(x => CommonFunctions.CountWorkingDays(x.ДатаЗачисленияВШтат, page.StartDate, x.ДатаУвольнения, page.EndDate) * 8)
+                                        .Sum(x => (CommonFunctions.CountWorkingDays(x.ДатаЗачисленияВШтат, page.StartDate, x.ДатаУвольнения, page.EndDate) + 1) * 8)
                                         }).ToList();
 
                                     var query = from emp in db.Сотрудникиs.ToList()
@@ -619,10 +627,9 @@ namespace Practice.Controllers
                             break;
                     }
                 }
-            }
 
-            if (printReport)
-                return CommonFunctions.GetReport(page);
+                report = CommonFunctions.GetReport(page);
+            }
 
             ViewBag.ReportTypes = reportTypes;
 
