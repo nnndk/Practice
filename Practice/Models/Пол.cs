@@ -11,6 +11,7 @@ namespace Practice.Models
             Сотрудникиs = new HashSet<Сотрудники>();
         }
 
+        [Required(ErrorMessage = "Ошибка! Не выбран пол!")]
         public int Код { get; set; }
 
         [Required(ErrorMessage = "Ошибка! Не указано название пола!")]

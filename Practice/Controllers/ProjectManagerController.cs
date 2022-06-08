@@ -723,6 +723,9 @@ namespace Practice.Controllers
                              orderby rates.ДатаНачалаДействияСтавки descending
                              select rates;
 
+                ViewBag.Id = id;
+                ViewBag.ProjectId = projectId;
+
                 return View(query2.ToList());
             }
         }

@@ -11,6 +11,7 @@ namespace Practice.Models
             Проектыs = new HashSet<Проекты>();
         }
 
+        [Required(ErrorMessage = "Ошибка! Не выбран тип проекта!")]
         public int Код { get; set; }
 
         [Required(ErrorMessage = "Ошибка! Не указано название типа проекта!")]

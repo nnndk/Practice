@@ -11,6 +11,7 @@ namespace Practice.Models
             ПроектыИСотрудникиs = new HashSet<ПроектыИСотрудники>();
         }
 
+        [Required(ErrorMessage = "Ошибка! Не выбрана роль!")]
         public int Код { get; set; }
 
         [Required(ErrorMessage = "Ошибка! Не указано название роли!")]

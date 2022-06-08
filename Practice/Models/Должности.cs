@@ -11,7 +11,7 @@ namespace Practice.Models
             ДолжностиСотрудниковs = new HashSet<ДолжностиСотрудников>();
         }
 
-        [Required(ErrorMessage = "Ошибка! Не указан код должности!")]
+        [Required(ErrorMessage = "Ошибка! Не выбрана должность!")]
         public int Код { get; set; }
 
         [Required(ErrorMessage = "Ошибка! Не указано название должности!")]

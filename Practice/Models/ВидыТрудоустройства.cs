@@ -11,7 +11,7 @@ namespace Practice.Models
             Сотрудникиs = new HashSet<Сотрудники>();
         }
 
-        [Required(ErrorMessage = "Ошибка! Не указан код вида трудоустройства!")]
+        [Required(ErrorMessage = "Ошибка! Не выбран вид трудоустройства!")]
         public int Код { get; set; }
 
         [Required(ErrorMessage = "Ошибка! Не указан вид трудоустройства!")]

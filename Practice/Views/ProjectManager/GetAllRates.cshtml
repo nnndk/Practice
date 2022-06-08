@@ -28,6 +28,12 @@
                 }
             </tbody>
         </table>
+
+        <div class="text-end">
+            <a asp-controller="ProjectManager" asp-action="UpdateDeveloper" asp-route-id=@ViewBag.Id asp-route-projectid=@ViewBag.ProjectId class="btn btn-secondary mx-3" style="width:150px">
+                Назад
+            </a>
+        </div>
     </div>
 
     <div class="col-2"></div>
