@@ -78,7 +78,7 @@
                         {
                             @foreach (var item in Model.Report)
                             {
-                                if (double.Parse(item["ВремяНаВнешнихПроектах"], System.Globalization.CultureInfo.InvariantCulture) < 0.75)
+                                if (Model.ReportType == "Отчёт по утилизации" && double.Parse(item["ВремяНаВнешнихПроектах"], System.Globalization.CultureInfo.InvariantCulture) < 0.75)
                                 {
                                     <tr class="table-danger">
                                         @foreach (var col in item)

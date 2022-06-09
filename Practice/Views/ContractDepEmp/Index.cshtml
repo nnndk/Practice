@@ -9,8 +9,7 @@
 </div>
 
 <div class="row">
-    <div class="col-1"></div>
-    <div class="col-10">
+    <div>
         <h4 class="mt-2">Проекты</h4>
         <div>
             <table class="table table-striped align-middle table-responsive fixed-table">
@@ -39,6 +38,9 @@
                                     <td class="text-end" nowrap>
                                         <a asp-controller="ContractDepEmp" asp-action="UpdateProject" asp-route-id=@int.Parse(project["Код"]) class="btn btn-dark">
                                             <i class="bi bi-pencil-fill"></i>
+                                        </a>
+                                        <a asp-controller="ContractDepEmp" asp-action="DeleteProject" asp-route-id=@int.Parse(project["Код"]) class="btn btn-dark">
+                                            <i class="bi bi-trash3-fill"></i>
                                         </a>
                                     </td>
                                 }
@@ -131,6 +133,9 @@
                                     <a asp-controller="ContractDepEmp" asp-action="UpdateDepartment" asp-route-id=@dep.Код class="btn btn-dark">
                                         <i class="bi bi-pencil-fill"></i>
                                     </a>
+                                    <a asp-controller="ContractDepEmp" asp-action="DeleteDepartment" asp-route-id=@dep.Код class="btn btn-dark">
+                                            <i class="bi bi-trash3-fill"></i>
+                                        </a>
                                 </td>
                             </tr>
                         }
@@ -145,6 +150,4 @@
             </a>
         </div>
     </div>
-
-    <div class="col-1"></div>
 </div>

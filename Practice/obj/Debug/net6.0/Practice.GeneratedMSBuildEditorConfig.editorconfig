@@ -59,6 +59,18 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhY3REZXBFbXBcQWRkUHJvamVjdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/ContractDepEmp/DeleteDepartment.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhY3REZXBFbXBcRGVsZXRlRGVwYXJ0bWVudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/ContractDepEmp/DeleteProject.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhY3REZXBFbXBcRGVsZXRlUHJvamVjdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/ContractDepEmp/DeletionForbidden.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhY3REZXBFbXBcRGVsZXRpb25Gb3JiaWRkZW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/ContractDepEmp/FireEmployee.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhY3REZXBFbXBcRmlyZUVtcGxveWVlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

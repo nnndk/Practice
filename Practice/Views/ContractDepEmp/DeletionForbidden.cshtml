@@ -1,15 +1,17 @@
-﻿@{
+﻿
+@{
     ViewData["Title"] = "DeletionForbidden";
 }
 
 <div class="row">
-    <h1 class="mt-3 mb-3">Администратор баз данных</h1>
+    <h1 class="mt-3 mb-3">Сотрудник договорного отдела</h1>
 </div>
 
 <h4 class="text-center mt-5">Удаление данного объекта невозможно, поскольку на него существуют ссылки в базе данных!</h4>
 
 <div class="text-end">
-    <a asp-controller="DbAdmin" asp-action="Index" asp-route-tableName=@ViewBag.TableName class="btn btn-secondary mx-3" style="width:150px">
+    <a asp-controller="ContractDepEmp" asp-action="Index" class="btn btn-secondary mx-3" style="width:150px">
         Назад
     </a>
 </div>
+

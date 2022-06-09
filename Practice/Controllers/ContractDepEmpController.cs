@@ -430,8 +430,8 @@ namespace Practice.Controllers
                     if (oldDepDir != dep.КодДиректораДепартамента)
                     {
                         var pos = (from emp_pos in db.ДолжностиСотрудниковs
-                                      where emp_pos.КодСотрудника == oldDepDir && emp_pos.КодДолжности == 8
-                                      select emp_pos).FirstOrDefault();
+                                   where emp_pos.КодСотрудника == oldDepDir && emp_pos.КодДолжности == 8
+                                   select emp_pos).FirstOrDefault();
 
                         if (pos == null)
                             return NotFound();
@@ -442,6 +442,105 @@ namespace Practice.Controllers
                         db.ДолжностиСотрудниковs.Update(pos);
                         db.SaveChanges();
                     }
+
+                    return RedirectToAction("Index");
+                }
+            }
+
+            return View(dep);
+        }
+
+        public IActionResult DeletionForbidden()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult DeleteProject(int id = -1)
+        {
+            if (id == -1)
+                return NotFound();
+
+            using (var db = new CourseProject2DBContext())
+            {
+                var tableItem = (from item in db.Проектыs
+                                 where item.Код == id
+                                 select item).FirstOrDefault();
+
+                if (tableItem == null)
+                    return NotFound();
+
+                var query = (from item in db.ПроектыИСотрудникиs
+                             where item.КодПроекта == id
+                             select item).Any();
+
+                if (query)
+                    return RedirectToAction("DeletionForbidden");
+
+                return View(tableItem);
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteProject(Проекты project)
+        {
+            using (var db = new CourseProject2DBContext())
+            {
+                if (ModelState.ErrorCount == 2)
+                {
+                    db.Проектыs.Remove(project);
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+            }
+
+            return View(project);
+        }
+
+        [HttpGet]
+        public IActionResult DeleteDepartment(int id = -1)
+        {
+            if (id == -1)
+                return NotFound();
+
+            using (var db = new CourseProject2DBContext())
+            {
+                var tableItem = (from item in db.Департаментыs
+                                 where item.Код == id
+                                 select item).FirstOrDefault();
+
+                if (tableItem == null)
+                    return NotFound();
+
+                var query = (from item in db.ДолжностиСотрудниковs
+                             where item.КодДепартамента == id
+                             select item).Count();
+
+                if (query > 1)
+                    return RedirectToAction("DeletionForbidden");
+
+                return View(tableItem);
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteDepartment(Департаменты dep)
+        {
+            using (var db = new CourseProject2DBContext())
+            {
+                if (ModelState.ErrorCount == 1)
+                {
+                    var depDirector = (from dep_emp in db.ДолжностиСотрудниковs
+                                 join pos in db.Должностиs on dep_emp.КодДолжности equals pos.Код
+                                 where dep_emp.КодДепартамента == dep.Код && pos.Должность == "Директор департамента"
+                                 select dep_emp).First();
+
+                    db.ДолжностиСотрудниковs.Remove(depDirector);
+                    db.Департаментыs.Remove(dep);
+                    db.SaveChanges();
 
                     return RedirectToAction("Index");
                 }

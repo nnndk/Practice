@@ -572,8 +572,10 @@ namespace Practice.Controllers
             }
         }
 
-        public IActionResult DeletionForbidden()
+        public IActionResult DeletionForbidden(string tableName)
         {
+            ViewBag.TableName = tableName;
+
             return View();
         }
 
@@ -597,7 +599,7 @@ namespace Practice.Controllers
                             select item).Any();
 
                 if (query)
-                    return RedirectToAction("DeletionForbidden");
+                    return RedirectToAction("DeletionForbidden", new { tableName = "Виды трудоустройства" });
 
                 return View(tableItem);
             }
@@ -641,7 +643,7 @@ namespace Practice.Controllers
                              select item).Any();
 
                 if (query)
-                    return RedirectToAction("DeletionForbidden");
+                    return RedirectToAction("DeletionForbidden", new { tableName = "Должности" });
 
                 return View(tableItem);
             }
@@ -685,7 +687,7 @@ namespace Practice.Controllers
                              select item).Any();
 
                 if (query)
-                    return RedirectToAction("DeletionForbidden");
+                    return RedirectToAction("DeletionForbidden", new { tableName = "Пол" });
 
                 return View(tableItem);
             }
@@ -729,7 +731,7 @@ namespace Practice.Controllers
                              select item).Any();
 
                 if (query)
-                    return RedirectToAction("DeletionForbidden");
+                    return RedirectToAction("DeletionForbidden", new { tableName = "Роли" });
 
                 return View(tableItem);
             }
@@ -773,7 +775,7 @@ namespace Practice.Controllers
                              select item).Any();
 
                 if (query)
-                    return RedirectToAction("DeletionForbidden");
+                    return RedirectToAction("DeletionForbidden", new { tableName = "Статусы" });
 
                 return View(tableItem);
             }
@@ -817,7 +819,7 @@ namespace Practice.Controllers
                              select item).Any();
 
                 if (query)
-                    return RedirectToAction("DeletionForbidden");
+                    return RedirectToAction("DeletionForbidden", new { tableName = "Типы проектов" });
 
                 return View(tableItem);
             }

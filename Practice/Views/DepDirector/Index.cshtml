@@ -6,7 +6,10 @@
 
     using (var db = new CourseProject2DBContext())
     {
-        ViewBag.Deps = (from dep in db.Департаментыs select dep).ToList();
+        ViewBag.Deps = (from dep in db.Департаментыs
+            join emp in db.Сотрудникиs on dep.КодДиректораДепартамента equals emp.Код
+            where emp.Логин == User.Identity.Name
+            select dep).ToList();
     }
 }
 
@@ -76,7 +79,7 @@
                         {
                             @foreach (var item in Model.Report)
                             {
-                                if (double.Parse(item["ВремяНаВнешнихПроектах"], System.Globalization.CultureInfo.InvariantCulture) < 0.75)
+                                if (Model.ReportType == "Отчёт по утилизации" && double.Parse(item["ВремяНаВнешнихПроектах"], System.Globalization.CultureInfo.InvariantCulture) < 0.75)
                                 {
                                     <tr class="table-danger">
                                         @foreach (var col in item)

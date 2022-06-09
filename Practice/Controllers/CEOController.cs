@@ -53,11 +53,13 @@ namespace Practice.Controllers
                                     var extProjectsTime = from task in db.ФактическиеТрудозатратыs
                                                           join project in db.Проектыs on task.КодПроекта equals project.Код
                                                           join projectType in db.ТипыПроектовs on project.КодТипаПроекта equals projectType.Код
+                                                          join status in db.Статусыs on task.КодСтатуса equals status.Код
                                                           where projectType.ТипПроекта == "Внешний" && task.ДатаТрудозатраты >= page.StartDate
-                                                          && task.ДатаТрудозатраты <= page.EndDate && (from empl in db.УстройствоНаРаботуs
-                                                                                                       where empl.ДатаУвольнения > DateTime.Now.Date
-                                                                                                       || empl.ДатаУвольнения == null
-                                                                                                       select empl.КодСотрудника).ToList()
+                                                          && task.ДатаТрудозатраты <= page.EndDate && status.Статус == "Подтверждено"
+                                                          && (from empl in db.УстройствоНаРаботуs
+                                                              where empl.ДатаУвольнения > DateTime.Now.Date
+                                                              || empl.ДатаУвольнения == null
+                                                              select empl.КодСотрудника).ToList()
                                                                                                       .Contains(task.КодРазработчика)
                                                           group task by task.КодРазработчика into g
                                                           select new
@@ -109,8 +111,9 @@ namespace Practice.Controllers
                                     var extProjectsTime = from task in db.ФактическиеТрудозатратыs
                                                           join project in db.Проектыs on task.КодПроекта equals project.Код
                                                           join projectType in db.ТипыПроектовs on project.КодТипаПроекта equals projectType.Код
+                                                          join status in db.Статусыs on task.КодСтатуса equals status.Код
                                                           where projectType.ТипПроекта == "Внешний" && task.ДатаТрудозатраты >= page.StartDate
-                                                          && task.ДатаТрудозатраты <= page.EndDate
+                                                          && task.ДатаТрудозатраты <= page.EndDate && status.Статус == "Подтверждено"
                                                           group task by task.КодРазработчика into g
                                                           select new
                                                           {
@@ -162,9 +165,9 @@ namespace Practice.Controllers
                                     var extProjectsTime = from task in db.ФактическиеТрудозатратыs
                                                           join project in db.Проектыs on task.КодПроекта equals project.Код
                                                           join projectType in db.ТипыПроектовs on project.КодТипаПроекта equals projectType.Код
-                                                          where projectType.ТипПроекта == "Внешний"
-                                                          && task.ДатаТрудозатраты >= page.StartDate
-                                                          && task.ДатаТрудозатраты <= page.EndDate
+                                                          join status in db.Статусыs on task.КодСтатуса equals status.Код
+                                                          where projectType.ТипПроекта == "Внешний" && task.ДатаТрудозатраты >= page.StartDate
+                                                          && task.ДатаТрудозатраты <= page.EndDate && status.Статус == "Подтверждено"
                                                           && (from empl in db.УстройствоНаРаботуs
                                                               where empl.ДатаУвольнения > DateTime.Now.Date || empl.ДатаУвольнения == null
                                                               select empl.КодСотрудника).ToList().Contains(task.КодРазработчика)
@@ -225,10 +228,12 @@ namespace Practice.Controllers
                                     var extProjectsTime = from task in db.ФактическиеТрудозатратыs
                                                           join project in db.Проектыs on task.КодПроекта equals project.Код
                                                           join projectType in db.ТипыПроектовs on project.КодТипаПроекта equals projectType.Код
+                                                          join status in db.Статусыs on task.КодСтатуса equals status.Код
                                                           where projectType.ТипПроекта == "Внешний" && task.ДатаТрудозатраты >= page.StartDate
-                                                          && task.ДатаТрудозатраты <= page.EndDate && (from empPos in db.ДолжностиСотрудниковs
-                                                                                                       where empPos.КодДепартамента == page.DepId
-                                                                                                       select empPos.КодСотрудника).Distinct().ToList()
+                                                          && task.ДатаТрудозатраты <= page.EndDate && status.Статус == "Подтверждено"
+                                                          && (from empPos in db.ДолжностиСотрудниковs
+                                                              where empPos.КодДепартамента == page.DepId
+                                                              select empPos.КодСотрудника).Distinct().ToList()
                                                                                                       .Contains(task.КодРазработчика)
                                                           group task by task.КодРазработчика into g
                                                           select new
@@ -300,12 +305,13 @@ namespace Practice.Controllers
                                 {
                                     var allRates = (from task in db.ФактическиеТрудозатратыs
                                                     join project in db.Проектыs on task.КодПроекта equals project.Код
+                                                    join status in db.Статусыs on task.КодСтатуса equals status.Код
                                                     join projectType in db.ТипыПроектовs on project.КодТипаПроекта equals projectType.Код
+                                                    where projectType.ТипПроекта == "Внешний" && task.ДатаТрудозатраты >= page.StartDate
+                                                    && task.ДатаТрудозатраты <= page.EndDate && status.Статус == "Подтверждено"
                                                     join rate in db.СтавкиСотрудниковs on new { x1 = task.КодПроекта, x2 = task.КодРазработчика }
                                                     equals new { x1 = rate.КодПроекта, x2 = rate.КодСотрудника } into gr
                                                     from g in gr.DefaultIfEmpty()
-                                                    where projectType.ТипПроекта == "Внешний" && task.ДатаТрудозатраты >= page.StartDate
-                                                    && task.ДатаТрудозатраты <= page.EndDate
                                                     select new
                                                     {
                                                         task.Код,
@@ -377,10 +383,12 @@ namespace Practice.Controllers
                                     var allRates = (from task in db.ФактическиеТрудозатратыs
                                                     join project in db.Проектыs on task.КодПроекта equals project.Код
                                                     join projectType in db.ТипыПроектовs on project.КодТипаПроекта equals projectType.Код
+                                                    join status in db.Статусыs on task.КодСтатуса equals status.Код
                                                     join rate in db.СтавкиСотрудниковs
                                                     on new { x1 = task.КодПроекта, x2 = task.КодРазработчика } equals new { x1 = rate.КодПроекта, x2 = rate.КодСотрудника } into gr
                                                     from g in gr.DefaultIfEmpty()
-                                                    where projectType.ТипПроекта == "Внешний" && task.ДатаТрудозатраты >= page.StartDate && task.ДатаТрудозатраты <= page.EndDate
+                                                    where projectType.ТипПроекта == "Внешний" && task.ДатаТрудозатраты >= page.StartDate
+                                                    && task.ДатаТрудозатраты <= page.EndDate && status.Статус == "Подтверждено"
                                                     select new
                                                     {
                                                         task.Код,
@@ -451,11 +459,12 @@ namespace Practice.Controllers
                                     var allRates = (from task in db.ФактическиеТрудозатратыs
                                                     join project in db.Проектыs on task.КодПроекта equals project.Код
                                                     join projectType in db.ТипыПроектовs on project.КодТипаПроекта equals projectType.Код
+                                                    join status in db.Статусыs on task.КодСтатуса equals status.Код
                                                     join rate in db.СтавкиСотрудниковs on new { x1 = task.КодПроекта, x2 = task.КодРазработчика }
                                                     equals new { x1 = rate.КодПроекта, x2 = rate.КодСотрудника } into gr
                                                     from g in gr.DefaultIfEmpty()
                                                     where projectType.ТипПроекта == "Внешний" && task.ДатаТрудозатраты >= page.StartDate
-                                                    && task.ДатаТрудозатраты <= page.EndDate
+                                                    && task.ДатаТрудозатраты <= page.EndDate && status.Статус == "Подтверждено"
                                                     select new
                                                     {
                                                         task.Код,
@@ -533,11 +542,12 @@ namespace Practice.Controllers
                                     var allRates = (from task in db.ФактическиеТрудозатратыs
                                                     join project in db.Проектыs on task.КодПроекта equals project.Код
                                                     join projectType in db.ТипыПроектовs on project.КодТипаПроекта equals projectType.Код
+                                                    join status in db.Статусыs on task.КодСтатуса equals status.Код
                                                     join rate in db.СтавкиСотрудниковs on new { x1 = task.КодПроекта, x2 = task.КодРазработчика }
                                                     equals new { x1 = rate.КодПроекта, x2 = rate.КодСотрудника } into gr
                                                     from g in gr.DefaultIfEmpty()
                                                     where projectType.ТипПроекта == "Внешний" && task.ДатаТрудозатраты >= page.StartDate
-                                                    && task.ДатаТрудозатраты <= page.EndDate
+                                                    && task.ДатаТрудозатраты <= page.EndDate && status.Статус == "Подтверждено"
                                                     select new
                                                     {
                                                         task.Код,
