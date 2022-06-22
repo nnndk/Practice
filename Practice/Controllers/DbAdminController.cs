@@ -170,7 +170,7 @@ namespace Practice.Controllers
         {
             using (var db = new CourseProject2DBContext())
             {
-                if (ModelState.ErrorCount == 0)
+                if (ModelState.ErrorCount == 1)
                 {
                     db.ВидыТрудоустройстваs.Add(empType);
                     db.SaveChanges();
@@ -194,7 +194,7 @@ namespace Practice.Controllers
         {
             using (var db = new CourseProject2DBContext())
             {
-                if (ModelState.ErrorCount == 0)
+                if (ModelState.ErrorCount == 1)
                 {
                     db.Должностиs.Add(pos);
                     db.SaveChanges();
@@ -218,7 +218,7 @@ namespace Practice.Controllers
         {
             using (var db = new CourseProject2DBContext())
             {
-                if (ModelState.ErrorCount == 0)
+                if (ModelState.ErrorCount == 1)
                 {
                     db.Полs.Add(sex);
                     db.SaveChanges();
@@ -242,7 +242,7 @@ namespace Practice.Controllers
         {
             using (var db = new CourseProject2DBContext())
             {
-                if (ModelState.ErrorCount == 0)
+                if (ModelState.ErrorCount == 1)
                 {
                     db.Ролиs.Add(role);
                     db.SaveChanges();
@@ -266,7 +266,7 @@ namespace Practice.Controllers
         {
             using (var db = new CourseProject2DBContext())
             {
-                if (ModelState.ErrorCount == 0)
+                if (ModelState.ErrorCount == 1)
                 {
                     db.Статусыs.Add(status);
                     db.SaveChanges();
@@ -290,7 +290,7 @@ namespace Practice.Controllers
         {
             using (var db = new CourseProject2DBContext())
             {
-                if (ModelState.ErrorCount == 0)
+                if (ModelState.ErrorCount == 1)
                 {
                     db.ТипыПроектовs.Add(prType);
                     db.SaveChanges();

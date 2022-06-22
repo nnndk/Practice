@@ -24,7 +24,7 @@
             </div>
             <div class="mb-3">
                 <select class="form-control" asp-for="КодДепартамента">
-                    <option selected>Выбрать департамент...</option>
+                    <option value=@null selected>Выбрать департамент...</option>
                     @foreach (var item in ViewBag.Deps)
                     {
                         <option value=@item.Код>@item.НазваниеДепартамента</option>
@@ -39,7 +39,7 @@
             </div>
             <div class="mb-3">
                 <select class="form-control" asp-for="КодДолжности">
-                    <option selected>Выбрать должность...</option>
+                    <option value=@null selected>Выбрать должность...</option>
                     @foreach (var item in ViewBag.Positions)
                     {
                         <option value=@item.Код>@item.Должность</option>

@@ -30,7 +30,7 @@ namespace Practice.Controllers
                                 Имя = emp.Имя,
                                 Отчество = emp.Отчество,
                                 Пол = sex.Пол1,
-                                ДатаРождения = emp.ДатаРождения.Date.ToString(),
+                                ДатаРождения = emp.ДатаРождения.Value.Date.ToString(),
                                 Телефон1 = emp.Телефон1,
                                 Телефон2 = emp.Телефон2,
                                 ДатаНачалаРаботыВSap = emp.ДатаНачалаРаботыВSap.Value.Date.ToString(),
@@ -168,7 +168,7 @@ namespace Practice.Controllers
                             {
                                 Код = empPos.Код,
                                 НазваниеДепартамента = dep.НазваниеДепартамента,
-                                ДатаНазначения = empPos.ДатаНазначения.ToString("yyyy-MM-dd HH:mm:ss"),
+                                ДатаНазначения = empPos.ДатаНазначения.Value.ToString("yyyy-MM-dd HH:mm:ss"),
                                 Должность = pos.Должность
                             };
 

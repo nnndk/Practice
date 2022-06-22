@@ -12,10 +12,10 @@ namespace Practice.Models
         }
 
         [Required(ErrorMessage = "Ошибка! Не выбран тип проекта!")]
-        public int Код { get; set; }
+        public int? Код { get; set; }
 
         [Required(ErrorMessage = "Ошибка! Не указано название типа проекта!")]
-        public string ТипПроекта { get; set; } = null!;
+        public string? ТипПроекта { get; set; } = null!;
 
         public virtual ICollection<Проекты> Проектыs { get; set; }
     }

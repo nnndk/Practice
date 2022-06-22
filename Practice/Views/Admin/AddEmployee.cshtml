@@ -40,7 +40,7 @@
             <div class="mb-3">
                 <label asp-for="КодПола">Пол</label>
                 <select class="form-control" asp-for="КодПола">
-                    <option selected>Выбрать пол...</option>
+                    <option value=@null selected>Выбрать пол...</option>
 
                     @foreach (var item in ViewBag.Genders)
                     {
@@ -72,7 +72,7 @@
             <div class="mb-3">
                 <label asp-for="КодВидаТрудоустройства">Вид трудоустройства</label>
                 <select class="form-control" asp-for="КодВидаТрудоустройства">
-                    <option selected>Выбрать вид трудоустройства...</option>
+                    <option value=@null selected>Выбрать вид трудоустройства...</option>
 
                     @foreach (var item in ViewBag.EmpTypes)
                     {

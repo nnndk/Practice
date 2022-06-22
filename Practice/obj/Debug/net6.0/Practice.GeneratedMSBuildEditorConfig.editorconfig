@@ -8,261 +8,261 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Practice
 build_property.RootNamespace = Practice
-build_property.ProjectDir = C:\Users\danil\Documents\All\CourseProject2\Practice\Practice\
+build_property.ProjectDir = C:\Users\danil\Documents\All\Practice\Practice\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\danil\Documents\All\CourseProject2\Practice\Practice
+build_property.MSBuildProjectDirectory = C:\Users\danil\Documents\All\Practice\Practice
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/Accountant/Index.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/Accountant/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudGFudFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/Admin/AddEmployee.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/Admin/AddEmployee.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRkRW1wbG95ZWUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/Admin/AddPosition.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/Admin/AddPosition.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRkUG9zaXRpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/Admin/DeletePosition.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/Admin/DeletePosition.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRGVsZXRlUG9zaXRpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/Admin/EmployeePositions.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/Admin/EmployeePositions.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRW1wbG95ZWVQb3NpdGlvbnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/Admin/Index.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/Admin/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/Admin/UpdateEmployee.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/Admin/UpdateEmployee.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVXBkYXRlRW1wbG95ZWUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/Auth/Login.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/Auth/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/CEO/Index.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/CEO/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ0VPXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/ContractDepEmp/AddDepartment.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/ContractDepEmp/AddDepartment.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhY3REZXBFbXBcQWRkRGVwYXJ0bWVudC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/ContractDepEmp/AddProject.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/ContractDepEmp/AddProject.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhY3REZXBFbXBcQWRkUHJvamVjdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/ContractDepEmp/DeleteDepartment.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/ContractDepEmp/DeleteDepartment.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhY3REZXBFbXBcRGVsZXRlRGVwYXJ0bWVudC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/ContractDepEmp/DeleteProject.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/ContractDepEmp/DeleteProject.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhY3REZXBFbXBcRGVsZXRlUHJvamVjdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/ContractDepEmp/DeletionForbidden.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/ContractDepEmp/DeletionForbidden.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhY3REZXBFbXBcRGVsZXRpb25Gb3JiaWRkZW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/ContractDepEmp/FireEmployee.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/ContractDepEmp/FireEmployee.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhY3REZXBFbXBcRmlyZUVtcGxveWVlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/ContractDepEmp/GetAllTasks.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/ContractDepEmp/GetAllTasks.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhY3REZXBFbXBcR2V0QWxsVGFza3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/ContractDepEmp/GetUnemployedPersons.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/ContractDepEmp/GetUnemployedPersons.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhY3REZXBFbXBcR2V0VW5lbXBsb3llZFBlcnNvbnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/ContractDepEmp/HireEmployee.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/ContractDepEmp/HireEmployee.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhY3REZXBFbXBcSGlyZUVtcGxveWVlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/ContractDepEmp/Index.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/ContractDepEmp/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhY3REZXBFbXBcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/ContractDepEmp/UpdateDepartment.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/ContractDepEmp/UpdateDepartment.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhY3REZXBFbXBcVXBkYXRlRGVwYXJ0bWVudC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/ContractDepEmp/UpdateProject.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/ContractDepEmp/UpdateProject.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhY3REZXBFbXBcVXBkYXRlUHJvamVjdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/DbAdmin/AddEmpType.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/DbAdmin/AddEmpType.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGJBZG1pblxBZGRFbXBUeXBlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/DbAdmin/AddGender.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/DbAdmin/AddGender.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGJBZG1pblxBZGRHZW5kZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/DbAdmin/AddPosition.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/DbAdmin/AddPosition.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGJBZG1pblxBZGRQb3NpdGlvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/DbAdmin/AddProjectType.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/DbAdmin/AddProjectType.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGJBZG1pblxBZGRQcm9qZWN0VHlwZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/DbAdmin/AddRole.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/DbAdmin/AddRole.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGJBZG1pblxBZGRSb2xlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/DbAdmin/AddStatus.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/DbAdmin/AddStatus.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGJBZG1pblxBZGRTdGF0dXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/DbAdmin/DeleteEmpType.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/DbAdmin/DeleteEmpType.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGJBZG1pblxEZWxldGVFbXBUeXBlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/DbAdmin/DeleteGender.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/DbAdmin/DeleteGender.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGJBZG1pblxEZWxldGVHZW5kZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/DbAdmin/DeletePosition.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/DbAdmin/DeletePosition.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGJBZG1pblxEZWxldGVQb3NpdGlvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/DbAdmin/DeleteProjectType.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/DbAdmin/DeleteProjectType.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGJBZG1pblxEZWxldGVQcm9qZWN0VHlwZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/DbAdmin/DeleteRole.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/DbAdmin/DeleteRole.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGJBZG1pblxEZWxldGVSb2xlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/DbAdmin/DeleteStatus.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/DbAdmin/DeleteStatus.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGJBZG1pblxEZWxldGVTdGF0dXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/DbAdmin/DeletionForbidden.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/DbAdmin/DeletionForbidden.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGJBZG1pblxEZWxldGlvbkZvcmJpZGRlbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/DbAdmin/Index.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/DbAdmin/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGJBZG1pblxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/DbAdmin/UpdateEmpType.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/DbAdmin/UpdateEmpType.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGJBZG1pblxVcGRhdGVFbXBUeXBlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/DbAdmin/UpdateGender.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/DbAdmin/UpdateGender.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGJBZG1pblxVcGRhdGVHZW5kZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/DbAdmin/UpdatePosition.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/DbAdmin/UpdatePosition.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGJBZG1pblxVcGRhdGVQb3NpdGlvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/DbAdmin/UpdateProjectType.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/DbAdmin/UpdateProjectType.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGJBZG1pblxVcGRhdGVQcm9qZWN0VHlwZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/DbAdmin/UpdateRole.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/DbAdmin/UpdateRole.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGJBZG1pblxVcGRhdGVSb2xlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/DbAdmin/UpdateStatus.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/DbAdmin/UpdateStatus.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGJBZG1pblxVcGRhdGVTdGF0dXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/DepDirector/Index.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/DepDirector/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwRGlyZWN0b3JcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/Developer/AddTask.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/Developer/AddTask.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGV2ZWxvcGVyXEFkZFRhc2suY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/Developer/DeleteTask.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/Developer/DeleteTask.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGV2ZWxvcGVyXERlbGV0ZVRhc2suY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/Developer/Index.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/Developer/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGV2ZWxvcGVyXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/Developer/UpdateTask.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/Developer/UpdateTask.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGV2ZWxvcGVyXFVwZGF0ZVRhc2suY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/Home/Index.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/Profile/Index.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/Profile/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmlsZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/ProjectManager/AddDeveloper.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/ProjectManager/AddDeveloper.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdE1hbmFnZXJcQWRkRGV2ZWxvcGVyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/ProjectManager/AvailableEmployees.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/ProjectManager/AvailableEmployees.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdE1hbmFnZXJcQXZhaWxhYmxlRW1wbG95ZWVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/ProjectManager/CheckTask.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/ProjectManager/CheckTask.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdE1hbmFnZXJcQ2hlY2tUYXNrLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/ProjectManager/GetAllRates.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/ProjectManager/GetAllRates.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdE1hbmFnZXJcR2V0QWxsUmF0ZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/ProjectManager/GetAllTasks.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/ProjectManager/GetAllTasks.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdE1hbmFnZXJcR2V0QWxsVGFza3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/ProjectManager/Index.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/ProjectManager/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdE1hbmFnZXJcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/ProjectManager/UpdateDeveloper.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/ProjectManager/UpdateDeveloper.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdE1hbmFnZXJcVXBkYXRlRGV2ZWxvcGVyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/ProjectManager/UpdateEndDate.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/ProjectManager/UpdateEndDate.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdE1hbmFnZXJcVXBkYXRlRW5kRGF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/ProjectManager/UpdateRate.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/ProjectManager/UpdateRate.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdE1hbmFnZXJcVXBkYXRlUmF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/ProjectManager/UpdateRole.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/ProjectManager/UpdateRole.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdE1hbmFnZXJcVXBkYXRlUm9sZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/Shared/Error.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/_ViewImports.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/_ViewStart.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/Documents/All/CourseProject2/Practice/Practice/Views/Shared/_Layout.cshtml]
+[C:/Users/danil/Documents/All/Practice/Practice/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-a4lxi8xlsj

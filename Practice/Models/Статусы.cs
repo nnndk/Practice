@@ -12,10 +12,10 @@ namespace Practice.Models
         }
 
         [Required(ErrorMessage = "Ошибка! Не выбран статус!")]
-        public int Код { get; set; }
+        public int? Код { get; set; }
 
         [Required(ErrorMessage = "Ошибка! Не указано название статуса!")]
-        public string Статус { get; set; } = null!;
+        public string? Статус { get; set; } = null!;
 
         public virtual ICollection<ФактическиеТрудозатраты> ФактическиеТрудозатратыs { get; set; }
     }

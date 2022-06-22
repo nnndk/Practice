@@ -12,10 +12,10 @@ namespace Practice.Models
         }
 
         [Required(ErrorMessage = "Ошибка! Не выбрана должность!")]
-        public int Код { get; set; }
+        public int? Код { get; set; }
 
         [Required(ErrorMessage = "Ошибка! Не указано название должности!")]
-        public string Должность { get; set; } = null!;
+        public string? Должность { get; set; } = null!;
 
         public virtual ICollection<ДолжностиСотрудников> ДолжностиСотрудниковs { get; set; }
     }

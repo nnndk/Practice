@@ -13,21 +13,22 @@ namespace Practice.Models
             ФактическиеТрудозатратыs = new HashSet<ФактическиеТрудозатраты>();
         }
 
-        public int Код { get; set; }
+        [Required(ErrorMessage = "Ошибка! Не выбран проект!")]
+        public int? Код { get; set; }
 
         [Required(ErrorMessage = "Ошибка! Не указано название проекта!")]
-        public string НазваниеПроекта { get; set; } = null!;
+        public string? НазваниеПроекта { get; set; } = null!;
 
         [Required(ErrorMessage = "Ошибка! Не указана дата начала проекта!")]
-        public DateTime ДатаНачалаПроекта { get; set; }
+        public DateTime? ДатаНачалаПроекта { get; set; }
 
         public DateTime? ДатаЗавершенияПроекта { get; set; }
 
         [Required(ErrorMessage = "Ошибка! Не выбран менеджер проекта!")]
-        public long КодМенеджераПроекта { get; set; }
+        public long? КодМенеджераПроекта { get; set; }
 
         [Required(ErrorMessage = "Ошибка! Не выбран тип проекта!")]
-        public int КодТипаПроекта { get; set; }
+        public int? КодТипаПроекта { get; set; }
 
         public virtual Сотрудники КодМенеджераПроектаNavigation { get; set; } = null!;
         public virtual ТипыПроектов КодТипаПроектаNavigation { get; set; } = null!;

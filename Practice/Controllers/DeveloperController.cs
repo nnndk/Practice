@@ -29,7 +29,7 @@ namespace Practice.Controllers
                             }).Distinct();
 
                 foreach (var item in query)
-                    projects.Add(item.Код, item.НазваниеПроекта);
+                    projects.Add(item.Код ?? 0, item.НазваниеПроекта);
 
                 return projects;
             }
@@ -47,7 +47,7 @@ namespace Practice.Controllers
                             {
                                 Код = project.Код.ToString(),
                                 НазваниеПроекта = project.НазваниеПроекта,
-                                ДатаНачалаПроекта = project.ДатаНачалаПроекта.Date.ToString(),
+                                ДатаНачалаПроекта = project.ДатаНачалаПроекта.Value.Date.ToString(),
                                 ДатаЗавершенияПроекта = project.ДатаЗавершенияПроекта.Value.Date.ToString(),
                                 КодМенеджераПроекта = project.КодМенеджераПроекта.ToString(),
                                 ФамилияМенеджераПроекта = emp.Фамилия,
@@ -81,7 +81,7 @@ namespace Practice.Controllers
                             {
                                 Код = task.Код.ToString(),
                                 Задача = task.Задача,
-                                ДатаТрудозатраты = task.ДатаТрудозатраты.Date.ToString(),
+                                ДатаТрудозатраты = task.ДатаТрудозатраты.Value.Date.ToString(),
                                 КоличествоЧасов = task.КоличествоЧасов.ToString(),
                                 Статус = status.Статус,
                                 Комментарий = task.Комментарий,
@@ -144,7 +144,7 @@ namespace Practice.Controllers
         {
             using (var db = new CourseProject2DBContext())
             {
-                if (ModelState.ErrorCount == 3)
+                if (ModelState.ErrorCount == 5)
                 {
                     long empId = (from emp in db.Сотрудникиs
                                   where emp.Логин == User.Identity.Name
@@ -190,7 +190,7 @@ namespace Practice.Controllers
         {
             using (var db = new CourseProject2DBContext())
             {
-                if (ModelState.ErrorCount == 3)
+                if (ModelState.ErrorCount == 4)
                 {
                     long empId = (from emp in db.Сотрудникиs
                                   where emp.Логин == User.Identity.Name

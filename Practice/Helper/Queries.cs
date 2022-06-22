@@ -15,8 +15,9 @@ namespace Practice.Helper
             { "Сотрудник договорного отдела", "ContractDepEmp" }
         };
 
-        public static readonly string[] developerTypes = new string[] { "Разработчик 1 категории", "Разработчик 2 категории",
-                    "Разработчик 3 категории", "Разработчик 4 категории", "Разработчик 5 категории", "Разработчик-эксперт" };
+        public static readonly string[] developerTypes = new string[] { "Разработчик-стажёр", "Разработчик 1 категории", 
+            "Разработчик 2 категории", "Разработчик 3 категории", "Разработчик 4 категории", "Разработчик 5 категории", 
+            "Разработчик-эксперт" };
 
         public static Dictionary<string, string> GetEmployeeRoles(string login)
         {

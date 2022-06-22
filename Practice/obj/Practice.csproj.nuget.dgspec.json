@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\danil\\Documents\\All\\CourseProject2\\Practice\\Practice\\Practice.csproj": {}
+    "C:\\Users\\danil\\Documents\\All\\Practice\\Practice\\Practice.csproj": {}
   },
   "projects": {
-    "C:\\Users\\danil\\Documents\\All\\CourseProject2\\Practice\\Practice\\Practice.csproj": {
+    "C:\\Users\\danil\\Documents\\All\\Practice\\Practice\\Practice.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\danil\\Documents\\All\\CourseProject2\\Practice\\Practice\\Practice.csproj",
+        "projectUniqueName": "C:\\Users\\danil\\Documents\\All\\Practice\\Practice\\Practice.csproj",
         "projectName": "Practice",
-        "projectPath": "C:\\Users\\danil\\Documents\\All\\CourseProject2\\Practice\\Practice\\Practice.csproj",
+        "projectPath": "C:\\Users\\danil\\Documents\\All\\Practice\\Practice\\Practice.csproj",
         "packagesPath": "C:\\Users\\danil\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\danil\\Documents\\All\\CourseProject2\\Practice\\Practice\\obj\\",
+        "outputPath": "C:\\Users\\danil\\Documents\\All\\Practice\\Practice\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -85,7 +85,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

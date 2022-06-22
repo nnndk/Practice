@@ -9,16 +9,16 @@ namespace Practice.Models
         public long Код { get; set; }
 
         [Required(ErrorMessage = "Ошибка! Не выбран сотрудник!")]
-        public long КодСотрудника { get; set; }
+        public long? КодСотрудника { get; set; }
 
         [Required(ErrorMessage = "Ошибка! Не выбран проект")]
-        public int КодПроекта { get; set; }
+        public int? КодПроекта { get; set; }
 
         [Required(ErrorMessage = "Ошибка! Не выбрана роль!")]
-        public int КодРоли { get; set; }
+        public int? КодРоли { get; set; }
 
         [Required(ErrorMessage = "Ошибка! Не указана дата начала работы на проекте!")]
-        public DateTime ДатаНачалаРаботыНаПроекте { get; set; }
+        public DateTime? ДатаНачалаРаботыНаПроекте { get; set; }
         public DateTime? ДатаОкончанияРаботыНаПроекте { get; set; }
 
         public virtual Проекты КодПроектаNavigation { get; set; } = null!;

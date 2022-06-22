@@ -28,7 +28,7 @@ namespace Practice.Controllers
                             };
 
                 foreach (var item in query)
-                    projects.Add(item.Код, item.НазваниеПроекта);
+                    projects.Add(item.Код ?? 0, item.НазваниеПроекта);
 
                 return projects;
             }
@@ -46,7 +46,7 @@ namespace Practice.Controllers
                              {
                                  Код = project.Код.ToString(),
                                  НазваниеПроекта = project.НазваниеПроекта,
-                                 ДатаНачалаПроекта = project.ДатаНачалаПроекта.Date.ToString(),
+                                 ДатаНачалаПроекта = project.ДатаНачалаПроекта.Value.Date.ToString(),
                                  ДатаЗавершенияПроекта = project.ДатаЗавершенияПроекта.Value.Date.ToString(),
                                  КодМенеджераПроекта = project.КодМенеджераПроекта.ToString(),
                                  ФамилияМенеджераПроекта = emp.Фамилия,
@@ -80,7 +80,7 @@ namespace Practice.Controllers
                                 Отчество = emp.Отчество,
                                 Логин = emp.Логин,
                                 Роль = role.Роль,
-                                ДатаНачалаРаботыНаПроекте = pr_emp.ДатаНачалаРаботыНаПроекте.ToString("yyyy-MM-dd HH:mm:ss"),
+                                ДатаНачалаРаботыНаПроекте = pr_emp.ДатаНачалаРаботыНаПроекте.Value.ToString("yyyy-MM-dd HH:mm:ss"),
                                 ДатаОкончанияРаботыНаПроекте = pr_emp.ДатаОкончанияРаботыНаПроекте.Value.ToString("yyyy-MM-dd HH:mm:ss")
                             };
 
@@ -116,7 +116,7 @@ namespace Practice.Controllers
                                       Роль = emp.Роль,
                                       ДатаНачалаРаботыНаПроекте = emp.ДатаНачалаРаботыНаПроекте,
                                       ДатаОкончанияРаботыНаПроекте = emp.ДатаОкончанияРаботыНаПроекте,
-                                      ДатаНачалаДействияСтавки = g.ДатаНачалаДействияСтавки.ToString("yyyy-MM-dd HH:mm:ss") ?? string.Empty,
+                                      ДатаНачалаДействияСтавки = g.ДатаНачалаДействияСтавки.Value.ToString("yyyy-MM-dd HH:mm:ss") ?? string.Empty,
                                       Ставка = g.Ставка.ToString() ?? string.Empty
                                   };
 
@@ -197,7 +197,7 @@ namespace Practice.Controllers
                                  Имя = emp.Имя,
                                  Отчество = emp.Отчество,
                                  Пол = sex.Пол1,
-                                 ДатаРождения = emp.ДатаРождения.Date.ToString(),
+                                 ДатаРождения = emp.ДатаРождения.Value.Date.ToString(),
                                  Телефон1 = emp.Телефон1,
                                  Телефон2 = emp.Телефон2,
                                  ДатаНачалаРаботыВSap = emp.ДатаНачалаРаботыВSap.Value.Date.ToString(),
@@ -323,7 +323,7 @@ namespace Practice.Controllers
                                  Фамилия = emp.Фамилия,
                                  Имя = emp.Имя,
                                  Задача = task.Задача,
-                                 ДатаТрудозатраты = task.ДатаТрудозатраты.ToString("yyyy-MM-dd HH:mm:ss"),
+                                 ДатаТрудозатраты = task.ДатаТрудозатраты.Value.ToString("yyyy-MM-dd HH:mm:ss"),
                                  КоличествоЧасов = task.КоличествоЧасов,
                                  Комментарий = task.Комментарий,
                                  Статус = status.Статус,
@@ -454,14 +454,14 @@ namespace Practice.Controllers
                                  Имя = emp.Имя,
                                  Отчество = emp.Отчество,
                                  Пол = sex.Пол1,
-                                 ДатаРождения = emp.ДатаРождения.Date.ToString(),
+                                 ДатаРождения = emp.ДатаРождения.Value.Date.ToString(),
                                  Телефон1 = emp.Телефон1,
                                  Телефон2 = emp.Телефон2,
                                  ДатаНачалаРаботыВSap = emp.ДатаНачалаРаботыВSap.Value.Date.ToString(),
                                  ВидТрудоустройства = empType.ВидТрудоустройства,
                                  Логин = emp.Логин,
                                  Роль = role.Роль,
-                                 ДатаНачалаРаботыНаПроекте = pr_emp.ДатаНачалаРаботыНаПроекте.Date.ToString(),
+                                 ДатаНачалаРаботыНаПроекте = pr_emp.ДатаНачалаРаботыНаПроекте.Value.Date.ToString(),
                                  ДатаОкончанияРаботыНаПроекте = pr_emp.ДатаОкончанияРаботыНаПроекте.Value.Date.ToString()
                              };
 
@@ -505,7 +505,7 @@ namespace Practice.Controllers
                                   Логин = emp.Логин,
                                   ДатаНачалаРаботыНаПроекте = emp.ДатаНачалаРаботыНаПроекте,
                                   Роль = emp.Роль,
-                                  ДатаНачалаДействияСтавки = g.ДатаНачалаДействияСтавки.ToString("yyyy-MM-dd HH:mm:ss") ?? string.Empty,
+                                  ДатаНачалаДействияСтавки = g.ДатаНачалаДействияСтавки.Value.ToString("yyyy-MM-dd HH:mm:ss") ?? string.Empty,
                                   Ставка = g.Ставка.ToString() ?? string.Empty,
                                   ДатаОкончанияРаботыНаПроекте = emp.ДатаОкончанияРаботыНаПроекте
                               }).FirstOrDefault();

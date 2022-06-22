@@ -78,7 +78,7 @@ namespace Practice.Controllers
                                         {
                                             Код = g.Key,
                                             КоличествоРабочихЧасов = g.ToList()
-                                        .Sum(x => (CommonFunctions.CountWorkingDays(x.ДатаЗачисленияВШтат, page.StartDate, x.ДатаУвольнения, page.EndDate) + 1) * 8)
+                                        .Sum(x => (CommonFunctions.CountWorkingDays(x.ДатаЗачисленияВШтат.Value, page.StartDate, x.ДатаУвольнения, page.EndDate) + 1) * 8)
                                         }).ToList();
 
                                 var query = from emp in db.Сотрудникиs.ToList()
@@ -138,7 +138,7 @@ namespace Practice.Controllers
                                         {
                                             Код = g.Key,
                                             КоличествоРабочихЧасов = g.ToList()
-                                        .Sum(x => (CommonFunctions.CountWorkingDays(x.ДатаЗачисленияВШтат, page.StartDate, x.ДатаУвольнения, page.EndDate) + 1) * 8)
+                                        .Sum(x => (CommonFunctions.CountWorkingDays(x.ДатаЗачисленияВШтат.Value, page.StartDate, x.ДатаУвольнения, page.EndDate) + 1) * 8)
                                         }).ToList();
 
                                 var query = from emp in db.Сотрудникиs.ToList()
@@ -204,7 +204,7 @@ namespace Practice.Controllers
                                                     task.КодРазработчика,
                                                     task.КоличествоЧасов,
                                                     task.ДатаТрудозатраты,
-                                                    ДатаНачалаДействияСтавки = g.ДатаНачалаДействияСтавки.ToString("yyyy-MM-dd") ?? new DateTime(2000, 1, 1).ToString("yyyy-MM-dd"),
+                                                    ДатаНачалаДействияСтавки = g.ДатаНачалаДействияСтавки.Value.ToString("yyyy-MM-dd") ?? new DateTime(2000, 1, 1).ToString("yyyy-MM-dd"),
                                                     Ставка = int.Parse(g.Ставка.ToString() ?? "0")
                                                 }).Distinct().ToList();
 
@@ -285,7 +285,7 @@ namespace Practice.Controllers
                                                     task.КодРазработчика,
                                                     task.КоличествоЧасов,
                                                     task.ДатаТрудозатраты,
-                                                    ДатаНачалаДействияСтавки = g.ДатаНачалаДействияСтавки.ToString("yyyy-MM-dd") ?? new DateTime(2000, 1, 1).ToString("yyyy-MM-dd"),
+                                                    ДатаНачалаДействияСтавки = g.ДатаНачалаДействияСтавки.Value.ToString("yyyy-MM-dd") ?? new DateTime(2000, 1, 1).ToString("yyyy-MM-dd"),
                                                     Ставка = int.Parse(g.Ставка.ToString() ?? "0")
                                                 }).Distinct().ToList();
 

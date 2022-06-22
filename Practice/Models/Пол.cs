@@ -12,10 +12,10 @@ namespace Practice.Models
         }
 
         [Required(ErrorMessage = "Ошибка! Не выбран пол!")]
-        public int Код { get; set; }
+        public int? Код { get; set; }
 
         [Required(ErrorMessage = "Ошибка! Не указано название пола!")]
-        public string Пол1 { get; set; } = null!;
+        public string? Пол1 { get; set; } = null!;
 
         public virtual ICollection<Сотрудники> Сотрудникиs { get; set; }
     }

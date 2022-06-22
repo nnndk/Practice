@@ -21,7 +21,7 @@ namespace Practice.Controllers
                              {
                                  Код = project.Код,
                                  НазваниеПроекта = project.НазваниеПроекта,
-                                 ДатаНачалаПроекта = project.ДатаНачалаПроекта.Date.ToString("yyyy-MM-dd HH:mm:ss"),
+                                 ДатаНачалаПроекта = project.ДатаНачалаПроекта.Value.Date.ToString("yyyy-MM-dd HH:mm:ss"),
                                  ДатаЗавершенияПроекта = project.ДатаЗавершенияПроекта.Value.Date.ToString("yyyy-MM-dd HH:mm:ss"),
                                  КодМенеджераПроекта = project.КодМенеджераПроекта,
                                  ТипПроекта = projectType.ТипПроекта
@@ -57,13 +57,13 @@ namespace Practice.Controllers
                                  Имя = emp.Имя,
                                  Отчество = emp.Отчество,
                                  Пол = sex.Пол1,
-                                 ДатаРождения = emp.ДатаРождения.Date.ToString("yyyy-MM-dd HH:mm:ss"),
+                                 ДатаРождения = emp.ДатаРождения.Value.Date.ToString("yyyy-MM-dd HH:mm:ss"),
                                  Телефон1 = emp.Телефон1,
                                  Телефон2 = emp.Телефон2,
                                  ДатаНачалаРаботыВSap = emp.ДатаНачалаРаботыВSap.Value.Date.ToString("yyyy-MM-dd HH:mm:ss"),
                                  ВидТрудоустройства = empType.ВидТрудоустройства,
                                  Логин = emp.Логин,
-                                 ДатаЗачисленияВШтат = employment.ДатаЗачисленияВШтат.Date.ToString("yyyy-MM-dd HH:mm:ss"),
+                                 ДатаЗачисленияВШтат = employment.ДатаЗачисленияВШтат.Value.Date.ToString("yyyy-MM-dd HH:mm:ss"),
                                  ДатаУвольнения = employment.ДатаУвольнения.Value.Date.ToString("yyyy-MM-dd HH:mm:ss")
                              };
 
@@ -104,7 +104,7 @@ namespace Practice.Controllers
         {
             using (var db = new CourseProject2DBContext())
             {
-                if (ModelState.ErrorCount == 2)
+                if (ModelState.ErrorCount == 3)
                 {
                     db.Проектыs.Add(project);
                     db.SaveChanges();
@@ -177,7 +177,7 @@ namespace Practice.Controllers
                                  Имя = emp.Имя,
                                  Отчество = emp.Отчество,
                                  Пол = sex.Пол1,
-                                 ДатаРождения = emp.ДатаРождения.Date.ToString("yyyy-MM-dd HH:mm:ss"),
+                                 ДатаРождения = emp.ДатаРождения.Value.Date.ToString("yyyy-MM-dd HH:mm:ss"),
                                  Телефон1 = emp.Телефон1,
                                  Телефон2 = emp.Телефон2,
                                  ДатаНачалаРаботыВSap = emp.ДатаНачалаРаботыВSap.Value.Date.ToString("yyyy-MM-dd HH:mm:ss"),
@@ -235,6 +235,18 @@ namespace Practice.Controllers
         {
             using (var db = new CourseProject2DBContext())
             {
+                var query = (from empl in db.УстройствоНаРаботуs
+                             where empl.КодСотрудника == employment.КодСотрудника
+                             && (empl.ДатаЗачисленияВШтат >= employment.ДатаЗачисленияВШтат
+                             || empl.ДатаУвольнения >= employment.ДатаЗачисленияВШтат)
+                             select empl).Any();
+
+                if (query)
+                {
+                    ModelState.AddModelError("ДатаЗачисленияВШтат", "Ошибка! Дата зачисления в штат должна быть больше, чем " +
+                        "дата последнего увольнения!");
+                }
+
                 if (ModelState.ErrorCount == 1)
                 {
                     db.УстройствоНаРаботуs.Add(employment);
@@ -308,7 +320,7 @@ namespace Practice.Controllers
                                  КодРазработчика = task.КодРазработчика,
                                  КодПроекта = task.КодПроекта,
                                  Задача = task.Задача,
-                                 ДатаТрудозатраты = task.ДатаТрудозатраты.ToString("yyyy-MM-dd HH:mm:ss"),
+                                 ДатаТрудозатраты = task.ДатаТрудозатраты.Value.ToString("yyyy-MM-dd HH:mm:ss"),
                                  КоличествоЧасов = task.КоличествоЧасов,
                                  Комментарий = task.Комментарий,
                                  Статус = status.Статус,
@@ -363,7 +375,7 @@ namespace Practice.Controllers
                     return View(dep);
                 }
 
-                if (ModelState.ErrorCount == 1)
+                if (ModelState.ErrorCount == 2)
                 {
                     db.Департаментыs.Add(dep);
                     db.SaveChanges();
@@ -418,9 +430,9 @@ namespace Practice.Controllers
                     return View(dep);
                 }
 
-                long oldDepDir = (from department in db.Департаментыs
-                                  where department.Код == dep.Код
-                                  select department.КодДиректораДепартамента).First();
+                long? oldDepDir = (from department in db.Департаментыs
+                                   where department.Код == dep.Код
+                                   select department.КодДиректораДепартамента).First();
 
                 if (ModelState.ErrorCount == 1)
                 {
@@ -487,7 +499,7 @@ namespace Practice.Controllers
         {
             using (var db = new CourseProject2DBContext())
             {
-                if (ModelState.ErrorCount == 2)
+                if (ModelState.ErrorCount == 3)
                 {
                     db.Проектыs.Remove(project);
                     db.SaveChanges();
@@ -534,9 +546,9 @@ namespace Practice.Controllers
                 if (ModelState.ErrorCount == 1)
                 {
                     var depDirector = (from dep_emp in db.ДолжностиСотрудниковs
-                                 join pos in db.Должностиs on dep_emp.КодДолжности equals pos.Код
-                                 where dep_emp.КодДепартамента == dep.Код && pos.Должность == "Директор департамента"
-                                 select dep_emp).First();
+                                       join pos in db.Должностиs on dep_emp.КодДолжности equals pos.Код
+                                       where dep_emp.КодДепартамента == dep.Код && pos.Должность == "Директор департамента"
+                                       select dep_emp).First();
 
                     db.ДолжностиСотрудниковs.Remove(depDirector);
                     db.Департаментыs.Remove(dep);

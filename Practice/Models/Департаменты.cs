@@ -12,13 +12,13 @@ namespace Practice.Models
         }
 
         [Required(ErrorMessage = "Ошибка! Не указан код департамента!")]
-        public int Код { get; set; }
+        public int? Код { get; set; }
 
         [Required(ErrorMessage = "Ошибка! Не указано название департамента!")]
-        public string НазваниеДепартамента { get; set; } = null!;
+        public string? НазваниеДепартамента { get; set; } = null!;
 
         [Required(ErrorMessage = "Ошибка! Не указан код директора департамента!")]
-        public long КодДиректораДепартамента { get; set; }
+        public long? КодДиректораДепартамента { get; set; }
 
         public virtual Сотрудники КодДиректораДепартаментаNavigation { get; set; } = null!;
         public virtual ICollection<ДолжностиСотрудников> ДолжностиСотрудниковs { get; set; }
