@@ -4,7 +4,6 @@ namespace Practice.Models.ViewModels
 {
     public class ReportViewModel
     {
-        [Required(ErrorMessage = "Ошибка! Необходимо выбрать тип отчёта!")]
         public string? ReportType { get; set; } = null;
 
         public int? DepId { get; set; } = null;
